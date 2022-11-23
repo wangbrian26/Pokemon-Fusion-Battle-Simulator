@@ -25,6 +25,8 @@ healthUp.addEventListener("click", function () {
     healthBase++;
     health.textContent = healthBase;
     stats.textContent = statPoints;
+    charStats.health = healthBase;
+    console.log(charStats);
   } else {
     console.log("out of stat points");
   }
@@ -36,6 +38,7 @@ attackUp.addEventListener("click", function () {
     attackBase++;
     attack.textContent = attackBase;
     stats.textContent = statPoints;
+    charStats.attack = attackBase;
   } else {
     console.log("out of stat points");
   }
@@ -47,6 +50,7 @@ speedUp.addEventListener("click", function () {
     speedBase++;
     speed.textContent = speedBase;
     stats.textContent = statPoints;
+    charStats.speed = speedBase;
   } else {
     console.log("out of stat points");
   }
@@ -58,6 +62,7 @@ defenseUp.addEventListener("click", function () {
     defenseBase++;
     defense.textContent = defenseBase;
     stats.textContent = statPoints;
+    charStats.defense = defenseBase;
   } else {
     console.log("out of stat points");
   }
