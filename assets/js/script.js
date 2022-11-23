@@ -1,6 +1,6 @@
 // Stat allocator for user character
 
-var healthBase = 200;
+var healthBase = 50;
 var defenseBase = 50;
 var speedBase = 50;
 var attackBase = 50;
@@ -171,9 +171,23 @@ function battle() {
     }
   } else {
     currentStats.health -= opponentStats.attack;
-    opponentStats.health -= currentStats.attack;
-    console.log("opponent hp", opponentStats.health);
-    console.log("your hp", currentStats.health);
+    if (currentStats.health <= 0) {
+      currentStats.health = 0;
+      console.log("game over");
+      return;
+    } else {
+      opponentStats.health -= currentStats.attack;
+      if (opponentStats.health <= 0) {
+        opponentStats.health = 0;
+        console.log("you win");
+        console.log("opponent hp", opponentStats.health);
+        console.log("your hp", currentStats.health);
+        return;
+      } else {
+        console.log("opponent hp", opponentStats.health);
+        console.log("your hp", currentStats.health);
+      }
+    }
   }
 
   // if (currentStats.health <= 0) {
