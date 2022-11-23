@@ -1,6 +1,4 @@
 // Nicole's Landing Page JS
-
-
 let fakemonPaths = [
     './assets/images/fakemon/1.jpeg',
     './assets/images/fakemon/2.jpeg', 
