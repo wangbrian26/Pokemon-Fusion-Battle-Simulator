@@ -201,11 +201,11 @@ function fusionPokemon() {
     });
 }
 
-function fusionStats() {
-  console.log("opponent test");
-  console.log(opponentStats);
-  console.log(opponentStats.health);
-}
+// function fusionStats() {
+//   console.log("opponent test");
+//   console.log(opponentStats);
+//   console.log(opponentStats.health);
+// }
 
 fusionPokemon();
 console.log(opponentStats);
@@ -220,6 +220,8 @@ function battle() {
     if (opponentStats.health <= 0) {
       opponentStats.health = 0;
       console.log("you win");
+      console.log("opponent hp", opponentStats.health);
+      console.log("your hp", currentStats.health);
       return;
     } else {
       currentStats.health -= opponentStats.attack;
