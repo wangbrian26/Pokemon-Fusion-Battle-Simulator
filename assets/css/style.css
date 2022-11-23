@@ -1,0 +1,15 @@
+:root {
+
+}
+
+h1 {
+  background-color: blue;
+  color: aliceblue;
+}
+
+.card {
+height: 500px;
+width: 300px;
+border: 1px solid black;
+}
+
