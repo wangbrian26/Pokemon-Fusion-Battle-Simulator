@@ -43,3 +43,8 @@ border: 1px solid black;
 .forest {
   background-image: url("../images/backgrounds/forest.jpg");
 }
+
+.userPokemon {
+  position: fixed;
+  bottom: 10px;
+}

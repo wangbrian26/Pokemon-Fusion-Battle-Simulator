@@ -237,6 +237,7 @@ function battle() {
     button.setAttribute("class", "hide");
   });
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
+  document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
   if (currentStats.speed >= opponentStats.speed) {
     opponentStats.health -= currentStats.attack;
