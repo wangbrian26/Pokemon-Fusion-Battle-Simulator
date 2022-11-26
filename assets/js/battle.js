@@ -20,6 +20,17 @@ var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
 
+function critChance() {
+  var totalChance = 100;
+  var chanceReturn = Math.floor(Math.random() * totalChance);
+  console.log("chance");
+  console.log(chanceReturn);
+  if (chanceReturn > 75) {
+    console.log("Crit!");
+    var criticalHit = true;
+  }
+}
+
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
 attack.textContent = attackBase;
