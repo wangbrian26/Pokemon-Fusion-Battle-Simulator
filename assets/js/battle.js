@@ -215,15 +215,12 @@ console.log(currentStats.health);
 var battlebtn = document.querySelector(".battle");
 
 function battle() {
-<<<<<<< HEAD
-=======
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
   });
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("body").setAttribute("class", "forest");
->>>>>>> f96d4509491ed4c9dbcb59315d6f85befe089414
   if (currentStats.speed >= opponentStats.speed) {
     opponentStats.health -= currentStats.attack;
     if (opponentStats.health <= 0) {
