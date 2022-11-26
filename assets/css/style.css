@@ -42,6 +42,31 @@ text-align: center;
   font-size: larger;
 }
 
+.card:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  cursor: pointer;
+}
+
+.name-box {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+}
+
+.name-box input {
+  width: 150px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+.button {
+  margin-top: 14px;
+}
+
 .forest {
   background-image: url("../images/backgrounds/forest.jpg");
 }
