@@ -4,6 +4,7 @@ let choiceButton1 = document.getElementById("button1");
 let choiceButton2 = document.getElementById("button2");
 let choiceButton3 = document.getElementById("button3");
 let saveButton = document.querySelector(".button");
+let charInfo = {};
 
 let fakemon1 = [
   "./assets/images/fakemon/1.jpeg",
@@ -53,8 +54,13 @@ document.getElementById("choice3").height = "400";
 
 choiceButton1.addEventListener("click", function(event) {
     event.preventDefault();
+    console.log('what is the event target');
+    console.log(event.target);
     if (event.detail === 1) {
         getChoice(event.target.parentNode); // need to save img to charStats object too right?
+        console.log('logging charInfo');
+        charInfo.image = event.target;
+        console.log(charInfo.image);
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -91,6 +97,7 @@ function getChoice(button) {
 function removeChoice(button) {
     console.log('running removeChoice()');
     button.style.border = "0px";
+    button.style.boxShadow = "0 0 0px";
     nameBox.style.visibility = "hidden";
 }
 
