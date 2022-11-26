@@ -1,7 +1,8 @@
 // Nicole's Landing Page JS
-let nameInput = document.getElementById("name-input").value.trim();
 let nameBox = document.getElementById("name-box");
-let choiceButton = document.querySelector(".card-section");
+let choiceButton1 = document.getElementById("button1");
+let choiceButton2 = document.getElementById("button2");
+let choiceButton3 = document.getElementById("button3");
 let saveButton = document.querySelector(".button");
 
 let fakemon1 = [
@@ -50,18 +51,47 @@ document.getElementById("choice2").height = "400";
 document.getElementById("choice3").width = "300";
 document.getElementById("choice3").height = "400";
 
-choiceButton.addEventListener("click", function(event) {
+choiceButton1.addEventListener("click", function(event) {
     event.preventDefault();
-    getChoice();
+    if (event.detail === 1) {
+        getChoice(event.target.parentNode); // need to save img to charStats object too right?
+    } else if (event.detail === 2) {
+        removeChoice(event.target.parentNode);
+    }
 })
 
-function getChoice() {
+choiceButton2.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (event.detail === 1) {
+        getChoice(event.target.parentNode);
+    } else if (event.detail === 2) {
+        removeChoice(event.target.parentNode);
+    }
+})
+
+choiceButton3.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (event.detail === 1) {
+        getChoice(event.target.parentNode);
+    } else if (event.detail === 2) {
+        removeChoice(event.target.parentNode);
+    }
+})
+
+function getChoice(button) {
     console.log('running getChoice()');
     // change border color to indicate selected fakemon
-    document.querySelector(".card").style.border = "1px solid #6DE072";
-    document.querySelector(".card").style.boxShadow = "0 0 10px #6DE072";
+    button.style.border = "5px solid #6DE072";
+    button.style.borderRadius = "8px";
+    button.style.boxShadow = "0 0 20px #6DE072";
     // unhide name box 
     nameBox.style.visibility = "visible";
+}
+
+function removeChoice(button) {
+    console.log('running removeChoice()');
+    button.style.border = "0px";
+    nameBox.style.visibility = "hidden";
 }
 
 saveButton.addEventListener("click", function(event) {
@@ -71,6 +101,7 @@ saveButton.addEventListener("click", function(event) {
 
 function saveName() {
     console.log('running saveName()');
+    let nameInput = document.getElementById("name-input").value.trim();
     if (nameInput === "") { // SOMETHING IS WRONG WITH THE CONDITION??
         console.log('display alert to type name');
         let alert = document.createElement("p");
