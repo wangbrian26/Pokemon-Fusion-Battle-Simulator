@@ -26,18 +26,22 @@ text-align: center;
   justify-content: end;
 }
 
-#oppPokemonStats {
+.pokemonStats {
   border: 2px solid black;
   padding: 2px 50px;
+  width: fit-content;
+  background-color: beige;
 }
 
 #oppPokemonPic {
   margin-right: 50px;
+  background-color: bisque;
 }
 
 #oppPokemonName {
   font-weight: bolder;
   font-size: larger;
+<<<<<<< HEAD
 =======
 .card:hover {
   outline: none;
@@ -63,4 +67,10 @@ text-align: center;
 .button {
   margin-top: 14px;
 >>>>>>> 55ddb58c89ae4c00270afa85ed8573c42f19de2a
+=======
+}
+
+.forest {
+  background-image: url("../images/backgrounds/forest.jpg");
+>>>>>>> f96d4509491ed4c9dbcb59315d6f85befe089414
 }
