@@ -8,9 +8,11 @@ h1 {
 }
 
 .card {
-height: 500px;
-width: 300px;
+height: 400px;
+width: 400px;
 border: 1px solid black;
+border-radius: 8px;
+text-align: center;
 }
 
 .hide {
@@ -47,4 +49,28 @@ border: 1px solid black;
 .userPokemon {
   position: fixed;
   bottom: 10px;
+}
+.card:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  cursor: pointer;
+}
+
+.name-box {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+}
+
+.name-box input {
+  width: 150px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+.button {
+  margin-top: 14px;
 }
