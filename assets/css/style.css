@@ -23,16 +23,23 @@ border: 1px solid black;
   justify-content: end;
 }
 
-#oppPokemonStats {
+.pokemonStats {
   border: 2px solid black;
   padding: 2px 50px;
+  width: fit-content;
+  background-color: beige;
 }
 
 #oppPokemonPic {
   margin-right: 50px;
+  background-color: bisque;
 }
 
 #oppPokemonName {
   font-weight: bolder;
   font-size: larger;
+}
+
+.forest {
+  background-image: url("../images/backgrounds/forest.jpg");
 }
