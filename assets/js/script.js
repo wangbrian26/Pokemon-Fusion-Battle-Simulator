@@ -59,18 +59,11 @@ choiceButton1.addEventListener("click", function (event) {
   event.preventDefault();
   if (event.detail === 1) {
     getChoice(event.target.parentNode);
-    charInfo.image = event.target;
+    charInfo.image = event.target.src;
     console.log("logging charInfo.image");
     console.log(charInfo.image);
     // save charInfo to localStorage
-    let imageArray = [];
-    let newImage = charInfo.image;
-    // console.log('logging newImage');
-    // console.log(newImage);
-    imageArray.push(newImage);
-    // console.log('logging imageArray');
-    // console.log(imageArray);
-    window.localStorage.setItem("imageArray", JSON.stringify(imageArray));
+    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
   } else if (event.detail === 2) {
     removeChoice(event.target.parentNode);
   }
@@ -80,18 +73,11 @@ choiceButton2.addEventListener("click", function (event) {
   event.preventDefault();
   if (event.detail === 1) {
     getChoice(event.target.parentNode);
-    charInfo.image = event.target;
+    charInfo.image = event.target.src;
     console.log("logging charInfo.image");
     console.log(charInfo.image);
     // save charInfo to localStorage
-    let imageArray = [];
-    let newImage = charInfo.image;
-    // console.log('logging newImage');
-    // console.log(newImage);
-    imageArray.push(newImage);
-    // console.log('logging imageArray');
-    // console.log(imageArray);
-    window.localStorage.setItem("imageArray", JSON.stringify(imageArray));
+    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
   } else if (event.detail === 2) {
     removeChoice(event.target.parentNode);
   }
@@ -101,18 +87,11 @@ choiceButton3.addEventListener("click", function (event) {
   event.preventDefault();
   if (event.detail === 1) {
     getChoice(event.target.parentNode);
-    charInfo.image = event.target;
+    charInfo.image = event.target.src;
     console.log("logging charInfo.image");
     console.log(charInfo.image);
     // save charInfo to localStorage
-    let imageArray = [];
-    let newImage = charInfo.image;
-    // console.log('logging newImage');
-    // console.log(newImage);
-    imageArray.push(newImage);
-    // console.log('logging imageArray');
-    // console.log(imageArray);
-    window.localStorage.setItem("imageArray", JSON.stringify(imageArray));
+    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
   } else if (event.detail === 2) {
     removeChoice(event.target.parentNode);
   }
@@ -159,9 +138,6 @@ function saveName() {
     return null;
   } else {
     console.log("save name to localStorage");
-    let nameArray = [];
-    let newName = nameInput;
-    nameArray.push(newName);
-    window.localStorage.setItem("nameArray", JSON.stringify(nameArray));
+    window.localStorage.setItem("name", JSON.stringify(nameInput));
   }
 }

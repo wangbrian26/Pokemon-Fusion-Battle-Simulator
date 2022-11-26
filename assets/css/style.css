@@ -49,6 +49,9 @@ text-align: center;
 .userPokemon {
   position: fixed;
   bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .card:hover {
   outline: none;

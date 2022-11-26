@@ -225,9 +225,11 @@ function fusionPokemon() {
 // }
 
 document.querySelector("#userPokemonName").textContent = JSON.parse(
-  localStorage.getItem("nameArray")
+  localStorage.getItem("name")
 );
-document.querySelector("#userPokemonImg").src = 
+var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
+userPokeImgSRC = userPokeImgSRC.split("assets");
+document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 fusionPokemon();
 console.log(opponentStats);
 var currentStats = charStats;
