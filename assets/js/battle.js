@@ -239,15 +239,24 @@ function battle() {
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
+  document.querySelector("#dialogue").textContent =
+    "A wild fusion Pokemon has appeared!";
   if (currentStats.speed >= opponentStats.speed) {
+    document.querySelector("#dialogue").textContent =
+      "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health -= currentStats.attack;
     if (opponentStats.health <= 0) {
       opponentStats.health = 0;
-      console.log("you win");
+      document.querySelector("#dialogue").textContent = "You win";
+      document.querySelector("#health-points").textContent =
+        currentStats.health;
+      document.querySelector("#oppHealth").textContent = opponentStats.health;
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
       return;
     } else {
+      document.querySelector("#dialogue").textContent =
+        "The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);

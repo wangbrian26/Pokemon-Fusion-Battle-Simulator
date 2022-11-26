@@ -13,15 +13,16 @@
 <body>
   <!-- opponent pokemon will appear after user inputs stats -->
   <section class="hide" id="oppPokemon">
+    <div id="dialogueBox">
+      <p>Dialogue Box</p>
+      <p id="dialogue"></p>
+    </div>
     <div id="oppPokemonCard">
       <div id="oppPokemonPic">
-        <p>
-          A wild fusion Pokemon has appeared!
-        </p>
         <img id="fusionPokemonImg" src="">
       </div>
       <div class="pokemonStats">
-        <p id="oppPokemonName">It's a <span id="fusionPokemonName"></span>!</p>
+        <p id="oppPokemonName"><span id="fusionPokemonName"></span></p>
         <div>
           <p>Stats:</p>
           <p>Health: <span id="oppHealth"></span></p>
