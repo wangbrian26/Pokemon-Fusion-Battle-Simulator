@@ -13,3 +13,26 @@ width: 300px;
 border: 1px solid black;
 }
 
+.hide {
+  display: none;
+}
+
+#oppPokemonCard {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+#oppPokemonStats {
+  border: 2px solid black;
+  padding: 2px 50px;
+}
+
+#oppPokemonPic {
+  margin-right: 50px;
+}
+
+#oppPokemonName {
+  font-weight: bolder;
+  font-size: larger;
+}
