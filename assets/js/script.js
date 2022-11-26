@@ -57,6 +57,17 @@ choiceButton1.addEventListener("click", function(event) {
     if (event.detail === 1) {
         getChoice(event.target.parentNode);
         charInfo.image = event.target;
+        console.log('logging charInfo.image');
+        console.log(charInfo.image);
+        // save charInfo to localStorage
+        let imageArray = [];
+        let newImage = charInfo;
+        // console.log('logging newImage');
+        // console.log(newImage);
+        imageArray.push(newImage);
+        // console.log('logging imageArray');
+        // console.log(imageArray);
+        window.localStorage.setItem('imageArray', JSON.stringify(imageArray));
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -67,6 +78,17 @@ choiceButton2.addEventListener("click", function(event) {
     if (event.detail === 1) {
         getChoice(event.target.parentNode);
         charInfo.image = event.target;
+        console.log('logging charInfo.image');
+        console.log(charInfo.image);
+        // save charInfo to localStorage
+        let imageArray = [];
+        let newImage = charInfo;
+        // console.log('logging newImage');
+        // console.log(newImage);
+        imageArray.push(newImage);
+        // console.log('logging imageArray');
+        // console.log(imageArray);
+        window.localStorage.setItem('imageArray', JSON.stringify(imageArray));
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -77,6 +99,17 @@ choiceButton3.addEventListener("click", function(event) {
     if (event.detail === 1) {
         getChoice(event.target.parentNode);
         charInfo.image = event.target;
+        console.log('logging charInfo.image');
+        console.log(charInfo.image);
+        // save charInfo to localStorage
+        let imageArray = [];
+        let newImage = charInfo;
+        // console.log('logging newImage');
+        // console.log(newImage);
+        imageArray.push(newImage);
+        // console.log('logging imageArray');
+        // console.log(imageArray);
+        window.localStorage.setItem('imageArray', JSON.stringify(imageArray));
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
