@@ -61,7 +61,7 @@ choiceButton1.addEventListener("click", function(event) {
         console.log(charInfo.image);
         // save charInfo to localStorage
         let imageArray = [];
-        let newImage = charInfo;
+        let newImage = charInfo.image;
         // console.log('logging newImage');
         // console.log(newImage);
         imageArray.push(newImage);
@@ -82,7 +82,7 @@ choiceButton2.addEventListener("click", function(event) {
         console.log(charInfo.image);
         // save charInfo to localStorage
         let imageArray = [];
-        let newImage = charInfo;
+        let newImage = charInfo.image;
         // console.log('logging newImage');
         // console.log(newImage);
         imageArray.push(newImage);
@@ -103,7 +103,7 @@ choiceButton3.addEventListener("click", function(event) {
         console.log(charInfo.image);
         // save charInfo to localStorage
         let imageArray = [];
-        let newImage = charInfo;
+        let newImage = charInfo.image;
         // console.log('logging newImage');
         // console.log(newImage);
         imageArray.push(newImage);
@@ -140,7 +140,7 @@ saveButton.addEventListener("click", function(event) {
 function saveName() {
     console.log('running saveName()');
     let nameInput = document.getElementById("name-input").value.trim();
-    if (nameInput === "") { // SOMETHING IS WRONG WITH THE CONDITION??
+    if (nameInput === "") {
         console.log('display alert to type name');
         let alert = document.createElement("p");
         console.log(alert);
