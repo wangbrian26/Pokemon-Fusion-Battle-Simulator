@@ -148,10 +148,14 @@ function fusionPokemon() {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
+      console.log(data);
       var poke1 = data.fused.body.toLowerCase();
       var poke2 = data.fused.head.toLowerCase();
       var fusionPokemonImg = data.image_url;
+      var fusionPokemonName = data.name;
+      document.querySelector("#fusionPokemonImg").src = fusionPokemonImg;
+      document.querySelector("#fusionPokemonName").textContent =
+        fusionPokemonName;
       fetch("https://pokeapi.co/api/v2/pokemon/" + poke1)
         .then(function (response) {
           return response.json();
@@ -185,6 +189,7 @@ function fusionPokemon() {
               var fusionPokemonAttack = (poke1Attack + poke2Attack) / 2;
               var fusionPokemonHp = (poke1Hp + poke2Hp) / 2;
               var fusionPokemonSpeed = (poke1Speed + poke2Speed) / 2;
+              var fusionPokemonDefense = (poke1Defense + poke2Defense) / 2;
               // console.log(fusionPokemonAttack);
               // console.log(fusionPokemonHp);
               // console.log(fusionPokemonSpeed);
@@ -196,6 +201,18 @@ function fusionPokemon() {
               console.log("opponent");
               console.log(opponentStats);
               console.log(opponentStats.health);
+              document.querySelector(
+                "#oppHealth"
+              ).textContent = `${fusionPokemonHp}`;
+              document.querySelector(
+                "#oppAttack"
+              ).textContent = `${fusionPokemonAttack}`;
+              document.querySelector(
+                "#oppSpeed"
+              ).textContent = `${fusionPokemonSpeed}`;
+              document.querySelector(
+                "#oppDefense"
+              ).textContent = `${fusionPokemonAttack}`;
             });
         });
     });
@@ -215,6 +232,8 @@ console.log(currentStats.health);
 var battlebtn = document.querySelector(".battle");
 
 function battle() {
+  document.querySelector("#oppPokemon").classList.remove("hide");
+  // document.querySelectorAll(":button").classList.add("hide");
   if (currentStats.speed >= opponentStats.speed) {
     opponentStats.health -= currentStats.attack;
     if (opponentStats.health <= 0) {
