@@ -82,3 +82,8 @@ text-align: center;
   position: fixed;
   top: 10px;
 }
+
+#userPokemonName {
+  font-size: larger;
+  font-weight: bolder;
+}

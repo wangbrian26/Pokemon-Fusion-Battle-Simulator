@@ -224,6 +224,9 @@ function fusionPokemon() {
 //   console.log(opponentStats.health);
 // }
 
+document.querySelector("#userPokemonName").textContent = JSON.parse(
+  localStorage.getItem("nameArray")
+);
 fusionPokemon();
 console.log(opponentStats);
 var currentStats = charStats;
@@ -284,3 +287,5 @@ function battle() {
 }
 
 battlebtn.addEventListener("click", battle);
+
+console.log(JSON.parse(localStorage.getItem("nameArray")));

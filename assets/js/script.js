@@ -26,7 +26,7 @@ let fakemon2 = [
   "./assets/images/fakemon/14.png",
   "./assets/images/fakemon/15.png",
   "./assets/images/fakemon/16.jpeg",
-]
+];
 
 let fakemon3 = [
   "./assets/images/fakemon/17.jpeg",
@@ -37,11 +37,14 @@ let fakemon3 = [
   "./assets/images/fakemon/22.png",
   "./assets/images/fakemon/23.png",
   "./assets/images/fakemon/24.png",
-]
+];
 
-document.getElementById("choice1").src = fakemon1[Math.floor(Math.random() * 8)];
-document.getElementById("choice2").src = fakemon2[Math.floor(Math.random() * 8)];
-document.getElementById("choice3").src = fakemon3[Math.floor(Math.random() * 8)];
+document.getElementById("choice1").src =
+  fakemon1[Math.floor(Math.random() * 8)];
+document.getElementById("choice2").src =
+  fakemon2[Math.floor(Math.random() * 8)];
+document.getElementById("choice3").src =
+  fakemon3[Math.floor(Math.random() * 8)];
 
 document.getElementById("choice1").width = "300";
 document.getElementById("choice1").height = "400";
@@ -52,84 +55,83 @@ document.getElementById("choice2").height = "400";
 document.getElementById("choice3").width = "300";
 document.getElementById("choice3").height = "400";
 
-choiceButton1.addEventListener("click", function(event) {
-    event.preventDefault();
-    console.log('what is the event target');
-    console.log(event.target);
-    if (event.detail === 1) {
-        getChoice(event.target.parentNode); // need to save img to charStats object too right?
-        console.log('logging charInfo');
-        charInfo.image = event.target;
-        console.log(charInfo.image);
-    } else if (event.detail === 2) {
-        removeChoice(event.target.parentNode);
-    }
-})
+choiceButton1.addEventListener("click", function (event) {
+  event.preventDefault();
+  console.log("what is the event target");
+  console.log(event.target);
+  if (event.detail === 1) {
+    getChoice(event.target.parentNode); // need to save img to charStats object too right?
+    console.log("logging charInfo");
+    charInfo.image = event.target;
+    console.log(charInfo.image);
+  } else if (event.detail === 2) {
+    removeChoice(event.target.parentNode);
+  }
+});
 
-choiceButton2.addEventListener("click", function(event) {
-    event.preventDefault();
-    if (event.detail === 1) {
-        getChoice(event.target.parentNode);
-    } else if (event.detail === 2) {
-        removeChoice(event.target.parentNode);
-    }
-})
+choiceButton2.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (event.detail === 1) {
+    getChoice(event.target.parentNode);
+  } else if (event.detail === 2) {
+    removeChoice(event.target.parentNode);
+  }
+});
 
-choiceButton3.addEventListener("click", function(event) {
-    event.preventDefault();
-    if (event.detail === 1) {
-        getChoice(event.target.parentNode);
-    } else if (event.detail === 2) {
-        removeChoice(event.target.parentNode);
-    }
-})
+choiceButton3.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (event.detail === 1) {
+    getChoice(event.target.parentNode);
+  } else if (event.detail === 2) {
+    removeChoice(event.target.parentNode);
+  }
+});
 
 function getChoice(button) {
-    console.log('running getChoice()');
-    // change border color to indicate selected fakemon
-    button.style.border = "5px solid #6DE072";
-    button.style.borderRadius = "8px";
-    button.style.boxShadow = "0 0 20px #6DE072";
-    // unhide name box 
-    nameBox.style.visibility = "visible";
+  console.log("running getChoice()");
+  // change border color to indicate selected fakemon
+  button.style.border = "5px solid #6DE072";
+  button.style.borderRadius = "8px";
+  button.style.boxShadow = "0 0 20px #6DE072";
+  // unhide name box
+  nameBox.style.visibility = "visible";
 }
 
 function removeChoice(button) {
-    console.log('running removeChoice()');
-    button.style.border = "0px";
-    button.style.boxShadow = "0 0 0px";
-    nameBox.style.visibility = "hidden";
+  console.log("running removeChoice()");
+  button.style.border = "0px";
+  button.style.boxShadow = "0 0 0px";
+  nameBox.style.visibility = "hidden";
 }
 
-saveButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    saveName();
-})
+saveButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  saveName();
+});
 
 function saveName() {
-    console.log('running saveName()');
-    let nameInput = document.getElementById("name-input").value.trim();
-    if (nameInput === "") { // SOMETHING IS WRONG WITH THE CONDITION??
-        console.log('display alert to type name');
-        let alert = document.createElement("p");
-        console.log(alert);
-        alert.textContent = "Must type a name to continue.";
-        alert.style.fontStyle = "italic";
-        alert.style.color = "red";
-        nameBox.appendChild(alert);
+  console.log("running saveName()");
+  let nameInput = document.getElementById("name-input").value.trim();
+  if (nameInput === "") {
+    // SOMETHING IS WRONG WITH THE CONDITION??
+    console.log("display alert to type name");
+    let alert = document.createElement("p");
+    console.log(alert);
+    alert.textContent = "Must type a name to continue.";
+    alert.style.fontStyle = "italic";
+    alert.style.color = "red";
+    nameBox.appendChild(alert);
 
-        setTimeout(function() {
-            alert.style.visibility = "hidden";
-        }, 5000);
+    setTimeout(function () {
+      alert.style.visibility = "hidden";
+    }, 5000);
 
-        return null;
-    
-    } else {
-        console.log('save name to localStorage');
-        let nameArray = JSON.parse(window.localStorage.getItem('nameArray')) || [];
-        let newName = nameInput;
-        nameArray.push(newName);
-        window.localStorage.setItem('nameArray', JSON.stringify(nameArray));
-    }
-
+    return null;
+  } else {
+    console.log("save name to localStorage");
+    let nameArray = JSON.parse(window.localStorage.getItem("nameArray")) || [];
+    let newName = nameInput;
+    nameArray.push(newName);
+    window.localStorage.setItem("nameArray", JSON.stringify(nameArray));
+  }
 }
