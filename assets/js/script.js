@@ -54,13 +54,9 @@ document.getElementById("choice3").height = "400";
 
 choiceButton1.addEventListener("click", function(event) {
     event.preventDefault();
-    console.log('what is the event target');
-    console.log(event.target);
     if (event.detail === 1) {
-        getChoice(event.target.parentNode); // need to save img to charStats object too right?
-        console.log('logging charInfo');
+        getChoice(event.target.parentNode);
         charInfo.image = event.target;
-        console.log(charInfo.image);
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -70,6 +66,7 @@ choiceButton2.addEventListener("click", function(event) {
     event.preventDefault();
     if (event.detail === 1) {
         getChoice(event.target.parentNode);
+        charInfo.image = event.target;
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -79,6 +76,7 @@ choiceButton3.addEventListener("click", function(event) {
     event.preventDefault();
     if (event.detail === 1) {
         getChoice(event.target.parentNode);
+        charInfo.image = event.target;
     } else if (event.detail === 2) {
         removeChoice(event.target.parentNode);
     }
@@ -126,7 +124,7 @@ function saveName() {
     
     } else {
         console.log('save name to localStorage');
-        let nameArray = JSON.parse(window.localStorage.getItem('nameArray')) || [];
+        let nameArray = [];
         let newName = nameInput;
         nameArray.push(newName);
         window.localStorage.setItem('nameArray', JSON.stringify(nameArray));
