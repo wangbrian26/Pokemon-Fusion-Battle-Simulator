@@ -227,6 +227,7 @@ function fusionPokemon() {
 document.querySelector("#userPokemonName").textContent = JSON.parse(
   localStorage.getItem("nameArray")
 );
+document.querySelector("#userPokemonImg").src = 
 fusionPokemon();
 console.log(opponentStats);
 var currentStats = charStats;
