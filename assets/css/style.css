@@ -1,0 +1,123 @@
+:root {
+
+}
+
+h1 {
+  background-color: blue;
+  color: aliceblue;
+}
+
+.card {
+height: 400px;
+width: 400px;
+border: 1px solid black;
+border-radius: 8px;
+text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+#oppPokemonCard {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.pokemonStats {
+  border: 2px solid black;
+  padding: 2px 50px;
+  width: fit-content;
+  background-color: beige;
+}
+
+#oppPokemonPic {
+  margin-right: 50px;
+  background-color: bisque;
+}
+
+#oppPokemonName {
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.card:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  cursor: pointer;
+}
+
+.name-box {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+}
+
+.name-box input {
+  width: 150px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+.button {
+  margin-top: 14px;
+}
+
+.forest {
+  background-image: url("../images/backgrounds/forest.jpg");
+}
+
+.userPokemon {
+  position: fixed;
+  bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  cursor: pointer;
+}
+
+.name-box {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+}
+
+.name-box input {
+  width: 150px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+.button {
+  margin-top: 14px;
+}
+
+#dialogueBox {
+  background-color: beige;
+  border: 3px solid black;
+  width: fit-content;
+  position: fixed;
+  top: 10px;
+}
+
+#userPokemonName {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+#userPokemonImg {
+  max-width: 240px;
+  max-height: 240px;
+  background-color: bisque;
+}
