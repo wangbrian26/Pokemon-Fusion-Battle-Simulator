@@ -28,8 +28,8 @@ defense.textContent = defenseBase;
 
 healthUp.addEventListener("click", function () {
   if (statPoints > 0) {
-    statPoints--;
-    healthBase++;
+    statPoints -= 5;
+    healthBase += 5;
     healthEl.textContent = healthBase;
     stats.textContent = statPoints;
     charStats.health = healthBase;
@@ -41,8 +41,8 @@ healthUp.addEventListener("click", function () {
 
 healthDown.addEventListener("click", function () {
   if (healthBase > 50) {
-    statPoints++;
-    healthBase--;
+    statPoints += 5;
+    healthBase -= 5;
     healthEl.textContent = healthBase;
     stats.textContent = statPoints;
     charStats.health = healthBase;
@@ -54,8 +54,8 @@ healthDown.addEventListener("click", function () {
 
 attackUp.addEventListener("click", function () {
   if (statPoints > 0) {
-    statPoints--;
-    attackBase++;
+    statPoints -= 5;
+    attackBase += 5;
     attack.textContent = attackBase;
     stats.textContent = statPoints;
     charStats.attack = attackBase;
@@ -66,8 +66,8 @@ attackUp.addEventListener("click", function () {
 
 attackDown.addEventListener("click", function () {
   if (attackBase > 50) {
-    statPoints++;
-    attackBase--;
+    statPoints += 5;
+    attackBase -= 5;
     attack.textContent = attackBase;
     stats.textContent = statPoints;
     charStats.attack = attackBase;
@@ -79,8 +79,8 @@ attackDown.addEventListener("click", function () {
 
 speedUp.addEventListener("click", function () {
   if (statPoints > 0) {
-    statPoints--;
-    speedBase++;
+    statPoints -= 5;
+    speedBase += 5;
     speed.textContent = speedBase;
     stats.textContent = statPoints;
     charStats.speed = speedBase;
@@ -91,8 +91,8 @@ speedUp.addEventListener("click", function () {
 
 speedDown.addEventListener("click", function () {
   if (speedBase > 50) {
-    statPoints++;
-    speedBase--;
+    statPoints += 5;
+    speedBase -= 5;
     speed.textContent = speedBase;
     stats.textContent = statPoints;
     charStats.speed = speedBase;
@@ -104,8 +104,8 @@ speedDown.addEventListener("click", function () {
 
 defenseUp.addEventListener("click", function () {
   if (statPoints > 0) {
-    statPoints--;
-    defenseBase++;
+    statPoints -= 5;
+    defenseBase += 5;
     defense.textContent = defenseBase;
     stats.textContent = statPoints;
     charStats.defense = defenseBase;
@@ -116,8 +116,8 @@ defenseUp.addEventListener("click", function () {
 
 defenseDown.addEventListener("click", function () {
   if (defenseBase > 50) {
-    statPoints++;
-    defenseBase--;
+    statPoints += 5;
+    defenseBase -= 5;
     defense.textContent = defenseBase;
     stats.textContent = statPoints;
     charStats.defense = defenseBase;
