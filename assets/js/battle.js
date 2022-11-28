@@ -1,9 +1,9 @@
 // Stat allocator for user character
 
-var healthBase = 1000;
-var defenseBase = 100;
-var speedBase = 100;
-var attackBase = 50;
+var healthBase = 50;
+var defenseBase = 60;
+var speedBase = 50;
+var attackBase = 30;
 var healthUp = document.querySelector(".health-up");
 var attackUp = document.querySelector(".attack-up");
 var speedUp = document.querySelector(".speed-up");
@@ -249,9 +249,25 @@ function battle() {
     "A wild fusion Pokemon has appeared!";
 }
 
-function strongAttackChoice() {}
-
-function attackChoice() {}
+function attackChoice() {
+  if (currentStats.speed >= opponentStats.speed) {
+    document.querySelector("#dialogue").textContent =
+      "Your Pokemon attacked first due to its higher speed!";
+    opponentStats.health -= currentStats.attack * 0.75;
+    winCheck();
+    document.querySelector("#dialogue").textContent =
+      "The fusion Pokemon attacked first due to its higher speed!";
+    currentStats.health -= opponentStats.attack;
+    loseCheck();
+    console.log("opponent hp", opponentStats.health);
+    console.log("your hp", currentStats.health);
+  } else {
+    currentStats.health -= opponentStats.attack;
+    loseCheck();
+    opponentStats.health -= currentStats.attack * 0.75;
+    winCheck();
+  }
+}
 
 function strongAttack() {
   var percentage = 100;
@@ -275,9 +291,6 @@ function strongAttack() {
     } else {
       currentStats.health -= opponentStats.attack;
       loseCheck();
-      currentStats.health = 0;
-      console.log("game over");
-      return;
       opponentStats.health -= currentStats.attack;
       winCheck();
     }
