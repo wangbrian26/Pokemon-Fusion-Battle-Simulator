@@ -1,14 +1,8 @@
 // Stat allocator for user character
 
-<<<<<<< HEAD
-var healthBase = 500;
-var defenseBase = 60;
-var speedBase = 50;
-=======
 var healthBase = 100;
 var defenseBase = 30;
 var speedBase = 500;
->>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
 var attackBase = 30;
 
 // Stat change buttons
