@@ -1,4 +1,5 @@
-// Nicole's Landing Page JS
+// Landing Page JS
+
 let nameBox = document.getElementById("name-box");
 let choiceButton1 = document.getElementById("button1");
 let choiceButton2 = document.getElementById("button2");
@@ -9,6 +10,8 @@ let fakemon3 = document.getElementById("choice3");
 let saveButton = document.querySelector(".button");
 let charInfo = {};
 let choice = 0;
+
+// Sets of fan created Pokemon for users to select
 
 let fakemonSet1 = [
   "./assets/images/fakemon/1.jpeg",
@@ -43,62 +46,62 @@ let fakemonSet3 = [
   "./assets/images/fakemon/24.png",
 ];
 
+// Selects random fan Pokemon to display for user to select
+
 fakemon1.src = fakemonSet1[Math.floor(Math.random() * 8)];
 fakemon2.src = fakemonSet2[Math.floor(Math.random() * 8)];
 fakemon3.src = fakemonSet3[Math.floor(Math.random() * 8)];
 
 function changeButtonBorder() {
-    choiceButton1.classList.remove("clicked");
-    choiceButton2.classList.remove("clicked");
-    choiceButton3.classList.remove("clicked");
+  choiceButton1.classList.remove("clicked");
+  choiceButton2.classList.remove("clicked");
+  choiceButton3.classList.remove("clicked");
 
-    if (choice === 1) {
-        choiceButton1.classList.add("clicked");
-
-    } else if (choice === 2) {
-        choiceButton2.classList.add("clicked");
-    
-    } else if (choice === 3) {
-        choiceButton3.classList.add("clicked");    
-    }
+  if (choice === 1) {
+    choiceButton1.classList.add("clicked");
+  } else if (choice === 2) {
+    choiceButton2.classList.add("clicked");
+  } else if (choice === 3) {
+    choiceButton3.classList.add("clicked");
+  }
 }
 
 function displayNameBox() {
-    if (choice !== 0) {
-        // unhide name box
-        nameBox.style.visibility = "visible";
-    } else {
-        nameBox.style.visibility = "hidden";
-    }
+  if (choice !== 0) {
+    // unhide name box
+    nameBox.style.visibility = "visible";
+  } else {
+    nameBox.style.visibility = "hidden";
+  }
 }
 
 function selectChoice(buttonId, fakemon) {
-    if (choice !== buttonId) {
-        choice = buttonId;
-    } else if (choice === buttonId) {
-        choice = 0;
-    }
-    changeButtonBorder();
-    displayNameBox();
-    charInfo.image = fakemon.src;
-    // save charInfo to localStorage
-    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
+  if (choice !== buttonId) {
+    choice = buttonId;
+  } else if (choice === buttonId) {
+    choice = 0;
+  }
+  changeButtonBorder();
+  displayNameBox();
+  charInfo.image = fakemon.src;
+  // save charInfo to localStorage
+  window.localStorage.setItem("image", JSON.stringify(charInfo.image));
 }
 
-choiceButton1.addEventListener("click", function(event) {
-    event.preventDefault();
-    selectChoice(1, fakemon1);
+choiceButton1.addEventListener("click", function (event) {
+  event.preventDefault();
+  selectChoice(1, fakemon1);
 });
 
 choiceButton2.addEventListener("click", function (event) {
-    event.preventDefault();
-    selectChoice(2, fakemon2);
-})
+  event.preventDefault();
+  selectChoice(2, fakemon2);
+});
 
 choiceButton3.addEventListener("click", function (event) {
-    event.preventDefault();
-    selectChoice(3, fakemon3);
-})
+  event.preventDefault();
+  selectChoice(3, fakemon3);
+});
 
 saveButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -125,6 +128,6 @@ function saveName() {
   } else {
     console.log("save name to localStorage");
     window.localStorage.setItem("name", JSON.stringify(nameInput));
-    window.location.href = 'battle.html';
+    window.location.href = "battle.html";
   }
 }
