@@ -2,7 +2,7 @@
 
 }
 
-h1 {
+.header {
   background-color: blue;
   color: aliceblue;
 }
@@ -161,4 +161,16 @@ display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game-over {
+  margin: 150px auto;
+}
+
+.game-over h1 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.win-box {
+  margin: 50px auto;
 }
