@@ -29,6 +29,7 @@ var evadeButton = document.querySelector("#evade-button");
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
+var dialogueBox = document.querySelector("#dialogue");
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -238,8 +239,7 @@ function battle() {
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
-  document.querySelector("#dialogue").textContent =
-    "A wild fusion Pokemon has appeared!";
+  dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
   document.querySelector("#attackButtons").setAttribute("class", "");
   fusionPokemon();
 }
@@ -249,7 +249,7 @@ function battle() {
 function normalAttack() {
   console.log("attack");
   if (currentStats.speed >= opponentStats.speed) {
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health -= currentStats.attack * 0.75;
     winLossCheck();
@@ -272,7 +272,9 @@ function normalAttack() {
 }
 
 function strongAttack() {
-  winLossCheck();
+  console.log("opponent attack normal");
+  console.log(opponentStats.attack);
+  loseCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
@@ -307,6 +309,7 @@ function strongAttack() {
       hpUpdate();
     }
   }
+  opponentStrongAttack();
 }
 
 function defend() {
@@ -316,7 +319,7 @@ function defend() {
   console.log(opponentStats);
   if (opponentStats.attack - randomDefense <= 5) {
     currentStats.health = currentStats.health - 5;
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have successfully defended! You only take 5 damage.";
     winLossCheck();
     hpUpdate();
@@ -324,7 +327,7 @@ function defend() {
     randomDefense = 5;
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
     winLossCheck();
     hpUpdate();
@@ -390,13 +393,13 @@ function evade() {
 
   if (randomChance <= evadeChance) {
     console.log("evade success");
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have successfully evaded the enemy attack. You took 0 damage.";
     hpUpdate();
   } else {
     console.log("evade failed");
     currentStats.health -= opponentStats.attack;
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
     winLossCheck();
     hpUpdate();
