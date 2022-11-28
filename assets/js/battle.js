@@ -228,9 +228,6 @@ var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
-
-
-
 // Changing from stat screen to battle screen
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
