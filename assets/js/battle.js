@@ -1,6 +1,6 @@
 // Stat allocator for user character
 
-var healthBase = 500;
+var healthBase = 50;
 var defenseBase = 60;
 var speedBase = 500;
 var attackBase = 30;
@@ -24,6 +24,7 @@ var statPoints = 50;
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
+var winCount = 0;
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -241,6 +242,7 @@ var currentStats = charStats;
 console.log(currentStats.health);
 
 function battle() {
+  window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
@@ -349,6 +351,8 @@ function defend() {
 
 function winCheck() {
   if (opponentStats.health <= 0) {
+    winCount++;
+    console.log('win count:', winCount);
     opponentStats.attack = 0;
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
@@ -366,7 +370,7 @@ function loseCheck() {
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
-    return;
+    window.location.href = 'game-over.html';
   }
 }
 
