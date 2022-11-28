@@ -326,21 +326,24 @@ function defend() {
     currentStats.health = currentStats.health - 5;
     document.querySelector("#dialogue").textContent =
       "You have successfully defended! You only take 5 damage.";
-    document.querySelector("#health-points").textContent = currentStats.health;
+    loseCheck();
+    hpUpdate();
   } else if (randomDefense <= 5) {
     randomDefense = 5;
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
-    document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#dialogue").textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
+    loseCheck();
+    hpUpdate();
   } else {
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector(
       "#dialogue"
     ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
-    document.querySelector("#health-points").textContent = currentStats.health;
+    loseCheck();
+    hpUpdate();
   }
 }
 
@@ -371,6 +374,7 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
+// strongAttackChoice();
 
 strongButton.addEventListener("click", strongAttack);
 battleButton.addEventListener("click", battle);
@@ -392,11 +396,14 @@ function evade() {
     console.log("evade success");
     document.querySelector("#dialogue").textContent =
       "You have successfully evaded the enemy attack. You took 0 damage.";
+    hpUpdate();
   } else {
     console.log("evade failed");
     currentStats.health -= opponentStats.attack;
     document.querySelector("#dialogue").textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
+    loseCheck();
+    hpUpdate();
   }
 
   console.log("hp after evade:");
