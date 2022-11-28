@@ -1,7 +1,7 @@
 // Stat allocator for user character
 
-var healthBase = 500;
-var defenseBase = 60;
+var healthBase = 100;
+var defenseBase = 30;
 var speedBase = 500;
 var attackBase = 30;
 
@@ -14,7 +14,7 @@ var healthDown = document.querySelector(".health-down");
 var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
-var battleButton = document.querySelector(".battle");
+var battleButton = document.querySelector("#battle");
 
 // User stats
 var healthEl = document.querySelector("#health-points");
@@ -35,6 +35,19 @@ healthEl.textContent = healthBase;
 attack.textContent = attackBase;
 speed.textContent = speedBase;
 defense.textContent = defenseBase;
+
+var charStats = {
+  health: healthBase,
+
+  attack: attackBase,
+
+  speed: speedBase,
+
+  defense: defenseBase,
+};
+
+var opponentStats = {};
+var currentStats = JSON.parse(JSON.stringify(charStats));
 
 // Stat change functions
 
@@ -139,18 +152,6 @@ defenseDown.addEventListener("click", function () {
   }
 });
 
-var charStats = {
-  health: healthBase,
-
-  attack: attackBase,
-
-  speed: speedBase,
-
-  defense: defenseBase,
-};
-
-var opponentStats = {};
-
 // Fetch request for fusion pokemon and its stats
 
 function fusionPokemon() {
@@ -226,10 +227,9 @@ document.querySelector("#userPokemonName").textContent = JSON.parse(
 var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
-fusionPokemon();
-// console.log(opponentStats);
-var currentStats = charStats;
-// console.log(currentStats.health);
+
+
+
 
 // Changing from stat screen to battle screen
 function battle() {
@@ -237,12 +237,14 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
   });
+  document.querySelector("#battle").setAttribute("class", "hide");
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
   document.querySelector("#attackButtons").setAttribute("class", "");
+  fusionPokemon();
 }
 
 // Functions for actions during battle phase
@@ -255,14 +257,14 @@ function normalAttack() {
     opponentStats.health -= currentStats.attack * 0.75;
     winCheck();
     hpUpdate();
-    document.querySelector("#dialogue").textContent =
-      "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
   } else {
+    document.querySelector("#dialogue").textContent =
+      "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
@@ -278,7 +280,8 @@ function strongAttack() {
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
   if (hitChance > 70) {
-    console.log("Your strong attack missed");
+    document.querySelector("#dialogue").textContent =
+      "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
@@ -287,18 +290,18 @@ function strongAttack() {
   } else {
     if (currentStats.speed >= opponentStats.speed) {
       document.querySelector("#dialogue").textContent =
-        "Your Pokemon attacked first due to its higher speed!";
+        "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       winCheck();
       hpUpdate();
-      document.querySelector("#dialogue").textContent =
-        "The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       loseCheck();
       hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
     } else {
+      document.querySelector("#dialogue").textContent =
+        "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       loseCheck();
       hpUpdate();
@@ -345,8 +348,18 @@ function winCheck() {
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
-    document.querySelector("#dialogue").textContent = "You win";
+    document.querySelector("#dialogue").textContent =
+      "You win! Your HP is restored to 50% if you fell under 50%.";
+    document.querySelector("#battle").setAttribute("class", "");
     console.log("you win!");
+    console.log(charStats.health);
+    console.log(charStats.health / 2);
+    console.log(currentStats.health);
+    if (currentStats.health <= charStats.health / 2) {
+      console.log("Your health is:");
+      currentStats.health = charStats.health / 2;
+      console.log(currentStats.health);
+    }
     return;
   }
 }
