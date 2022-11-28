@@ -12,6 +12,8 @@ var healthDown = document.querySelector(".health-down");
 var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
+var battleButton = document.querySelector(".battle");
+var evadeButton = document.querySelector("#evade-button");
 
 var healthEl = document.querySelector("#health-points");
 var attack = document.querySelector("#attack-points");
@@ -199,7 +201,7 @@ function fusionPokemon() {
               opponentStats.health = fusionPokemonHp;
               opponentStats.attack = fusionPokemonAttack;
               opponentStats.speed = fusionPokemonSpeed;
-              opponentStats.defense = 0;
+              opponentStats.defense = fusionPokemonDefense;
               console.log("opponent");
               console.log(opponentStats);
               console.log(opponentStats.health);
@@ -236,8 +238,6 @@ fusionPokemon();
 console.log(opponentStats);
 var currentStats = charStats;
 console.log(currentStats.health);
-
-var battlebtn = document.querySelector(".battle");
 
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
@@ -318,26 +318,25 @@ defendButton.addEventListener("click", defend);
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
 function defend() {
-  var randomDefense = Math.floor(Math.random(currentStats.defense));
+  var randomDefense = Math.floor(Math.random(currentStats.defense) * 100);
   console.log(currentStats.defense);
   console.log(randomDefense);
   console.log(opponentStats);
-  if (fusionPokemonAttack - randomDefense <= 5) {
-    fusionPokemonAttack = 5;
-    currentStats.health = currentStats.health - fusionPokemonAttack;
+  if (opponentStats.attack - randomDefense <= 5) {
+    currentStats.health = currentStats.health - 5;
     document.querySelector("#dialogue").textContent =
       "You have successfully defended! You only take 5 damage.";
     document.querySelector("#health-points").textContent = currentStats.health;
   } else if (randomDefense <= 5) {
     randomDefense = 5;
     currentStats.health =
-      currentStats.health - (fusionPokemonAttack - randomDefense);
+      currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#dialogue").textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
   } else {
     currentStats.health =
-      currentStats.health - (fusionPokemonAttack - randomDefense);
+      currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector(
       "#dialogue"
     ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
@@ -382,6 +381,33 @@ function hpUpdate() {
 //   }
 // }
 
-battlebtn.addEventListener("click", battle);
-
 strongButton.addEventListener("click", strongAttack);
+battleButton.addEventListener("click", battle);
+
+function evade() {
+  let evadeChance = Math.floor((speedBase / 150) * 100);
+  console.log("evade chance:");
+  console.log(evadeChance);
+  let randomChance = Math.floor(Math.random() * 100);
+  console.log("random chance:");
+  console.log(randomChance);
+
+  console.log("opponent's attack:");
+  console.log(opponentStats.attack);
+
+  if (randomChance <= evadeChance) {
+    console.log("evade success");
+    document.querySelector("#dialogue").textContent =
+      "You have successfully evaded the enemy attack. You took 0 damage.";
+  } else {
+    console.log("evade failed");
+    currentStats.health -= opponentStats.attack;
+    document.querySelector("#dialogue").textContent =
+      "You have failed to evade the enemy attack. You took 100% damage.";
+  }
+
+  console.log("hp after evade:");
+  console.log(currentStats.health);
+}
+
+evadeButton.addEventListener("click", evade);
