@@ -369,20 +369,10 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
-// strongAttackChoice();
-// function evadeHit() {
-//   var evadeHit = false;
-//   var percentage = 100;
-//   var evadeChance = speedBase / 150;
-//   var evadeRng = Math.floor(Math.random() * percentage);
-//   if (evadeRng <= evadeChance) {
-//     evadeHit = true;
-//     console.log("attack evaded");
-//   }
-// }
 
-strongButton.addEventListener("click", strongAttack);
 battleButton.addEventListener("click", battle);
+strongButton.addEventListener("click", strongAttack);
+evadeButton.addEventListener("click", evade);
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
@@ -412,5 +402,3 @@ function evade() {
   console.log("hp after evade:");
   console.log(currentStats.health);
 }
-
-evadeButton.addEventListener("click", evade);
