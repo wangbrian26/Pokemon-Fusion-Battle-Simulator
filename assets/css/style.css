@@ -71,6 +71,9 @@ h1 {
   margin-top: 14px;
 }
 
+.attack {
+  
+}
 
 .forest {
   background-image: url("../images/backgrounds/forest.jpg");
@@ -132,4 +135,15 @@ h1 {
   max-height: 320px;
   background-color: bisque;
   margin-left: 50px;
+}
+
+#attackButtons {
+display: flex;
+  align-items:flex-end;
+  justify-content: end;
+  
+
+
+
+  
 }
