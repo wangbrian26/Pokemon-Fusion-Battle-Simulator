@@ -1,9 +1,17 @@
 // Stat allocator for user character
 
+<<<<<<< HEAD
 var healthBase = 500;
 var defenseBase = 60;
 var speedBase = 50;
+=======
+var healthBase = 100;
+var defenseBase = 30;
+var speedBase = 500;
+>>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
 var attackBase = 30;
+
+// Stat change buttons
 var healthUp = document.querySelector(".health-up");
 var attackUp = document.querySelector(".attack-up");
 var speedUp = document.querySelector(".speed-up");
@@ -12,15 +20,18 @@ var healthDown = document.querySelector(".health-down");
 var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
-var battleButton = document.querySelector(".battle");
-var evadeButton = document.querySelector("#evade-button");
+var battleButton = document.querySelector("#battle");
 
+// User stats
 var healthEl = document.querySelector("#health-points");
 var attack = document.querySelector("#attack-points");
 var speed = document.querySelector("#speed-points");
 var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
+
+// Action buttons during battle
+var evadeButton = document.querySelector("#evade-button");
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
@@ -31,6 +42,21 @@ healthEl.textContent = healthBase;
 attack.textContent = attackBase;
 speed.textContent = speedBase;
 defense.textContent = defenseBase;
+
+var charStats = {
+  health: healthBase,
+
+  attack: attackBase,
+
+  speed: speedBase,
+
+  defense: defenseBase,
+};
+
+var opponentStats = {};
+var currentStats = JSON.parse(JSON.stringify(charStats));
+
+// Stat change functions
 
 healthUp.addEventListener("click", function () {
   if (statPoints > 0) {
@@ -133,20 +159,7 @@ defenseDown.addEventListener("click", function () {
   }
 });
 
-var charStats = {
-  health: healthBase,
-
-  attack: attackBase,
-
-  speed: speedBase,
-
-  defense: defenseBase,
-};
-// console.log(charStats);
-
-var opponentStats = {};
-
-// fetch request for fusion pokemon
+// Fetch request for fusion pokemon and its stats
 
 function fusionPokemon() {
   fetch("https://keith.api.stdlib.com/pokefusion@0.2.0/")
@@ -167,38 +180,27 @@ function fusionPokemon() {
           return response.json();
         })
         .then(function (data) {
-          // console.log(data);
           var poke1Hp = data.stats[0].base_stat;
           var poke1Attack = data.stats[1].base_stat;
           var poke1Defense = data.stats[2].base_stat;
           var poke1Speed = data.stats[5].base_stat;
           poke1Attack = poke1Attack / 2;
           poke1Hp = poke1Hp + poke1Defense / 2;
-          // console.log(poke1Attack);
-          // console.log(poke1Hp);
-          // console.log(poke1Speed);
           fetch("https://pokeapi.co/api/v2/pokemon/" + poke2)
             .then(function (response) {
               return response.json();
             })
             .then(function (data) {
-              // console.log(data);
               var poke2Hp = data.stats[0].base_stat;
               var poke2Attack = data.stats[1].base_stat;
               var poke2Defense = data.stats[2].base_stat;
               var poke2Speed = data.stats[5].base_stat;
               poke2Attack = poke2Attack / 2;
               poke2Hp = poke2Hp + poke2Defense / 2;
-              // console.log(poke2Attack);
-              // console.log(poke2Hp);
-              // console.log(poke2Speed);
               var fusionPokemonAttack = (poke1Attack + poke2Attack) / 2;
               var fusionPokemonHp = (poke1Hp + poke2Hp) / 2;
               var fusionPokemonSpeed = (poke1Speed + poke2Speed) / 2;
               var fusionPokemonDefense = (poke1Defense + poke2Defense) / 2;
-              // console.log(fusionPokemonAttack);
-              // console.log(fusionPokemonHp);
-              // console.log(fusionPokemonSpeed);
 
               opponentStats.health = fusionPokemonHp;
               opponentStats.attack = fusionPokemonAttack;
@@ -224,11 +226,7 @@ function fusionPokemon() {
     });
 }
 
-// function fusionStats() {
-//   console.log("opponent test");
-//   console.log(opponentStats);
-//   console.log(opponentStats.health);
-// }
+// Get user Pokemon name and image from previous screen
 
 document.querySelector("#userPokemonName").textContent = JSON.parse(
   localStorage.getItem("name")
@@ -236,22 +234,26 @@ document.querySelector("#userPokemonName").textContent = JSON.parse(
 var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
-fusionPokemon();
-console.log(opponentStats);
-var currentStats = charStats;
-console.log(currentStats.health);
 
+
+
+
+// Changing from stat screen to battle screen
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
   });
+  document.querySelector("#battle").setAttribute("class", "hide");
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
   dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
   document.querySelector("#attackButtons").setAttribute("class", "");
+  fusionPokemon();
 }
+
+// Functions for actions during battle phase
 
 function normalAttack() {
   console.log("attack");
@@ -261,14 +263,19 @@ function normalAttack() {
     opponentStats.health -= currentStats.attack * 0.75;
     winCheck();
     hpUpdate();
+<<<<<<< HEAD
     dialogueBox.textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
+=======
+>>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
   } else {
+    document.querySelector("#dialogue").textContent =
+      "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
@@ -286,7 +293,8 @@ function strongAttack() {
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
   if (hitChance > 70) {
-    console.log("Your strong attack missed");
+    document.querySelector("#dialogue").textContent =
+      "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
@@ -294,6 +302,7 @@ function strongAttack() {
     console.log("your hp", currentStats.health);
   } else {
     if (currentStats.speed >= opponentStats.speed) {
+<<<<<<< HEAD
       dialogueBox.textContent =
         "Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
@@ -301,12 +310,21 @@ function strongAttack() {
       hpUpdate();
       dialogueBox.textContent =
         "The fusion Pokemon attacked first due to its higher speed!";
+=======
+      document.querySelector("#dialogue").textContent =
+        "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
+      opponentStats.health -= currentStats.attack;
+      winCheck();
+      hpUpdate();
+>>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
       currentStats.health -= opponentStats.attack;
       loseCheck();
       hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
     } else {
+      document.querySelector("#dialogue").textContent =
+        "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       loseCheck();
       hpUpdate();
@@ -319,7 +337,7 @@ function strongAttack() {
 }
 
 function defend() {
-  var randomDefense = Math.floor(Math.random(currentStats.defense) * 100);
+  var randomDefense = Math.floor(Math.random() * currentStats.defense);
   console.log(currentStats.defense);
   console.log(randomDefense);
   console.log(opponentStats);
@@ -354,8 +372,18 @@ function winCheck() {
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
-    // dialogueBox.textContent = "You win";
+    document.querySelector("#dialogue").textContent =
+      "You win! Your HP is restored to 50% if you fell under 50%.";
+    document.querySelector("#battle").setAttribute("class", "");
     console.log("you win!");
+    console.log(charStats.health);
+    console.log(charStats.health / 2);
+    console.log(currentStats.health);
+    if (currentStats.health <= charStats.health / 2) {
+      console.log("Your health is:");
+      currentStats.health = charStats.health / 2;
+      console.log(currentStats.health);
+    }
     return;
   }
 }
