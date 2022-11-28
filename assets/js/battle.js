@@ -20,6 +20,7 @@ var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
 var defendButton = document.querySelector("#defendButton");
+var strongButton = document.querySelector("#strong-button");
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -257,49 +258,60 @@ function attackChoice() {
       "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health -= currentStats.attack * 0.75;
     winCheck();
+    hpUpdate();
     document.querySelector("#dialogue").textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
     loseCheck();
+    hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
   } else {
     currentStats.health -= opponentStats.attack;
     loseCheck();
+    hpUpdate();
     opponentStats.health -= currentStats.attack * 0.75;
     winCheck();
+    hpUpdate();
   }
 }
 
 function strongAttack() {
+  loseCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
   if (hitChance > 70) {
     console.log("Your strong attack missed");
-    return;
+    currentStats.health -= opponentStats.attack;
+    loseCheck();
+    hpUpdate();
+    console.log("opponent hp", opponentStats.health);
+    console.log("your hp", currentStats.health);
   } else {
     if (currentStats.speed >= opponentStats.speed) {
       document.querySelector("#dialogue").textContent =
         "Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       winCheck();
+      hpUpdate();
       document.querySelector("#dialogue").textContent =
         "The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       loseCheck();
+      hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
     } else {
       currentStats.health -= opponentStats.attack;
       loseCheck();
+      hpUpdate();
       opponentStats.health -= currentStats.attack;
       winCheck();
+      hpUpdate();
     }
   }
 }
-
-strongAttack();
 
 defendButton.addEventListener("click", defend);
 
@@ -353,6 +365,11 @@ function loseCheck() {
     return;
   }
 }
+
+function hpUpdate() {
+  document.querySelector("#health-points").textContent = currentStats.health;
+  document.querySelector("#oppHealth").textContent = opponentStats.health;
+}
 // strongAttackChoice();
 // function evadeHit() {
 //   var evadeHit = false;
@@ -366,3 +383,5 @@ function loseCheck() {
 // }
 
 battlebtn.addEventListener("click", battle);
+
+strongButton.addEventListener("click", strongAttack);
