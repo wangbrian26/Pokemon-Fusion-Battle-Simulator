@@ -198,7 +198,7 @@ function fusionPokemon() {
               opponentStats.health = fusionPokemonHp;
               opponentStats.attack = fusionPokemonAttack;
               opponentStats.speed = fusionPokemonSpeed;
-              opponentStats.defense = 0;
+              opponentStats.defense = fusionPokemonDefense;
               console.log("opponent");
               console.log(opponentStats);
               console.log(opponentStats.health);
@@ -293,26 +293,25 @@ defendButton.addEventListener("click", defend);
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
 function defend() {
-  var randomDefense = Math.floor(Math.random(currentStats.defense));
+  var randomDefense = Math.floor(Math.random(currentStats.defense) * 100);
   console.log(currentStats.defense);
   console.log(randomDefense);
   console.log(opponentStats);
-  if (fusionPokemonAttack - randomDefense <= 5) {
-    fusionPokemonAttack = 5;
-    currentStats.health = currentStats.health - fusionPokemonAttack;
+  if (opponentStats.attack - randomDefense <= 5) {
+    currentStats.health = currentStats.health - 5;
     document.querySelector("#dialogue").textContent =
       "You have successfully defended! You only take 5 damage.";
     document.querySelector("#health-points").textContent = currentStats.health;
   } else if (randomDefense <= 5) {
     randomDefense = 5;
     currentStats.health =
-      currentStats.health - (fusionPokemonAttack - randomDefense);
+      currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#dialogue").textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
   } else {
     currentStats.health =
-      currentStats.health - (fusionPokemonAttack - randomDefense);
+      currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector(
       "#dialogue"
     ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
