@@ -1,7 +1,7 @@
 // Stat allocator for user character
 
-var healthBase = 100;
-var defenseBase = 30;
+var healthBase = 500;
+var defenseBase = 60;
 var speedBase = 50;
 var attackBase = 30;
 var healthUp = document.querySelector(".health-up");
@@ -250,7 +250,7 @@ function battle() {
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
   dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
-  document.querySelector("#attackButtons").removeAttribute("class", "hide");
+  document.querySelector("#attackButtons").setAttribute("class", "");
 }
 
 function normalAttack() {
