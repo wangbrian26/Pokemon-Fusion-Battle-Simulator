@@ -1,9 +1,9 @@
 // Stat allocator for user character
 
-var healthBase = 50;
+var healthBase = 70;
 var defenseBase = 50;
 var speedBase = 50;
-var attackBase = 50;
+var attackBase = 20;
 var healthUp = document.querySelector(".health-up");
 var attackUp = document.querySelector(".attack-up");
 var speedUp = document.querySelector(".speed-up");
@@ -292,3 +292,26 @@ function battle() {
 battlebtn.addEventListener("click", battle);
 
 console.log(JSON.parse(localStorage.getItem("nameArray")));
+
+function generateEvade() {
+  let evadeChance = Math.floor((speedBase / 150) * 100);
+  console.log('evade chance:');
+  console.log(evadeChance);
+  let randomChance = Math.floor(Math.random() * evadeChance);
+  console.log('random chance:');
+  console.log(randomChance);
+
+  if (randomChance <= evadeChance) {
+    console.log('evade success');
+    currentStats.health = currentStats.health;
+    document.querySelector("#dialogue").textContent = "You have successfully evaded the enemy attack. You took 0 damage.";
+  } else {
+    console.log('evade failed');
+    currentStats.health -= opponentStats.attack;
+    document.querySelector("#dialogue").textContent = "You have failed to evade the enemy attack. You took 100% damage.";
+  }
+
+  console.log('hp after evade:')
+  console.log(currentStats.health);
+}
+
