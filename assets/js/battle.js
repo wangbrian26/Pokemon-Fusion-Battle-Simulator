@@ -229,9 +229,6 @@ var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
-
-
-
 // Changing from stat screen to battle screen
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
@@ -257,11 +254,6 @@ function normalAttack() {
     opponentStats.health -= currentStats.attack * 0.75;
     winCheck();
     hpUpdate();
-<<<<<<< HEAD
-    dialogueBox.textContent =
-      "The fusion Pokemon attacked first due to its higher speed!";
-=======
->>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
     currentStats.health -= opponentStats.attack;
     loseCheck();
     hpUpdate();
@@ -296,21 +288,11 @@ function strongAttack() {
     console.log("your hp", currentStats.health);
   } else {
     if (currentStats.speed >= opponentStats.speed) {
-<<<<<<< HEAD
-      dialogueBox.textContent =
-        "Your Pokemon attacked first due to its higher speed!";
-      opponentStats.health -= currentStats.attack;
-      winCheck();
-      hpUpdate();
-      dialogueBox.textContent =
-        "The fusion Pokemon attacked first due to its higher speed!";
-=======
       document.querySelector("#dialogue").textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       winCheck();
       hpUpdate();
->>>>>>> d930e4ba3576baee29a40ce6af0ec2946aa728a6
       currentStats.health -= opponentStats.attack;
       loseCheck();
       hpUpdate();
