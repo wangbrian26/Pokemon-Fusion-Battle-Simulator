@@ -239,9 +239,9 @@ var battlebtn = document.querySelector(".battle");
 
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
-  // document.querySelectorAll(".pageButtons").forEach(function (button) {
-  //   button.setAttribute("class", "hide");
-  // });
+  document.querySelectorAll(".pageButtons").forEach(function (button) {
+    button.setAttribute("class", "hide");
+  });
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
