@@ -4,6 +4,8 @@ var healthBase = 500;
 var defenseBase = 60;
 var speedBase = 500;
 var attackBase = 30;
+
+// Stat change buttons
 var healthUp = document.querySelector(".health-up");
 var attackUp = document.querySelector(".attack-up");
 var speedUp = document.querySelector(".speed-up");
@@ -13,14 +15,17 @@ var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
 var battleButton = document.querySelector(".battle");
-var evadeButton = document.querySelector("#evade-button");
 
+// User stats
 var healthEl = document.querySelector("#health-points");
 var attack = document.querySelector("#attack-points");
 var speed = document.querySelector("#speed-points");
 var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
+
+// Action buttons during battle
+var evadeButton = document.querySelector("#evade-button");
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
@@ -30,6 +35,8 @@ healthEl.textContent = healthBase;
 attack.textContent = attackBase;
 speed.textContent = speedBase;
 defense.textContent = defenseBase;
+
+// Stat change functions
 
 healthUp.addEventListener("click", function () {
   if (statPoints > 0) {
@@ -141,11 +148,10 @@ var charStats = {
 
   defense: defenseBase,
 };
-// console.log(charStats);
 
 var opponentStats = {};
 
-// fetch request for fusion pokemon
+// Fetch request for fusion pokemon and its stats
 
 function fusionPokemon() {
   fetch("https://keith.api.stdlib.com/pokefusion@0.2.0/")
@@ -166,38 +172,27 @@ function fusionPokemon() {
           return response.json();
         })
         .then(function (data) {
-          // console.log(data);
           var poke1Hp = data.stats[0].base_stat;
           var poke1Attack = data.stats[1].base_stat;
           var poke1Defense = data.stats[2].base_stat;
           var poke1Speed = data.stats[5].base_stat;
           poke1Attack = poke1Attack / 2;
           poke1Hp = poke1Hp + poke1Defense / 2;
-          // console.log(poke1Attack);
-          // console.log(poke1Hp);
-          // console.log(poke1Speed);
           fetch("https://pokeapi.co/api/v2/pokemon/" + poke2)
             .then(function (response) {
               return response.json();
             })
             .then(function (data) {
-              // console.log(data);
               var poke2Hp = data.stats[0].base_stat;
               var poke2Attack = data.stats[1].base_stat;
               var poke2Defense = data.stats[2].base_stat;
               var poke2Speed = data.stats[5].base_stat;
               poke2Attack = poke2Attack / 2;
               poke2Hp = poke2Hp + poke2Defense / 2;
-              // console.log(poke2Attack);
-              // console.log(poke2Hp);
-              // console.log(poke2Speed);
               var fusionPokemonAttack = (poke1Attack + poke2Attack) / 2;
               var fusionPokemonHp = (poke1Hp + poke2Hp) / 2;
               var fusionPokemonSpeed = (poke1Speed + poke2Speed) / 2;
               var fusionPokemonDefense = (poke1Defense + poke2Defense) / 2;
-              // console.log(fusionPokemonAttack);
-              // console.log(fusionPokemonHp);
-              // console.log(fusionPokemonSpeed);
 
               opponentStats.health = fusionPokemonHp;
               opponentStats.attack = fusionPokemonAttack;
@@ -223,11 +218,7 @@ function fusionPokemon() {
     });
 }
 
-// function fusionStats() {
-//   console.log("opponent test");
-//   console.log(opponentStats);
-//   console.log(opponentStats.health);
-// }
+// Get user Pokemon name and image from previous screen
 
 document.querySelector("#userPokemonName").textContent = JSON.parse(
   localStorage.getItem("name")
@@ -236,10 +227,11 @@ var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 fusionPokemon();
-console.log(opponentStats);
+// console.log(opponentStats);
 var currentStats = charStats;
-console.log(currentStats.health);
+// console.log(currentStats.health);
 
+// Changing from stat screen to battle screen
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
@@ -252,6 +244,8 @@ function battle() {
     "A wild fusion Pokemon has appeared!";
   document.querySelector("#attackButtons").setAttribute("class", "");
 }
+
+// Functions for actions during battle phase
 
 function normalAttack() {
   console.log("attack");
@@ -315,10 +309,8 @@ function strongAttack() {
   }
 }
 
-console.log(JSON.parse(localStorage.getItem("nameArray")));
-
 function defend() {
-  var randomDefense = Math.floor(Math.random(currentStats.defense) * 100);
+  var randomDefense = Math.floor(Math.random() * currentStats.defense);
   console.log(currentStats.defense);
   console.log(randomDefense);
   console.log(opponentStats);
@@ -353,7 +345,7 @@ function winCheck() {
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
-    // document.querySelector("#dialogue").textContent = "You win";
+    document.querySelector("#dialogue").textContent = "You win";
     console.log("you win!");
     return;
   }
@@ -374,12 +366,6 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
-// strongAttackChoice();
-
-strongButton.addEventListener("click", strongAttack);
-battleButton.addEventListener("click", battle);
-attackButton.addEventListener("click", normalAttack);
-defendButton.addEventListener("click", defend);
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
@@ -410,4 +396,8 @@ function evade() {
   console.log(currentStats.health);
 }
 
+strongButton.addEventListener("click", strongAttack);
+battleButton.addEventListener("click", battle);
+attackButton.addEventListener("click", normalAttack);
+defendButton.addEventListener("click", defend);
 evadeButton.addEventListener("click", evade);
