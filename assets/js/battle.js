@@ -292,3 +292,26 @@ function battle() {
 battlebtn.addEventListener("click", battle);
 
 console.log(JSON.parse(localStorage.getItem("nameArray")));
+
+function defend {
+  var randomDefense = (Math.floor(Math.random(currentStats.defense)))
+  console.log(randomDefense)
+  console.log(fusionPokemonAttack)
+  console.log
+  if (fusionPokemonAttack - randomDefense) <= 5 {
+    fusionPokemonAttack=5
+    currentStats.health = currentStats.health - (fusionPokemonAttack)
+    // document.querySelector("#dialogue").textContent = "You have successfully defended! You only take 5 damage."
+    // document.querySelector("#health-points").textContent = currentStats.health;
+  } else if (randomDefense) <=5 {
+    randomDefense = 5
+    currentStats.health = currentStats.health - (fusionPokemonAttack - randomDefense)
+    document.querySelector("#health-points").textContent = currentStats.health;
+    document.querySelector("#dialogue").textContent = "You have unsuccessfully defended! You only mitigated 5 damage."
+  } else {
+    currentStats.health = currentStats.health - (fusionPokemonAttack - randomDefense)
+    document.querySelector("#dialogue").textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`
+    document.querySelector("#health-points").textContent = currentStats.health;
+  }
+}
+
