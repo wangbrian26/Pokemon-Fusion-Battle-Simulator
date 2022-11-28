@@ -3,10 +3,14 @@ let nameBox = document.getElementById("name-box");
 let choiceButton1 = document.getElementById("button1");
 let choiceButton2 = document.getElementById("button2");
 let choiceButton3 = document.getElementById("button3");
+let fakemon1 = document.getElementById("choice1");
+let fakemon2 = document.getElementById("choice2");
+let fakemon3 = document.getElementById("choice3");
 let saveButton = document.querySelector(".button");
 let charInfo = {};
+let choice = 0;
 
-let fakemon1 = [
+let fakemonSet1 = [
   "./assets/images/fakemon/1.jpeg",
   "./assets/images/fakemon/2.jpeg",
   "./assets/images/fakemon/3.jpeg",
@@ -17,7 +21,7 @@ let fakemon1 = [
   "./assets/images/fakemon/8.jpeg",
 ];
 
-let fakemon2 = [
+let fakemonSet2 = [
   "./assets/images/fakemon/9.jpeg",
   "./assets/images/fakemon/10.jpeg",
   "./assets/images/fakemon/11.jpeg",
@@ -28,7 +32,7 @@ let fakemon2 = [
   "./assets/images/fakemon/16.jpeg",
 ];
 
-let fakemon3 = [
+let fakemonSet3 = [
   "./assets/images/fakemon/17.jpeg",
   "./assets/images/fakemon/18.jpeg",
   "./assets/images/fakemon/19.png",
@@ -39,102 +43,65 @@ let fakemon3 = [
   "./assets/images/fakemon/24.png",
 ];
 
-document.getElementById("choice1").src =
-  fakemon1[Math.floor(Math.random() * 8)];
-document.getElementById("choice2").src =
-  fakemon2[Math.floor(Math.random() * 8)];
-document.getElementById("choice3").src =
-  fakemon3[Math.floor(Math.random() * 8)];
+fakemon1.src = fakemonSet1[Math.floor(Math.random() * 8)];
+fakemon2.src = fakemonSet2[Math.floor(Math.random() * 8)];
+fakemon3.src = fakemonSet3[Math.floor(Math.random() * 8)];
 
-document.getElementById("choice1").width = "300";
-document.getElementById("choice1").height = "400";
+function changeButtonBorder() {
+    choiceButton1.classList.remove("clicked");
+    choiceButton2.classList.remove("clicked");
+    choiceButton3.classList.remove("clicked");
 
-document.getElementById("choice2").width = "300";
-document.getElementById("choice2").height = "400";
+    if (choice === 1) {
+        choiceButton1.classList.add("clicked");
 
-document.getElementById("choice3").width = "300";
-document.getElementById("choice3").height = "400";
 
-choiceButton1.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1 && choiceButton1.classList.contains("unclickable") === false) { // DISABLING WORKS NOW :)
-    // change border color to indicate selected fakemon
-    choiceButton1.style.border = "5px solid #6DE072";
-    // choiceButton1.style.borderRadius = "8px";
-    choiceButton1.style.boxShadow = "0 0 20px #6DE072";
-    // unhide name box
-    nameBox.style.visibility = "visible";
-    charInfo.image = event.target.src;
+    } else if (choice === 2) {
+        choiceButton2.classList.add("clicked");
+    
+    
+    } else if (choice === 3) {
+        choiceButton3.classList.add("clicked");
+            
+    }
+}
+
+function displayNameBox() {
+    if (choice !== 0) {
+        // unhide name box
+        nameBox.style.visibility = "visible";
+    } else {
+        nameBox.style.visibility = "hidden";
+    }
+}
+
+function selectChoice(buttonId, fakemon) {
+    if (choice !== buttonId) {
+        choice = buttonId;
+    } else if (choice === buttonId) {
+        choice = 0;
+    }
+    changeButtonBorder();
+    displayNameBox();
+    charInfo.image = fakemon.src;
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // disable other choice buttons
-    choiceButton2.classList.add("unclickable");
-    choiceButton3.classList.add("unclickable");
-        
-  } else if (event.detail === 2 && choiceButton1.classList.contains("unclickable") === false) {
-      choiceButton1.style.border = "1px solid black";
-      choiceButton1.style.boxShadow = "0 0 0px";
-      nameBox.style.visibility = "hidden";
-      choiceButton2.classList.remove("unclickable");
-      choiceButton3.classList.remove("unclickable");
-      choiceButton2.classList.add("card");
-      choiceButton3.classList.add("card");
-  }
+}
+
+choiceButton1.addEventListener("click", function(event) {
+    event.preventDefault();
+    selectChoice(1, fakemon1);
 });
 
 choiceButton2.addEventListener("click", function (event) {
     event.preventDefault();
-    if (event.detail === 1 && choiceButton2.classList.contains("unclickable") === false) {
-    // change border color to indicate selected fakemon
-    choiceButton2.style.border = "5px solid #6DE072";
-    // choiceButton1.style.borderRadius = "8px";
-    choiceButton2.style.boxShadow = "0 0 20px #6DE072";
-    // unhide name box
-    nameBox.style.visibility = "visible";
-    charInfo.image = event.target.src;
-    // save charInfo to localStorage
-    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // disable other choice buttons
-    choiceButton1.classList.add("unclickable");
-    choiceButton3.classList.add("unclickable");
-      
-    } else if (event.detail === 2 && choiceButton2.classList.contains("unclickable") === false) {
-      choiceButton2.style.border = "1px solid black";
-      choiceButton2.style.boxShadow = "0 0 0px";
-      nameBox.style.visibility = "hidden";
-      choiceButton1.classList.remove("unclickable");
-      choiceButton3.classList.remove("unclickable");
-      choiceButton1.classList.add("card");
-      choiceButton3.classList.add("card");
-    }
-});
+    selectChoice(2, fakemon2);
+})
 
 choiceButton3.addEventListener("click", function (event) {
     event.preventDefault();
-    if (event.detail === 1 && choiceButton3.classList.contains("unclickable") === false) {
-    // change border color to indicate selected fakemon
-    choiceButton3.style.border = "5px solid #6DE072";
-    // choiceButton1.style.borderRadius = "8px";
-    choiceButton3.style.boxShadow = "0 0 20px #6DE072";
-    // unhide name box
-    nameBox.style.visibility = "visible";
-    charInfo.image = event.target.src;
-    // save charInfo to localStorage
-    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // disable other choice buttons
-    choiceButton1.classList.add("unclickable");
-    choiceButton2.classList.add("unclickable");
-      
-    } else if (event.detail === 2 && choiceButton3.classList.contains("unclickable") === false) {
-      choiceButton3.style.border = "1px solid black";
-      choiceButton3.style.boxShadow = "0 0 0px";
-      nameBox.style.visibility = "hidden";
-      choiceButton2.classList.remove("unclickable");
-      choiceButton1.classList.remove("unclickable");
-      choiceButton2.classList.add("card");
-      choiceButton1.classList.add("card");
-    }
-});
+    selectChoice(3, fakemon3);
+})
 
 saveButton.addEventListener("click", function (event) {
   event.preventDefault();

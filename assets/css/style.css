@@ -107,6 +107,11 @@ h1 {
   margin-top: 14px;
 }
 
+.clicked {
+  border: 5px solid #6DE072;
+  box-shadow: 0 0 20px #6DE072;
+}
+
 .unclickable {
   filter: brightness(30%);
   /* display: none; */
