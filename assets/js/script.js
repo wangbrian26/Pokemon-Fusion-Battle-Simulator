@@ -3,10 +3,14 @@ let nameBox = document.getElementById("name-box");
 let choiceButton1 = document.getElementById("button1");
 let choiceButton2 = document.getElementById("button2");
 let choiceButton3 = document.getElementById("button3");
+let fakemon1 = document.getElementById("choice1");
+let fakemon2 = document.getElementById("choice2");
+let fakemon3 = document.getElementById("choice3");
 let saveButton = document.querySelector(".button");
 let charInfo = {};
+let choice = 0;
 
-let fakemon1 = [
+let fakemonSet1 = [
   "./assets/images/fakemon/1.jpeg",
   "./assets/images/fakemon/2.jpeg",
   "./assets/images/fakemon/3.jpeg",
@@ -17,7 +21,7 @@ let fakemon1 = [
   "./assets/images/fakemon/8.jpeg",
 ];
 
-let fakemon2 = [
+let fakemonSet2 = [
   "./assets/images/fakemon/9.jpeg",
   "./assets/images/fakemon/10.jpeg",
   "./assets/images/fakemon/11.jpeg",
@@ -28,7 +32,7 @@ let fakemon2 = [
   "./assets/images/fakemon/16.jpeg",
 ];
 
-let fakemon3 = [
+let fakemonSet3 = [
   "./assets/images/fakemon/17.jpeg",
   "./assets/images/fakemon/18.jpeg",
   "./assets/images/fakemon/19.png",
@@ -39,80 +43,65 @@ let fakemon3 = [
   "./assets/images/fakemon/24.png",
 ];
 
-document.getElementById("choice1").src =
-  fakemon1[Math.floor(Math.random() * 8)];
-document.getElementById("choice2").src =
-  fakemon2[Math.floor(Math.random() * 8)];
-document.getElementById("choice3").src =
-  fakemon3[Math.floor(Math.random() * 8)];
+fakemon1.src = fakemonSet1[Math.floor(Math.random() * 8)];
+fakemon2.src = fakemonSet2[Math.floor(Math.random() * 8)];
+fakemon3.src = fakemonSet3[Math.floor(Math.random() * 8)];
 
-document.getElementById("choice1").width = "300";
-document.getElementById("choice1").height = "400";
+function changeButtonBorder() {
+    choiceButton1.classList.remove("clicked");
+    choiceButton2.classList.remove("clicked");
+    choiceButton3.classList.remove("clicked");
 
-document.getElementById("choice2").width = "300";
-document.getElementById("choice2").height = "400";
+    if (choice === 1) {
+        choiceButton1.classList.add("clicked");
 
-document.getElementById("choice3").width = "300";
-document.getElementById("choice3").height = "400";
 
-choiceButton1.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1) {
-    getChoice(event.target.parentNode);
-    charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
+    } else if (choice === 2) {
+        choiceButton2.classList.add("clicked");
+    
+    
+    } else if (choice === 3) {
+        choiceButton3.classList.add("clicked");
+            
+    }
+}
+
+function displayNameBox() {
+    if (choice !== 0) {
+        // unhide name box
+        nameBox.style.visibility = "visible";
+    } else {
+        nameBox.style.visibility = "hidden";
+    }
+}
+
+function selectChoice(buttonId, fakemon) {
+    if (choice !== buttonId) {
+        choice = buttonId;
+    } else if (choice === buttonId) {
+        choice = 0;
+    }
+    changeButtonBorder();
+    displayNameBox();
+    charInfo.image = fakemon.src;
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-  } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
-  }
+}
+
+choiceButton1.addEventListener("click", function(event) {
+    event.preventDefault();
+    selectChoice(1, fakemon1);
 });
 
 choiceButton2.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1) {
-    getChoice(event.target.parentNode);
-    charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
-    // save charInfo to localStorage
-    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-  } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
-  }
-});
+    event.preventDefault();
+    selectChoice(2, fakemon2);
+})
 
 choiceButton3.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1) {
-    getChoice(event.target.parentNode);
-    charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
-    // save charInfo to localStorage
-    window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-  } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
-  }
-});
-
-function getChoice(button) {
-  console.log("running getChoice()");
-  // change border color to indicate selected fakemon
-  button.style.border = "5px solid #6DE072";
-  button.style.borderRadius = "8px";
-  button.style.boxShadow = "0 0 20px #6DE072";
-  // unhide name box
-  nameBox.style.visibility = "visible";
-}
-
-function removeChoice(button) {
-  console.log("running removeChoice()");
-  button.style.border = "0px";
-  button.style.boxShadow = "0 0 0px";
-  nameBox.style.visibility = "hidden";
-}
+    event.preventDefault();
+    selectChoice(3, fakemon3);
+})
 
 saveButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -139,5 +128,6 @@ function saveName() {
   } else {
     console.log("save name to localStorage");
     window.localStorage.setItem("name", JSON.stringify(nameInput));
+    window.location.href = 'battle.html';
   }
 }
