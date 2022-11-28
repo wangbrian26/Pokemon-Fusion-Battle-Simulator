@@ -12,6 +12,8 @@ var healthDown = document.querySelector(".health-down");
 var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
+var battleButton = document.querySelector(".battle");
+var evadeButton = document.querySelector("#evade-button");
 
 var healthEl = document.querySelector("#health-points");
 var attack = document.querySelector("#attack-points");
@@ -236,8 +238,6 @@ console.log(opponentStats);
 var currentStats = charStats;
 console.log(currentStats.health);
 
-var battlebtn = document.querySelector(".battle");
-
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
   // document.querySelectorAll(".pageButtons").forEach(function (button) {
@@ -351,4 +351,31 @@ function loseCheck() {
 //   }
 // }
 
-battlebtn.addEventListener("click", battle);
+battleButton.addEventListener("click", battle);
+
+
+function evade() {
+  let evadeChance = Math.floor((speedBase / 150) * 100);
+  console.log('evade chance:');
+  console.log(evadeChance);
+  let randomChance = Math.floor(Math.random() * 100);
+  console.log('random chance:');
+  console.log(randomChance);
+
+  console.log("opponent's attack:");
+  console.log(opponentStats.attack);
+
+  if (randomChance <= evadeChance) {
+    console.log('evade success');
+    document.querySelector("#dialogue").textContent = "You have successfully evaded the enemy attack. You took 0 damage.";
+  } else {
+    console.log('evade failed');
+    currentStats.health -= opponentStats.attack;
+    document.querySelector("#dialogue").textContent = "You have failed to evade the enemy attack. You took 100% damage.";
+  }
+
+  console.log('hp after evade:')
+  console.log(currentStats.health);
+}
+
+evadeButton.addEventListener("click", evade);
