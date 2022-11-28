@@ -55,14 +55,11 @@ function changeButtonBorder() {
     if (choice === 1) {
         choiceButton1.classList.add("clicked");
 
-
     } else if (choice === 2) {
         choiceButton2.classList.add("clicked");
     
-    
     } else if (choice === 3) {
-        choiceButton3.classList.add("clicked");
-            
+        choiceButton3.classList.add("clicked");    
     }
 }
 
