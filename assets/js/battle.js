@@ -19,7 +19,7 @@ var speed = document.querySelector("#speed-points");
 var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
-var defendButton = document.querySelector("#defendButton")
+var defendButton = document.querySelector("#defendButton");
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -251,149 +251,71 @@ function battle() {
   document.querySelector("#attackButtons").setAttribute("class", "");
 }
 
-function strongAttackChoice() {
-  console.log("strong attack test");
-  if ((strongHit = true)) {
-    if (currentStats.speed >= opponentStats.speed) {
-      document.querySelector("#dialogue").textContent =
-        "Your Pokemon attacked first due to its higher speed!";
-      opponentStats.health -= currentStats.attack;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        document.querySelector("#dialogue").textContent = "You win";
-        document.querySelector("#health-points").textContent =
-          currentStats.health;
-        document.querySelector("#oppHealth").textContent = opponentStats.health;
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        document.querySelector("#dialogue").textContent =
-          "The fusion Pokemon attacked first due to its higher speed!";
-        currentStats.health -= opponentStats.attack;
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    } else {
-      currentStats.health -= opponentStats.attack;
-      if (currentStats.health <= 0) {
-        currentStats.health = 0;
-        console.log("game over");
-        return;
-      } else {
-        opponentStats.health -= currentStats.attack;
-        if (opponentStats.health <= 0) {
-          opponentStats.health = 0;
-          console.log("you win");
-          console.log("opponent hp", opponentStats.health);
-          console.log("your hp", currentStats.health);
-          return;
-        } else {
-          console.log("opponent hp", opponentStats.health);
-          console.log("your hp", currentStats.health);
-        }
-      }
-    }
-  } else {
-    console.log("strong attack missed");
-    currentStats.health -= opponentStats.attack;
-    if (currentStats.health <= 0) {
-      currentStats.health = 0;
-      console.log("game over");
-      return;
-    } else {
-      opponentStats.health -= currentStats.attack;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        console.log("you win");
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    }
-  }
-}
+function strongAttackChoice() {}
 
-function attackChoice() {
-  if (currentStats.speed >= opponentStats.speed) {
-    document.querySelector("#dialogue").textContent =
-      "Your Pokemon attacked first due to its higher speed!";
-    opponentStats.health -= currentStats.attack * 0.75;
-    if (opponentStats.health <= 0) {
-      opponentStats.health = 0;
-      document.querySelector("#dialogue").textContent = "You win";
-      document.querySelector("#health-points").textContent =
-        currentStats.health;
-      document.querySelector("#oppHealth").textContent = opponentStats.health;
-      console.log("opponent hp", opponentStats.health);
-      console.log("your hp", currentStats.health);
-      return;
-    } else {
-      document.querySelector("#dialogue").textContent =
-        "The fusion Pokemon attacked first due to its higher speed!";
-      currentStats.health -= opponentStats.attack;
-      console.log("opponent hp", opponentStats.health);
-      console.log("your hp", currentStats.health);
-    }
-  } else {
-    currentStats.health -= opponentStats.attack;
-    if (currentStats.health <= 0) {
-      currentStats.health = 0;
-      console.log("game over");
-      return;
-    } else {
-      opponentStats.health -= currentStats.attack * 0.75;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        console.log("you win");
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    }
-  }
-}
+function attackChoice() {}
 
 function strongAttack() {
-  var strongHit = true;
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
   if (hitChance > 70) {
-    strongHit = false;
+    console.log("Your strong attack missed");
+    return;
+  } else {
+    if (currentStats.speed >= opponentStats.speed) {
+      document.querySelector("#dialogue").textContent =
+        "Your Pokemon attacked first due to its higher speed!";
+      opponentStats.health -= currentStats.attack;
+      winCheck();
+      document.querySelector("#dialogue").textContent =
+        "The fusion Pokemon attacked first due to its higher speed!";
+      currentStats.health -= opponentStats.attack;
+      loseCheck();
+      console.log("opponent hp", opponentStats.health);
+      console.log("your hp", currentStats.health);
+    } else {
+      currentStats.health -= opponentStats.attack;
+      loseCheck();
+      currentStats.health = 0;
+      console.log("game over");
+      return;
+      opponentStats.health -= currentStats.attack;
+      winCheck();
+    }
   }
-  console.log("strong hit");
-  console.log(strongHit);
 }
+
 strongAttack();
 
 defendButton.addEventListener("click", defend);
 
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
-function defend {
-  var randomDefense = (Math.floor(Math.random(currentStats.defense)))
-  console.log(randomDefense)
-  console.log(opponentStats)
-  if (fusionPokemonAttack - randomDefense) <= 5 {
-    fusionPokemonAttack=5
-    currentStats.health = currentStats.health - (fusionPokemonAttack)
-    document.querySelector("#dialogue").textContent = "You have successfully defended! You only take 5 damage."
+function defend() {
+  var randomDefense = Math.floor(Math.random(currentStats.defense));
+  console.log(currentStats.defense);
+  console.log(randomDefense);
+  console.log(opponentStats);
+  if (fusionPokemonAttack - randomDefense <= 5) {
+    fusionPokemonAttack = 5;
+    currentStats.health = currentStats.health - fusionPokemonAttack;
+    document.querySelector("#dialogue").textContent =
+      "You have successfully defended! You only take 5 damage.";
     document.querySelector("#health-points").textContent = currentStats.health;
-  } else if (randomDefense) <=5 {
-    randomDefense = 5
-    currentStats.health = currentStats.health - (fusionPokemonAttack - randomDefense)
+  } else if (randomDefense <= 5) {
+    randomDefense = 5;
+    currentStats.health =
+      currentStats.health - (fusionPokemonAttack - randomDefense);
     document.querySelector("#health-points").textContent = currentStats.health;
-    document.querySelector("#dialogue").textContent = "You have unsuccessfully defended! You only mitigated 5 damage."
+    document.querySelector("#dialogue").textContent =
+      "You have unsuccessfully defended! You only mitigated 5 damage.";
   } else {
-    currentStats.health = currentStats.health - (fusionPokemonAttack - randomDefense)
-    document.querySelector("#dialogue").textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`
+    currentStats.health =
+      currentStats.health - (fusionPokemonAttack - randomDefense);
+    document.querySelector(
+      "#dialogue"
+    ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
     document.querySelector("#health-points").textContent = currentStats.health;
   }
 }
