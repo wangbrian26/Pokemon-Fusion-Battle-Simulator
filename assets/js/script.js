@@ -58,61 +58,97 @@ document.getElementById("choice3").height = "400";
 choiceButton1.addEventListener("click", function (event) {
   event.preventDefault();
   if (event.detail === 1) {
-    getChoice(event.target.parentNode);
+    // change border color to indicate selected fakemon
+    choiceButton1.style.border = "5px solid #6DE072";
+    // choiceButton1.style.borderRadius = "8px";
+    choiceButton1.style.boxShadow = "0 0 20px #6DE072";
+    // unhide name box
+    nameBox.style.visibility = "visible";
     charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
+    // console.log('disabling the other choice buttons');
+    // console.log(button2);
+    // console.log(button3);
+    // // document.getElementById("button2").disabled = true;
+    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
+    // document.getElementById("button3").disabled = true;
+    
   } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
+      choiceButton1.style.border = "1px solid black";
+      choiceButton1.style.boxShadow = "0 0 0px";
+      nameBox.style.visibility = "hidden";
   }
 });
 
 choiceButton2.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1) {
-    getChoice(event.target.parentNode);
+    event.preventDefault();
+    if (event.detail === 1) {
+    // change border color to indicate selected fakemon
+    choiceButton2.style.border = "5px solid #6DE072";
+    // choiceButton1.style.borderRadius = "8px";
+    choiceButton2.style.boxShadow = "0 0 20px #6DE072";
+    // unhide name box
+    nameBox.style.visibility = "visible";
     charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-  } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
-  }
+    // console.log('disabling the other choice buttons');
+    // console.log(button2);
+    // console.log(button3);
+    // // document.getElementById("button2").disabled = true;
+    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
+    // document.getElementById("button3").disabled = true;
+      
+    } else if (event.detail === 2) {
+      choiceButton2.style.border = "1px solid black";
+      choiceButton2.style.boxShadow = "0 0 0px";
+      nameBox.style.visibility = "hidden";
+    }
 });
 
 choiceButton3.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (event.detail === 1) {
-    getChoice(event.target.parentNode);
+    event.preventDefault();
+    if (event.detail === 1) {
+    // change border color to indicate selected fakemon
+    choiceButton3.style.border = "5px solid #6DE072";
+    // choiceButton1.style.borderRadius = "8px";
+    choiceButton3.style.boxShadow = "0 0 20px #6DE072";
+    // unhide name box
+    nameBox.style.visibility = "visible";
     charInfo.image = event.target.src;
-    console.log("logging charInfo.image");
-    console.log(charInfo.image);
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-  } else if (event.detail === 2) {
-    removeChoice(event.target.parentNode);
-  }
+    // console.log('disabling the other choice buttons');
+    // console.log(button2);
+    // console.log(button3);
+    // // document.getElementById("button2").disabled = true;
+    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
+    // document.getElementById("button3").disabled = true;
+      
+    } else if (event.detail === 2) {
+      choiceButton3.style.border = "1px solid black";
+      choiceButton3.style.boxShadow = "0 0 0px";
+      nameBox.style.visibility = "hidden";
+    }
 });
 
-function getChoice(button) {
-  console.log("running getChoice()");
-  // change border color to indicate selected fakemon
-  button.style.border = "5px solid #6DE072";
-  button.style.borderRadius = "8px";
-  button.style.boxShadow = "0 0 20px #6DE072";
-  // unhide name box
-  nameBox.style.visibility = "visible";
-}
+// function getChoice(button) {
+//   console.log("running getChoice()");
+//   // change border color to indicate selected fakemon
+//   button.style.border = "5px solid #6DE072";
+//   button.style.borderRadius = "8px";
+//   button.style.boxShadow = "0 0 20px #6DE072";
+//   // unhide name box
+//   nameBox.style.visibility = "visible";
+// }
 
-function removeChoice(button) {
-  console.log("running removeChoice()");
-  button.style.border = "0px";
-  button.style.boxShadow = "0 0 0px";
-  nameBox.style.visibility = "hidden";
-}
+// function removeChoice(button) {
+//   console.log("running removeChoice()");
+//   button.style.border = "0px";
+//   button.style.boxShadow = "0 0 0px";
+//   nameBox.style.visibility = "hidden";
+// }
 
 saveButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -139,5 +175,6 @@ function saveName() {
   } else {
     console.log("save name to localStorage");
     window.localStorage.setItem("name", JSON.stringify(nameInput));
+    window.location.href = 'battle.html';
   }
 }
