@@ -228,9 +228,6 @@ var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
-
-
-
 // Changing from stat screen to battle screen
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
@@ -255,10 +252,10 @@ function normalAttack() {
     document.querySelector("#dialogue").textContent =
       "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health -= currentStats.attack * 0.75;
-    winCheck();
+    winLossCheck();
     hpUpdate();
     currentStats.health -= opponentStats.attack;
-    loseCheck();
+    winLossCheck();
     hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
@@ -266,16 +263,16 @@ function normalAttack() {
     document.querySelector("#dialogue").textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
-    loseCheck();
+    winLossCheck();
     hpUpdate();
     opponentStats.health -= currentStats.attack * 0.75;
-    winCheck();
+    winLossCheck();
     hpUpdate();
   }
 }
 
 function strongAttack() {
-  loseCheck();
+  winLossCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
@@ -283,7 +280,7 @@ function strongAttack() {
     document.querySelector("#dialogue").textContent =
       "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
-    loseCheck();
+    winLossCheck();
     hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
@@ -292,10 +289,10 @@ function strongAttack() {
       document.querySelector("#dialogue").textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
-      winCheck();
+      winLossCheck();
       hpUpdate();
       currentStats.health -= opponentStats.attack;
-      loseCheck();
+      winLossCheck();
       hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
@@ -303,10 +300,10 @@ function strongAttack() {
       document.querySelector("#dialogue").textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
-      loseCheck();
+      winLossCheck();
       hpUpdate();
       opponentStats.health -= currentStats.attack;
-      winCheck();
+      winLossCheck();
       hpUpdate();
     }
   }
@@ -321,7 +318,7 @@ function defend() {
     currentStats.health = currentStats.health - 5;
     document.querySelector("#dialogue").textContent =
       "You have successfully defended! You only take 5 damage.";
-    loseCheck();
+    winLossCheck();
     hpUpdate();
   } else if (randomDefense <= 5) {
     randomDefense = 5;
@@ -329,7 +326,7 @@ function defend() {
       currentStats.health - (opponentStats.attack - randomDefense);
     document.querySelector("#dialogue").textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
-    loseCheck();
+    winLossCheck();
     hpUpdate();
   } else {
     currentStats.health =
@@ -337,12 +334,12 @@ function defend() {
     document.querySelector(
       "#dialogue"
     ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
-    loseCheck();
+    winLossCheck();
     hpUpdate();
   }
 }
 
-function winCheck() {
+function winLossCheck() {
   if (opponentStats.health <= 0) {
     opponentStats.attack = 0;
     opponentStats.health = 0;
@@ -361,16 +358,16 @@ function winCheck() {
       console.log(currentStats.health);
     }
     return;
-  }
-}
-
-function loseCheck() {
-  if (currentStats.health <= 0) {
+  } else if (currentStats.health <= 0) {
     currentStats.attack = 0;
     currentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
+    document.querySelector("#dialogue").textContent =
+      "You lost! Please go back to the start screen to select a new Pokemon to try battling again.";
     console.log("game over");
+    return;
+  } else {
     return;
   }
 }
@@ -401,7 +398,7 @@ function evade() {
     currentStats.health -= opponentStats.attack;
     document.querySelector("#dialogue").textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
-    loseCheck();
+    winLossCheck();
     hpUpdate();
   }
 
