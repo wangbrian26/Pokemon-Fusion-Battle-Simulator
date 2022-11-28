@@ -103,6 +103,15 @@ text-align: center;
   margin-top: 14px;
 }
 
+.unclickable {
+  filter: brightness(30%);
+  /* display: none; */
+}
+
+.unclickable:hover {
+  cursor: not-allowed;
+}
+
 #dialogueBox {
   background-color: beige;
   border: 3px solid black;

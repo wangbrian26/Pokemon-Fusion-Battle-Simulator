@@ -67,17 +67,22 @@ choiceButton1.addEventListener("click", function (event) {
     charInfo.image = event.target.src;
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // console.log('disabling the other choice buttons');
-    // console.log(button2);
-    // console.log(button3);
-    // // document.getElementById("button2").disabled = true;
-    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
-    // document.getElementById("button3").disabled = true;
-    
+    // disable other choice buttons
+    choiceButton2.classList.add("unclickable");
+    choiceButton3.classList.add("unclickable");
+    choiceButton2.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
+    choiceButton3.ariaDisabled = true;
+        
   } else if (event.detail === 2) {
       choiceButton1.style.border = "1px solid black";
       choiceButton1.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
+      choiceButton2.ariaDisabled = false;
+      choiceButton3.ariaDisabled = false;
+      choiceButton2.classList.remove("unclickable");
+      choiceButton3.classList.remove("unclickable");
+      choiceButton2.classList.add("card");
+      choiceButton3.classList.add("card");
   }
 });
 
@@ -93,17 +98,22 @@ choiceButton2.addEventListener("click", function (event) {
     charInfo.image = event.target.src;
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // console.log('disabling the other choice buttons');
-    // console.log(button2);
-    // console.log(button3);
-    // // document.getElementById("button2").disabled = true;
-    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
-    // document.getElementById("button3").disabled = true;
+    // disable other choice buttons
+    choiceButton1.classList.add("unclickable");
+    choiceButton3.classList.add("unclickable");
+    choiceButton1.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
+    choiceButton3.ariaDisabled = true;
       
     } else if (event.detail === 2) {
       choiceButton2.style.border = "1px solid black";
       choiceButton2.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
+      choiceButton1.ariaDisabled = false;
+      choiceButton3.ariaDisabled = false;
+      choiceButton1.classList.remove("unclickable");
+      choiceButton3.classList.remove("unclickable");
+      choiceButton1.classList.add("card");
+      choiceButton3.classList.add("card");
     }
 });
 
@@ -119,36 +129,24 @@ choiceButton3.addEventListener("click", function (event) {
     charInfo.image = event.target.src;
     // save charInfo to localStorage
     window.localStorage.setItem("image", JSON.stringify(charInfo.image));
-    // console.log('disabling the other choice buttons');
-    // console.log(button2);
-    // console.log(button3);
-    // // document.getElementById("button2").disabled = true;
-    // console.log(document.getElementById("button2").disabled); // RETURNS TRUE BUT WHY IS THE BUTTON STILL CLICKABLE AND RUNNING GETCHOICE
-    // document.getElementById("button3").disabled = true;
+    // disable other choice buttons
+    choiceButton1.classList.add("unclickable");
+    choiceButton2.classList.add("unclickable");
+    choiceButton1.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
+    choiceButton2.ariaDisabled = true;
       
     } else if (event.detail === 2) {
       choiceButton3.style.border = "1px solid black";
       choiceButton3.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
+      choiceButton2.ariaDisabled = false;
+      choiceButton1.ariaDisabled = false;
+      choiceButton2.classList.remove("unclickable");
+      choiceButton1.classList.remove("unclickable");
+      choiceButton2.classList.add("card");
+      choiceButton1.classList.add("card");
     }
 });
-
-// function getChoice(button) {
-//   console.log("running getChoice()");
-//   // change border color to indicate selected fakemon
-//   button.style.border = "5px solid #6DE072";
-//   button.style.borderRadius = "8px";
-//   button.style.boxShadow = "0 0 20px #6DE072";
-//   // unhide name box
-//   nameBox.style.visibility = "visible";
-// }
-
-// function removeChoice(button) {
-//   console.log("running removeChoice()");
-//   button.style.border = "0px";
-//   button.style.boxShadow = "0 0 0px";
-//   nameBox.style.visibility = "hidden";
-// }
 
 saveButton.addEventListener("click", function (event) {
   event.preventDefault();
