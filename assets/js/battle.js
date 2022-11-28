@@ -247,6 +247,7 @@ function battle() {
   document.querySelector("body").setAttribute("class", "forest");
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
+  document.querySelector("#attackButtons").setAttribute("class", "");
   if (currentStats.speed >= opponentStats.speed) {
     document.querySelector("#dialogue").textContent =
       "Your Pokemon attacked first due to its higher speed!";
