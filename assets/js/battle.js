@@ -23,6 +23,7 @@ var stats = document.querySelector(".stats");
 var statPoints = 50;
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
+var attackButton = document.querySelector("#attack-button");
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -252,7 +253,8 @@ function battle() {
   document.querySelector("#attackButtons").setAttribute("class", "");
 }
 
-function attackChoice() {
+function normalAttack() {
+  console.log("attack");
   if (currentStats.speed >= opponentStats.speed) {
     document.querySelector("#dialogue").textContent =
       "Your Pokemon attacked first due to its higher speed!";
@@ -313,8 +315,6 @@ function strongAttack() {
   }
 }
 
-defendButton.addEventListener("click", defend);
-
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
 function defend() {
@@ -371,20 +371,11 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
-// strongAttackChoice();
-// function evadeHit() {
-//   var evadeHit = false;
-//   var percentage = 100;
-//   var evadeChance = speedBase / 150;
-//   var evadeRng = Math.floor(Math.random() * percentage);
-//   if (evadeRng <= evadeChance) {
-//     evadeHit = true;
-//     console.log("attack evaded");
-//   }
-// }
 
 strongButton.addEventListener("click", strongAttack);
 battleButton.addEventListener("click", battle);
+attackButton.addEventListener("click", normalAttack);
+defendButton.addEventListener("click", defend);
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
