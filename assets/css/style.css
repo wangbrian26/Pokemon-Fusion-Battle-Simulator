@@ -147,3 +147,11 @@ display: flex;
 
   
 }
+
+.pageButtons {
+  padding: 0px 4px;
+}
+
+.minus {
+  padding: 0px 6px;
+}
