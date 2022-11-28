@@ -247,149 +247,43 @@ function battle() {
   document.querySelector("body").setAttribute("class", "forest");
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
-
-  if (currentStats.speed >= opponentStats.speed) {
-    document.querySelector("#dialogue").textContent =
-      "Your Pokemon attacked first due to its higher speed!";
-    opponentStats.health -= currentStats.attack;
-    winCheck();
-    document.querySelector("#dialogue").textContent =
-      "The fusion Pokemon attacked first due to its higher speed!";
-    currentStats.health -= opponentStats.attack;
-    loseCheck();
-    console.log("opponent hp", opponentStats.health);
-    console.log("your hp", currentStats.health);
-  } else {
-    currentStats.health -= opponentStats.attack;
-    loseCheck();
-    currentStats.health = 0;
-    console.log("game over");
-    return;
-    opponentStats.health -= currentStats.attack;
-    winCheck();
-  }
 }
 
-function strongAttackChoice() {
-  console.log("strong attack test");
-  if ((strongHit = true)) {
-    if (currentStats.speed >= opponentStats.speed) {
-      document.querySelector("#dialogue").textContent =
-        "Your Pokemon attacked first due to its higher speed!";
-      opponentStats.health -= currentStats.attack;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        document.querySelector("#dialogue").textContent = "You win";
-        document.querySelector("#health-points").textContent =
-          currentStats.health;
-        document.querySelector("#oppHealth").textContent = opponentStats.health;
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        document.querySelector("#dialogue").textContent =
-          "The fusion Pokemon attacked first due to its higher speed!";
-        currentStats.health -= opponentStats.attack;
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    } else {
-      currentStats.health -= opponentStats.attack;
-      if (currentStats.health <= 0) {
-        currentStats.health = 0;
-        console.log("game over");
-        return;
-      } else {
-        opponentStats.health -= currentStats.attack;
-        if (opponentStats.health <= 0) {
-          opponentStats.health = 0;
-          console.log("you win");
-          console.log("opponent hp", opponentStats.health);
-          console.log("your hp", currentStats.health);
-          return;
-        } else {
-          console.log("opponent hp", opponentStats.health);
-          console.log("your hp", currentStats.health);
-        }
-      }
-    }
-  } else {
-    console.log("strong attack missed");
-    currentStats.health -= opponentStats.attack;
-    if (currentStats.health <= 0) {
-      currentStats.health = 0;
-      console.log("game over");
-      return;
-    } else {
-      opponentStats.health -= currentStats.attack;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        console.log("you win");
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    }
-  }
-}
+function strongAttackChoice() {}
 
-function attackChoice() {
-  if (currentStats.speed >= opponentStats.speed) {
-    document.querySelector("#dialogue").textContent =
-      "Your Pokemon attacked first due to its higher speed!";
-    opponentStats.health -= currentStats.attack * 0.75;
-    if (opponentStats.health <= 0) {
-      opponentStats.health = 0;
-      document.querySelector("#dialogue").textContent = "You win";
-      document.querySelector("#health-points").textContent =
-        currentStats.health;
-      document.querySelector("#oppHealth").textContent = opponentStats.health;
-      console.log("opponent hp", opponentStats.health);
-      console.log("your hp", currentStats.health);
-      return;
-    } else {
-      document.querySelector("#dialogue").textContent =
-        "The fusion Pokemon attacked first due to its higher speed!";
-      currentStats.health -= opponentStats.attack;
-      console.log("opponent hp", opponentStats.health);
-      console.log("your hp", currentStats.health);
-    }
-  } else {
-    currentStats.health -= opponentStats.attack;
-    if (currentStats.health <= 0) {
-      currentStats.health = 0;
-      console.log("game over");
-      return;
-    } else {
-      opponentStats.health -= currentStats.attack * 0.75;
-      if (opponentStats.health <= 0) {
-        opponentStats.health = 0;
-        console.log("you win");
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-        return;
-      } else {
-        console.log("opponent hp", opponentStats.health);
-        console.log("your hp", currentStats.health);
-      }
-    }
-  }
-}
+function attackChoice() {}
 
 function strongAttack() {
-  var strongHit = true;
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
   if (hitChance > 70) {
-    strongHit = false;
+    console.log("Your strong attack missed");
+    return;
+  } else {
+    if (currentStats.speed >= opponentStats.speed) {
+      document.querySelector("#dialogue").textContent =
+        "Your Pokemon attacked first due to its higher speed!";
+      opponentStats.health -= currentStats.attack;
+      winCheck();
+      document.querySelector("#dialogue").textContent =
+        "The fusion Pokemon attacked first due to its higher speed!";
+      currentStats.health -= opponentStats.attack;
+      loseCheck();
+      console.log("opponent hp", opponentStats.health);
+      console.log("your hp", currentStats.health);
+    } else {
+      currentStats.health -= opponentStats.attack;
+      loseCheck();
+      currentStats.health = 0;
+      console.log("game over");
+      return;
+      opponentStats.health -= currentStats.attack;
+      winCheck();
+    }
   }
-  console.log("strong hit");
-  console.log(strongHit);
 }
+
 strongAttack();
 
 function winCheck() {
