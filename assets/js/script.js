@@ -57,7 +57,7 @@ document.getElementById("choice3").height = "400";
 
 choiceButton1.addEventListener("click", function (event) {
   event.preventDefault();
-  if (event.detail === 1) {
+  if (event.detail === 1 && choiceButton1.classList.contains("unclickable") === false) { // DISABLING WORKS NOW :)
     // change border color to indicate selected fakemon
     choiceButton1.style.border = "5px solid #6DE072";
     // choiceButton1.style.borderRadius = "8px";
@@ -70,15 +70,11 @@ choiceButton1.addEventListener("click", function (event) {
     // disable other choice buttons
     choiceButton2.classList.add("unclickable");
     choiceButton3.classList.add("unclickable");
-    choiceButton2.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
-    choiceButton3.ariaDisabled = true;
         
-  } else if (event.detail === 2) {
+  } else if (event.detail === 2 && choiceButton1.classList.contains("unclickable") === false) {
       choiceButton1.style.border = "1px solid black";
       choiceButton1.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
-      choiceButton2.ariaDisabled = false;
-      choiceButton3.ariaDisabled = false;
       choiceButton2.classList.remove("unclickable");
       choiceButton3.classList.remove("unclickable");
       choiceButton2.classList.add("card");
@@ -88,7 +84,7 @@ choiceButton1.addEventListener("click", function (event) {
 
 choiceButton2.addEventListener("click", function (event) {
     event.preventDefault();
-    if (event.detail === 1) {
+    if (event.detail === 1 && choiceButton2.classList.contains("unclickable") === false) {
     // change border color to indicate selected fakemon
     choiceButton2.style.border = "5px solid #6DE072";
     // choiceButton1.style.borderRadius = "8px";
@@ -101,15 +97,11 @@ choiceButton2.addEventListener("click", function (event) {
     // disable other choice buttons
     choiceButton1.classList.add("unclickable");
     choiceButton3.classList.add("unclickable");
-    choiceButton1.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
-    choiceButton3.ariaDisabled = true;
       
-    } else if (event.detail === 2) {
+    } else if (event.detail === 2 && choiceButton2.classList.contains("unclickable") === false) {
       choiceButton2.style.border = "1px solid black";
       choiceButton2.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
-      choiceButton1.ariaDisabled = false;
-      choiceButton3.ariaDisabled = false;
       choiceButton1.classList.remove("unclickable");
       choiceButton3.classList.remove("unclickable");
       choiceButton1.classList.add("card");
@@ -119,7 +111,7 @@ choiceButton2.addEventListener("click", function (event) {
 
 choiceButton3.addEventListener("click", function (event) {
     event.preventDefault();
-    if (event.detail === 1) {
+    if (event.detail === 1 && choiceButton3.classList.contains("unclickable") === false) {
     // change border color to indicate selected fakemon
     choiceButton3.style.border = "5px solid #6DE072";
     // choiceButton1.style.borderRadius = "8px";
@@ -132,15 +124,11 @@ choiceButton3.addEventListener("click", function (event) {
     // disable other choice buttons
     choiceButton1.classList.add("unclickable");
     choiceButton2.classList.add("unclickable");
-    choiceButton1.ariaDisabled = true; // NOT WORKING!! STILL CLICKABLE AND SAVE NEW IMAGE TO LOCAL STORAGE :((
-    choiceButton2.ariaDisabled = true;
       
-    } else if (event.detail === 2) {
+    } else if (event.detail === 2 && choiceButton3.classList.contains("unclickable") === false) {
       choiceButton3.style.border = "1px solid black";
       choiceButton3.style.boxShadow = "0 0 0px";
       nameBox.style.visibility = "hidden";
-      choiceButton2.ariaDisabled = false;
-      choiceButton1.ariaDisabled = false;
       choiceButton2.classList.remove("unclickable");
       choiceButton1.classList.remove("unclickable");
       choiceButton2.classList.add("card");
