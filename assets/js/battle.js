@@ -19,6 +19,7 @@ var speed = document.querySelector("#speed-points");
 var defense = document.querySelector("#defense-points");
 var stats = document.querySelector(".stats");
 var statPoints = 50;
+var defendButton = document.querySelector("#defendButton")
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -291,6 +292,8 @@ function battle() {
 }
 
 battlebtn.addEventListener("click", battle);
+
+defendButton.addEventListener("click", defend);
 
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
