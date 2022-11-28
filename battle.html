@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Battle Scene</title>
@@ -43,35 +45,35 @@
       </p>
       <div>
         <p>Health: <span id="health-points"></span>
-          <button class="pageButtons health-up">+</button><button class="pageButtons health-down">-</button>
+          <button type="button" class="pageButtons health-up button tiny ">+</button><button type="button" class="pageButtons health-down button tiny">-</button>
         </p>
       </div>
       <div>
         <p>Attack: <span id="attack-points"></span>
-          <button class="pageButtons attack-up">+</button><button class="pageButtons attack-down">-</button>
+          <button type="button" class="pageButtons attack-up button tiny">+</button><button type="button" class="pageButtons attack-down button tiny">-</button>
         </p>
       </div>
       <div>
         <p>Speed: <span id="speed-points"></span>
-          <button class="pageButtons speed-up">+</button><button class="pageButtons speed-down">-</button>
+          <button type="button" class="pageButtons speed-up button tiny">+</button><button type="button" class="pageButtons speed-down button tiny">-</button>
         </p>
       </div>
       <div>
         <p>Defense: <span id="defense-points"></span>
-          <button class="pageButtons defense-up">+</button><button class="pageButtons defense-down">-</button>
+          <button type="button" class="pageButtons defense-up button hollow success tiny">+</button><button type="button" class="pageButtons defense-down button hollow alert tiny">-</button>
         </p>
       </div>
     </div>
     <div>
       <img id="userPokemonImg" src="">
     </div>
-    <button class="battle pageButtons">battle</button>
+    <button type="button" class="battle pageButtons button large success hollow">battle</button>
     </div>
     <div id="attackButtons" class="hide">
-      <button class="selection1">Normal</button>
-      <button class="selection2">Strong</button>
-      <button class="selection3">Evade</button>
-      <button class="selection4">Defend</button>
+      <button type="button" class="button hollow">Normal</button>
+      <button type="button" class="button">Strong</button>
+      <button type="button" class="button">Evade</button>
+      <button type="button" class="button">Defend</button>
     </div>
 
   </section>
@@ -79,8 +81,8 @@
   <script src="./assets/js/youtube-api.js"></script>
 
   <div>
-    <button class="start-bgm">Play BGM</button>
-    <button class="mute-button">Mute BGM</button>
+    <button type="button" class="start-bgm button secondary hollow">Play BGM</button>
+    <button type="button" class="mute-button button secondary clear">Mute BGM</button>
   </div>
   <div id="player"></div>
 
