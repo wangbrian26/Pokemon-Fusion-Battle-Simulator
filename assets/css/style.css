@@ -77,7 +77,7 @@ h1 {
 
 .forest {
   background-image: url("../images/backgrounds/forest.jpg");
-  background-size:cover;
+  background-size: cover;
 }
 
 .userPokemon {
@@ -158,7 +158,7 @@ display: flex;
 }
 
 .card-section {
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
