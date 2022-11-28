@@ -402,11 +402,14 @@ function evade() {
     console.log("evade success");
     document.querySelector("#dialogue").textContent =
       "You have successfully evaded the enemy attack. You took 0 damage.";
+    hpUpdate();
   } else {
     console.log("evade failed");
     currentStats.health -= opponentStats.attack;
     document.querySelector("#dialogue").textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
+    loseCheck();
+    hpUpdate();
   }
 
   console.log("hp after evade:");
