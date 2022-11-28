@@ -12,6 +12,8 @@ var healthDown = document.querySelector(".health-down");
 var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
+var battleButton = document.querySelector(".battle");
+var evadeButton = document.querySelector("#evade-button");
 
 var healthEl = document.querySelector("#health-points");
 var attack = document.querySelector("#attack-points");
@@ -235,8 +237,6 @@ console.log(opponentStats);
 var currentStats = charStats;
 console.log(currentStats.health);
 
-var battlebtn = document.querySelector(".battle");
-
 function battle() {
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
@@ -290,11 +290,11 @@ function battle() {
   }
 }
 
-battlebtn.addEventListener("click", battle);
+battleButton.addEventListener("click", battle);
 
 console.log(JSON.parse(localStorage.getItem("nameArray")));
 
-function generateEvade() {
+function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
   console.log('evade chance:');
   console.log(evadeChance);
@@ -316,3 +316,4 @@ function generateEvade() {
   console.log(currentStats.health);
 }
 
+evadeButton.addEventListener("click", evade);
