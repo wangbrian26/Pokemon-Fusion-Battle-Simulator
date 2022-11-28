@@ -230,6 +230,8 @@ document.querySelector("#userPokemonName").textContent = JSON.parse(
 var userPokeImgSRC = JSON.parse(localStorage.getItem("image"));
 userPokeImgSRC = userPokeImgSRC.split("assets");
 document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
+// document.querySelector("#userPokemonImg").width = "1000px";
+// document.querySelector("#userPokemonImg").height = "1000px";
 fusionPokemon();
 console.log(opponentStats);
 var currentStats = charStats;
