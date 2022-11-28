@@ -7,12 +7,16 @@ h1 {
   color: aliceblue;
 }
 
+.intro {
+  margin: 20px auto 30px auto;
+}
+
 .card {
-height: 400px;
-width: 400px;
-border: 1px solid black;
-border-radius: 8px;
-text-align: center;
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  text-align: center;
 }
 
 .hide {
@@ -101,6 +105,20 @@ text-align: center;
 
 .button {
   margin-top: 14px;
+}
+
+.clicked {
+  border: 5px solid #6DE072;
+  box-shadow: 0 0 20px #6DE072;
+}
+
+.unclickable {
+  filter: brightness(30%);
+  /* display: none; */
+}
+
+.unclickable:hover {
+  cursor: not-allowed;
 }
 
 #dialogueBox {
