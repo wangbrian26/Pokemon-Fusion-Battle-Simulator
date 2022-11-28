@@ -1,8 +1,8 @@
 // Stat allocator for user character
 
-var healthBase = 50;
+var healthBase = 500;
 var defenseBase = 60;
-var speedBase = 50;
+var speedBase = 500;
 var attackBase = 30;
 var healthUp = document.querySelector(".health-up");
 var attackUp = document.querySelector(".attack-up");
@@ -346,6 +346,7 @@ function defend() {
 
 function winCheck() {
   if (opponentStats.health <= 0) {
+    opponentStats.attack = 0;
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
@@ -357,6 +358,7 @@ function winCheck() {
 
 function loseCheck() {
   if (currentStats.health <= 0) {
+    currentStats.attack = 0;
     currentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
