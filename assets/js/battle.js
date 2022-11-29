@@ -277,7 +277,6 @@ function normalAttack() {
     opponentStrongAttackAfter();
   }
   opponentStrongAttack();
-  // console.log("opponent SAH", opponentSAH);
 }
 
 function strongAttack() {
@@ -419,7 +418,6 @@ function evade() {
 
   winLossCheck();
   hpUpdate();
-
   opponentStrongAttack();
 }
 
