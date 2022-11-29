@@ -12,47 +12,17 @@
 }
 
 .header {
-  background-color: var(--cb);
-  color: var(--yellow);
-  }
-/* added font to Header on landing page */
-  h1 {
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 90px;
-  }
-
-  h3 {
-    font-family: 'Bubblegum Sans', cursive;
-    color: var(--cb);
-    font-size: 45px;
-  }
-/* added css to stats page in battle html */
-  .setStats {
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 30px;
-    color: var(--yellow);
-  }
-/* added css to landing page name your fakemon */
-  .name-box {
-    font-family: 'Bubblegum Sans', cursive;
-    color: black;
-    font-size: 35px;
-  }
-
-/* added css to landing page body */
-.backGround {
-background-image: url(../images/backgrounds/grass.jpg);
-background-size: cover;
-
-}
-/* added css to battle html body */
-.statCreator {
-  background-image: url(../images/backgrounds/lab1.jpg);
-  background-size: cover;
+  background-color: black;
+  color: aliceblue;
 }
 
 .intro {
   margin: 20px auto 30px auto;
+  /* text-shadow: 4px 4px 4px #aaa; */
+}
+
+.intro h3 {
+  font-family: 'Audiowide', cursive;
 }
 /* added css to the three cards in landing page */
 .card {
@@ -157,6 +127,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  color: white;
 }
 
 .clicked {
@@ -231,14 +202,56 @@ display: flex;
   justify-content: center;
 }
 
+/* Styling for Game Over and High Scores screens */
+
 .game-over {
   margin: 150px auto;
 }
 
-.game-over h1 {
+.press-start h1, h2 {
   font-family: 'Press Start 2P', cursive;
 }
 
 .win-box {
   margin: 50px auto;
+}
+
+.center-box {
+  width: 60%;
+  text-align: center;
+  margin: 100px auto 0 auto;
+}
+
+.center-box input {
+  width: 100px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+ol {
+  padding-left: 0px;
+  max-height: 500px;
+  overflow: auto;
+  margin: 30px auto;
+}
+
+li {
+  padding: 5px;
+  text-transform: uppercase;
+  list-style: decimal inside none;
+  background-color: #FFA9E4;
+}
+
+li:nth-child(even) {
+  background-color: aliceblue;
 }

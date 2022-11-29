@@ -1,6 +1,6 @@
 // Stat allocator for user character
 
-var healthBase = 1000;
+var healthBase = 200;
 var defenseBase = 30;
 var speedBase = 50;
 var attackBase = 1;
@@ -255,7 +255,7 @@ function normalAttack() {
   if (currentStats.speed >= opponentStats.speed) {
     dialogueBox.textContent =
       "Your Pokemon attacked first due to its higher speed!";
-    opponentStats.health -= currentStats.attack * 0.75;
+    opponentStats.health -= currentStats.attack * 0.75; // NOT WORKING
     winLossCheck();
     hpUpdate();
     currentStats.health -= opponentStats.attack;
@@ -326,9 +326,9 @@ function strongAttack() {
 
 function defend() {
   var randomDefense = Math.floor(Math.random() * currentStats.defense);
-  console.log(currentStats.defense);
-  console.log(randomDefense);
-  console.log(opponentStats);
+  console.log("current defense:", currentStats.defense);
+  console.log("random defense:", randomDefense);
+  console.log("opponent stats:", opponentStats);
   if (opponentStats.attack - randomDefense <= 5) {
     currentStats.health = currentStats.health - 5;
     dialogueBox.textContent =
@@ -375,10 +375,9 @@ function winLossCheck() {
     console.log(currentStats.health);
     if (currentStats.health <= charStats.health / 2) {
       console.log("Your health is:");
-      currentStats.health = charStats.health / 2;
+      currentStats.health = charStats.health / 2; // what is this for?
       console.log(currentStats.health);
     }
-    return;
   } else if (currentStats.health <= 0) {
     currentStats.attack = 0;
     currentStats.health = 0;
@@ -396,14 +395,11 @@ function hpUpdate() {
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
-  console.log("evade chance:");
-  console.log(evadeChance);
-  let randomChance = Math.floor(Math.random() * 100);
-  console.log("random chance:");
-  console.log(randomChance);
+  console.log("evade chance:", evadeChance);
 
-  console.log("opponent's attack:");
-  console.log(opponentStats.attack);
+  let randomChance = Math.floor(Math.random() * 100);
+  console.log("random chance:", randomChance);
+  console.log("opponent's attack:", opponentStats.attack);
 
   if (randomChance <= evadeChance) {
     console.log("evade success");
@@ -421,8 +417,9 @@ function evade() {
     opponentStrongAttackAfter();
   }
 
-  console.log("hp after evade:");
-  console.log(currentStats.health);
+  winLossCheck();
+  hpUpdate();
+
   opponentStrongAttack();
 }
 

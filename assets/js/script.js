@@ -7,7 +7,7 @@ let choiceButton3 = document.getElementById("button3");
 let fakemon1 = document.getElementById("choice1");
 let fakemon2 = document.getElementById("choice2");
 let fakemon3 = document.getElementById("choice3");
-let saveButton = document.querySelector(".button");
+let saveButton = document.querySelector("#save-button");
 let charInfo = {};
 let choice = 0;
 
@@ -112,9 +112,7 @@ function saveName() {
   console.log("running saveName()");
   let nameInput = document.getElementById("name-input").value.trim();
   if (nameInput === "") {
-    console.log("display alert to type name");
     let alert = document.createElement("p");
-    console.log(alert);
     alert.textContent = "Must type a name to continue.";
     alert.style.fontStyle = "italic";
     alert.style.color = "red";
@@ -126,7 +124,6 @@ function saveName() {
 
     return null;
   } else {
-    console.log("save name to localStorage");
     window.localStorage.setItem("name", JSON.stringify(nameInput));
     window.location.href = "battle.html";
   }
