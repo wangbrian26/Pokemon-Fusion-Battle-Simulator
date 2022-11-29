@@ -1,22 +1,69 @@
 :root {
+--lr: #ff0000;
+--dr: #cc0000;
+--yellow: #ffde00;
+--cb: #3b4cca;
+--gold: #b3a125;
+--normal: #ffe629;
+--strong: #7b2031;
+--evade: #5a4a9c;
+--defend: #f6a400;
 
 }
 
-h1 {
-  background-color: blue;
-  color: aliceblue;
+.header {
+  background-color: var(--cb);
+  color: var(--yellow);
+  }
+/* added font to Header on landing page */
+  h1 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 90px;
+  }
+
+  h3 {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--cb);
+    font-size: 45px;
+  }
+/* added css to stats page in battle html */
+  .setStats {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 30px;
+    color: var(--yellow);
+  }
+/* added css to landing page name your fakemon */
+  .name-box {
+    font-family: 'Bubblegum Sans', cursive;
+    color: black;
+    font-size: 35px;
+  }
+
+/* added css to landing page body */
+.backGround {
+background-image: url(../images/backgrounds/grass.jpg);
+background-size: cover;
+
+}
+/* added css to battle html body */
+.statCreator {
+  background-image: url(../images/backgrounds/lab1.jpg);
+  background-size: cover;
 }
 
 .intro {
   margin: 20px auto 30px auto;
 }
-
+/* added css to the three cards in landing page */
 .card {
   height: 400px;
   width: 400px;
   border: 1px solid black;
   border-radius: 8px;
   text-align: center;
+  background-color: var(--gold);
+  background-image: url(../images/backgrounds/pcard.png);
+  background-size: cover;
 }
 
 .hide {
@@ -143,10 +190,31 @@ display: flex;
   align-items:flex-end;
   justify-content: end;
   
-
-
-
-  
+}
+/* added css for defend button */
+#defendButton {
+  background-color: var(--defend);
+  color: black;
+}
+/* added css for evade */
+#evade-button {
+  background-color: var(--evade);
+  color: white;
+}
+/* added css for strong */
+#strong-button {
+  background-color: var(--strong);
+  color: white;
+}
+/* added css for normal */
+#attack-button {
+  background-color: var(--normal);
+  color: black;
+}
+/* added css for start button */
+#battle {
+  background-color: #6ad531;
+  color: black;
 }
 
 .pageButtons {
@@ -161,4 +229,16 @@ display: flex;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.game-over {
+  margin: 150px auto;
+}
+
+.game-over h1 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.win-box {
+  margin: 50px auto;
 }

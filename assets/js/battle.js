@@ -2,7 +2,7 @@
 
 var healthBase = 100;
 var defenseBase = 30;
-var speedBase = 500;
+var speedBase = 50;
 var attackBase = 30;
 
 // Stat change buttons
@@ -30,6 +30,7 @@ var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
 var dialogueBox = document.querySelector("#dialogue");
+var winCount = 0;
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -231,6 +232,7 @@ document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
 // Changing from stat screen to battle screen
 function battle() {
+  window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
@@ -344,6 +346,8 @@ function defend() {
 
 function winLossCheck() {
   if (opponentStats.health <= 0) {
+    winCount++;
+    console.log("win count:", winCount);
     opponentStats.attack = 0;
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
@@ -366,12 +370,8 @@ function winLossCheck() {
     currentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
-    document.querySelector("#dialogue").textContent =
-      "You lost! Please go back to the start screen to select a new Pokemon to try battling again.";
     console.log("game over");
-    return;
-  } else {
-    return;
+    window.location.href = "game-over.html";
   }
 }
 
@@ -379,6 +379,7 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
+// strongAttackChoice();
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
@@ -409,8 +410,8 @@ function evade() {
   console.log(currentStats.health);
 }
 
-strongButton.addEventListener("click", strongAttack);
 battleButton.addEventListener("click", battle);
+strongButton.addEventListener("click", strongAttack);
+evadeButton.addEventListener("click", evade);
 attackButton.addEventListener("click", normalAttack);
 defendButton.addEventListener("click", defend);
-evadeButton.addEventListener("click", evade);
