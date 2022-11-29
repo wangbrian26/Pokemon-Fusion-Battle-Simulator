@@ -1,9 +1,9 @@
 // Stat allocator for user character
 
-var healthBase = 100;
+var healthBase = 1000;
 var defenseBase = 30;
 var speedBase = 50;
-var attackBase = 30;
+var attackBase = 1;
 
 // Stat change buttons
 var healthUp = document.querySelector(".health-up");
@@ -49,7 +49,7 @@ var charStats = {
 };
 
 var opponentStats = {};
-var currentStats = JSON.parse(JSON.stringify(charStats));
+var currentStats = {};
 
 // Stat change functions
 
@@ -232,6 +232,7 @@ document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
 // Changing from stat screen to battle screen
 function battle() {
+  currentStats = JSON.parse(JSON.stringify(charStats));
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
@@ -271,6 +272,7 @@ function normalAttack() {
     winLossCheck();
     hpUpdate();
   }
+  // opponentStrongAttack();
 }
 
 function strongAttack() {
@@ -311,7 +313,6 @@ function strongAttack() {
       hpUpdate();
     }
   }
-  opponentStrongAttack();
 }
 
 function defend() {
@@ -379,7 +380,6 @@ function hpUpdate() {
   document.querySelector("#health-points").textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
-// strongAttackChoice();
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
@@ -415,3 +415,18 @@ strongButton.addEventListener("click", strongAttack);
 evadeButton.addEventListener("click", evade);
 attackButton.addEventListener("click", normalAttack);
 defendButton.addEventListener("click", defend);
+
+function opponentStrongAttack() {
+  percentage = 100;
+  var opponentSA = Math.floor(Math.random() * percentage);
+  if (opponentSA >= 0) {
+    console.log("opponent strong attack success");
+    console.log(opponentStats.attack);
+    opponentStats.attack = opponentStats.attack * 1.5;
+    strongButton.addEventListener("click", strongAttack);
+    evadeButton.addEventListener("click", evade);
+    attackButton.addEventListener("click", normalAttack);
+    defendButton.addEventListener("click", defend);
+    return;
+  }
+}
