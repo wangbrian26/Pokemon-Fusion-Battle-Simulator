@@ -31,6 +31,7 @@
     font-family: 'Bubblegum Sans', cursive;
     font-size: 30px;
     color: var(--yellow);
+
   }
 /* added css to landing page name your fakemon */
   .name-box {
@@ -49,6 +50,21 @@ background-size: cover;
 .statCreator {
   background-image: url(../images/backgrounds/lab1.jpg);
   background-size: cover;
+}
+
+/* added border box to stats */
+.statBorder {
+  /* border: 2px solid; */
+  padding: 2px 50px;
+  margin-left: 100px;
+  margin-top: 50px;
+  width: fit-content;
+  background-color: var(--evade);
+}
+
+.pokeImage {
+  margin-top: 10px;
+  margin-left: 75px;
 }
 
 .intro {
@@ -116,6 +132,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: 'Bubblegum Sans';
 }
 
 .attack {
@@ -157,6 +174,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: ;
 }
 
 .clicked {
