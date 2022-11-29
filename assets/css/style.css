@@ -12,8 +12,59 @@
 }
 
 .header {
-  background-color: black;
-  color: aliceblue;
+  background-color: var(--cb);
+  color: var(--yellow);
+  }
+/* added font to Header on landing page */
+  h1 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 90px;
+  }
+
+  h3 {
+    font-family: 'Bubblegum Sans', cursive;
+    color: var(--cb);
+    font-size: 45px;
+  }
+/* added css to stats page in battle html */
+  .setStats {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 30px;
+    color: var(--yellow);
+
+  }
+/* added css to landing page name your fakemon */
+  .name-box {
+    font-family: 'Bubblegum Sans', cursive;
+    color: black;
+    font-size: 35px;
+  }
+
+/* added css to landing page body */
+.backGround {
+background-image: url(../images/backgrounds/grass.jpg);
+background-size: cover;
+
+}
+/* added css to battle html body */
+.statCreator {
+  background-image: url(../images/backgrounds/lab1.jpg);
+  background-size: cover;
+}
+
+/* added border box to stats */
+.statBorder {
+  /* border: 2px solid; */
+  padding: 2px 50px;
+  margin-left: 100px;
+  margin-top: 50px;
+  width: fit-content;
+  background-color: var(--evade);
+}
+
+.pokeImage {
+  margin-top: 10px;
+  margin-left: 75px;
 }
 
 .intro {
@@ -86,6 +137,7 @@
 
 .button {
   margin-top: 14px;
+  font-family: 'Bubblegum Sans';
 }
 
 .attack {
@@ -127,7 +179,7 @@
 
 .button {
   margin-top: 14px;
-  color: white;
+  font-family: ;
 }
 
 .clicked {
