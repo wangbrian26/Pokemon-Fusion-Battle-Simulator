@@ -12,10 +12,6 @@
 }
 
 .header {
-<<<<<<< HEAD
-  background-color: black;
-  color: aliceblue;
-=======
   background-color: var(--cb);
   color: var(--yellow);
   }
@@ -35,6 +31,7 @@
     font-family: 'Bubblegum Sans', cursive;
     font-size: 30px;
     color: var(--yellow);
+
   }
 /* added css to landing page name your fakemon */
   .name-box {
@@ -53,7 +50,21 @@ background-size: cover;
 .statCreator {
   background-image: url(../images/backgrounds/lab1.jpg);
   background-size: cover;
->>>>>>> 1cae8ae29192e73656447f0fb0ae57bc9d0dbf00
+}
+
+/* added border box to stats */
+.statBorder {
+  /* border: 2px solid; */
+  padding: 2px 50px;
+  margin-left: 100px;
+  margin-top: 50px;
+  width: fit-content;
+  background-color: var(--evade);
+}
+
+.pokeImage {
+  margin-top: 10px;
+  margin-left: 75px;
 }
 
 .intro {
@@ -126,11 +137,12 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: 'Bubblegum Sans';
 }
 
-.attack {
+/* .attack {
   
-}
+} */
 
 .forest {
   background-image: url("../images/backgrounds/forest.jpg");
@@ -167,6 +179,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: ;
   color: white;
 }
 
@@ -175,7 +188,7 @@ background-size: cover;
   box-shadow: 0 0 20px #6DE072;
 }
 
-#dialogueBox {
+.dialogueBox {
   background-color: beige;
   border: 3px solid black;
   width: fit-content;

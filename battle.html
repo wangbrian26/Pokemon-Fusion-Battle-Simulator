@@ -14,7 +14,7 @@
 <body class="statCreator">
   <!-- opponent pokemon will appear after user inputs stats -->
   <section class="hide" id="oppPokemon">
-    <div id="dialogueBox">
+    <div id="dialogueBox" class="dialogueBox">
       <p>Dialogue Box</p>
       <p id="dialogue"></p>
     </div>
@@ -36,6 +36,7 @@
   </section>
   <!-- user inputs stats then once battle is clicked, all buttons disappear -->
   <section class="setStats" id="userPokemon">
+    <div class="statBorder">
     <div id="userStats">
       <p id="userPokemonName"></p>
       <div>
@@ -62,11 +63,12 @@
           <button type="button" class="pageButtons defense-up button success large">+</button><button type="button" class="pageButtons defense-down button alert large minus">-</button>
         </p>
       </div>
+      </div>
     </div>
-    <div>
+    <div class="pokeImage">
       <img id="userPokemonImg" src="">
     </div>
-    <div>
+    <div class="flex-container align-center">
       <button type="button" class="button" id="battle">Start Next Battle</button>
     </div>
     <div id="attackButtons" class="hide">
