@@ -1,9 +1,9 @@
 // Stat allocator for user character
 
-var healthBase = 1000;
+var healthBase = 200;
 var defenseBase = 30;
 var speedBase = 50;
-var attackBase = 1;
+var attackBase = 30;
 
 // Stat change buttons
 var healthUp = document.querySelector(".health-up");
@@ -32,6 +32,7 @@ var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
 var dialogueBox = document.querySelector("#dialogue");
 var winCount = 0;
+var opponentSAH = false;
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -68,7 +69,7 @@ healthUp.addEventListener("click", function () {
 });
 
 healthDown.addEventListener("click", function () {
-  if (healthBase > 50) {
+  if (healthBase > 200) {
     statPoints += 5;
     healthBase -= 5;
     healthEl.textContent = healthBase;
@@ -93,7 +94,7 @@ attackUp.addEventListener("click", function () {
 });
 
 attackDown.addEventListener("click", function () {
-  if (attackBase > 50) {
+  if (attackBase > 30) {
     statPoints += 5;
     attackBase -= 5;
     attack.textContent = attackBase;
@@ -143,7 +144,7 @@ defenseUp.addEventListener("click", function () {
 });
 
 defenseDown.addEventListener("click", function () {
-  if (defenseBase > 50) {
+  if (defenseBase > 30) {
     statPoints += 5;
     defenseBase -= 5;
     defense.textContent = defenseBase;
@@ -279,8 +280,6 @@ function normalAttack() {
     currentStats.health -= opponentStats.attack;
     winLossCheck();
     hpUpdate();
-    console.log("opponent hp", opponentStats.health);
-    console.log("your hp", currentStats.health);
   } else {
     document.querySelector("#dialogue").textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
@@ -291,16 +290,17 @@ function normalAttack() {
     winLossCheck();
     hpUpdate();
   }
-  // opponentStrongAttack();
+  opponentStrongAttackAfter();
+  opponentStrongAttack();
 }
 
 function strongAttack() {
   console.log("opponent attack normal");
   console.log(opponentStats.attack);
-  loseCheck();
+  winLossCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
-  console.log("strong attack chance");
+  console.log("strong attack chance", hitChance);
   if (hitChance > 70) {
     document.querySelector("#dialogue").textContent =
       "Your strong attack missed.";
@@ -332,13 +332,15 @@ function strongAttack() {
       hpUpdate();
     }
   }
+  opponentStrongAttackAfter();
+  opponentStrongAttack();
 }
 
 function defend() {
   var randomDefense = Math.floor(Math.random() * currentStats.defense);
-  console.log(currentStats.defense);
-  console.log(randomDefense);
-  console.log(opponentStats);
+  console.log("current defense:", currentStats.defense);
+  console.log("random defense:", randomDefense);
+  console.log("opponent stats:", opponentStats);
   if (opponentStats.attack - randomDefense <= 5) {
     currentStats.health = currentStats.health - 5;
     dialogueBox.textContent =
@@ -362,18 +364,17 @@ function defend() {
     winLossCheck();
     hpUpdate();
   }
+  opponentStrongAttackAfter();
+  opponentStrongAttack();
 }
 
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
-  console.log("evade chance:");
-  console.log(evadeChance);
-  let randomChance = Math.floor(Math.random() * 100);
-  console.log("random chance:");
-  console.log(randomChance);
+  console.log("evade chance:", evadeChance);
 
-  console.log("opponent's attack:");
-  console.log(opponentStats.attack);
+  let randomChance = Math.floor(Math.random() * 100);
+  console.log("random chance:", randomChance);
+  console.log("opponent's attack:", opponentStats.attack);
 
   if (randomChance <= evadeChance) {
     console.log("evade success");
@@ -388,9 +389,10 @@ function evade() {
     winLossCheck();
     hpUpdate();
   }
-
-  console.log("hp after evade:");
-  console.log(currentStats.health);
+  winLossCheck();
+  hpUpdate();
+  opponentStrongAttackAfter();
+  opponentStrongAttack();
 }
 
 function winLossCheck() {
@@ -403,16 +405,32 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     document.querySelector("#dialogue").textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battleAgain").classList.remove("hide");
+    document.querySelector("#battle").setAttribute("class", "");
     console.log("you win!");
-    return;
+    console.log(charStats.health);
+    console.log(charStats.health / 2);
+    console.log(currentStats.health);
+    sfxWin.play();
+    if (currentStats.health <= charStats.health / 2) {
+      console.log("Your health is:");
+      currentStats.health = charStats.health / 2; // what is this for?
+      console.log(currentStats.health);
+    }
   } else if (currentStats.health <= 0) {
     currentStats.attack = 0;
     currentStats.health = 0;
+    dialogueBox.textContent = "Your HP is at 0. You died...";
+    sfxDeath.play();
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
-    window.location.href = "game-over.html";
+    strongButton.removeEventListener("click", strongAttack);
+    evadeButton.removeEventListener("click", evade);
+    attackButton.removeEventListener("click", normalAttack);
+    defendButton.removeEventListener("click", defend);
+    setTimeout(() => {
+      window.location.href = "game-over.html";
+    }, "5000");
   }
 }
 
@@ -431,14 +449,28 @@ defendButton.addEventListener("click", defend);
 function opponentStrongAttack() {
   percentage = 100;
   var opponentSA = Math.floor(Math.random() * percentage);
-  if (opponentSA >= 0) {
-    console.log("opponent strong attack success");
-    console.log(opponentStats.attack);
-    opponentStats.attack = opponentStats.attack * 1.5;
-    strongButton.addEventListener("click", strongAttack);
-    evadeButton.addEventListener("click", evade);
-    attackButton.addEventListener("click", normalAttack);
-    defendButton.addEventListener("click", defend);
+  if (opponentSA >= 70 && opponentStats.health > 0 && currentStats.health > 0) {
+    opponentSAH = true;
+    dialogueBox.textContent +=
+      " Be careful!, the enemy is preparing a strong attack.";
+    opponentStats.attack = opponentStats.attack * 2;
+  } else {
+    opponentSAH = false;
     return;
   }
 }
+
+function opponentStrongAttackAfter() {
+  if (opponentSAH === true) {
+    opponentStats.attack = opponentStats.attack / 2;
+    opponentSAH = false;
+  } else {
+    return;
+  }
+}
+
+var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
+var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
+
+sfxWin.volume = 0.2;
+sfxDeath.volume = 0.2;

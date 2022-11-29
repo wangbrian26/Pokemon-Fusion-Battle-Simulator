@@ -1,6 +1,6 @@
 // Youtube API
 // 2. This code loads the IFrame Player API code asynchronously.
-var battlebtn = document.querySelector(".battle");
+var battleButton = document.querySelector("#battle");
 
 var tag = document.createElement("script");
 
@@ -33,8 +33,7 @@ function onPlayerReady(event) {
   player.setVolume(5);
   player.setShuffle(true);
   event.target.playVideo();
-  document.querySelector(".mute-button").addEventListener("click", muteBGM);
-  document.querySelector(".start-bgm").addEventListener("click", startBGM);
+  document.querySelector("#mute-button").addEventListener("click", muteBGM);
 }
 
 // timeout function
@@ -67,4 +66,4 @@ function startBGM(event) {
   }
 }
 
-battlebtn.addEventListener("click", startBGM);
+battleButton.addEventListener("click", startBGM);

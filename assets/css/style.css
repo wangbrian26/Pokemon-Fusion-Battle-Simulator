@@ -55,8 +55,28 @@ background-size: cover;
   background-size: cover;
 }
 
+/* added border box to stats */
+.statBorder {
+  /* border: 2px solid; */
+  padding: 2px 50px;
+  margin-left: 100px;
+  margin-top: 50px;
+  width: fit-content;
+  background-color: var(--evade);
+}
+
+.pokeImage {
+  margin-top: 10px;
+  margin-left: 75px;
+}
+
 .intro {
   margin: 20px auto 30px auto;
+  /* text-shadow: 4px 4px 4px #aaa; */
+}
+
+.intro h3 {
+  font-family: 'Audiowide', cursive;
 }
 /* added css to the three cards in landing page */
 .card {
@@ -115,6 +135,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: 'Bubblegum Sans';
 }
 
 .attack {
@@ -131,6 +152,7 @@ background-size: cover;
   bottom: 10px;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 .card:hover {
   outline: none;
@@ -155,6 +177,7 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
+  font-family: ;
 }
 
 .clicked {
@@ -221,14 +244,60 @@ background-size: cover;
   justify-content: center;
 }
 
+/* Styling for Game Over and High Scores screens */
+
 .game-over {
   margin: 150px auto;
 }
 
-.game-over h1 {
+.press-start h1, h2 {
   font-family: 'Press Start 2P', cursive;
 }
 
 .win-box {
   margin: 50px auto;
+}
+
+.center-box {
+  width: 60%;
+  text-align: center;
+  margin: 100px auto 0 auto;
+}
+
+.center-box input {
+  width: 100px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+}
+
+ol {
+  padding-left: 0px;
+  max-height: 500px;
+  overflow: auto;
+  margin: 30px auto;
+}
+
+li {
+  padding: 5px;
+  text-transform: uppercase;
+  list-style: decimal inside none;
+  background-color: #FFA9E4;
+}
+
+li:nth-child(even) {
+  background-color: aliceblue;
+}
+
+#game-over {
+  display:none;
 }
