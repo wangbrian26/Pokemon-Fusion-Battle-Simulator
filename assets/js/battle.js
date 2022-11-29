@@ -31,8 +31,10 @@ var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
 var dialogueBox = document.querySelector("#dialogue");
+
 var winCount = 0;
-var opponentSAH = false;
+var opponentStrongAttackHit = false;
+let opponentStrongAttackChance;
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -281,7 +283,7 @@ function normalAttack() {
     winLossCheck();
     hpUpdate();
   } else {
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
     winLossCheck();
@@ -295,15 +297,15 @@ function normalAttack() {
 }
 
 function strongAttack() {
-  console.log("opponent attack normal");
-  console.log(opponentStats.attack);
+  console.log("starting YOUR strong attack");
+  console.log("opponent attack normal:", opponentStats.attack);
+  console.log("hp before opp's strong attack:", currentStats.health);
   winLossCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance", hitChance);
   if (hitChance > 70) {
-    document.querySelector("#dialogue").textContent =
-      "Your strong attack missed.";
+    dialogueBox.textContent = "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
     winLossCheck();
     hpUpdate();
@@ -311,7 +313,7 @@ function strongAttack() {
     console.log("your hp", currentStats.health);
   } else {
     if (currentStats.speed >= opponentStats.speed) {
-      document.querySelector("#dialogue").textContent =
+      dialogueBox.textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       winLossCheck();
@@ -322,7 +324,7 @@ function strongAttack() {
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
     } else {
-      document.querySelector("#dialogue").textContent =
+      dialogueBox.textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
       winLossCheck();
@@ -342,56 +344,38 @@ function defend() {
   console.log("random defense:", randomDefense);
   console.log("opponent stats:", opponentStats);
   if (opponentStats.attack - randomDefense <= 5) {
+    console.log("Take 5 damage");
     currentStats.health = currentStats.health - 5;
     dialogueBox.textContent =
-      "You have successfully defended! You only take 5 damage.";
-    winLossCheck();
-    hpUpdate();
+      "You have successfully defended! You only take 5 damage and reflected back the rest of the damage.";
+    opponentStats.health -= opponentStats.attack - 5;
   } else if (randomDefense <= 5) {
+    console.log("Reflect 5 damage");
     randomDefense = 5;
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
     dialogueBox.textContent =
-      "You have unsuccessfully defended! You only mitigated 5 damage.";
-    winLossCheck();
-    hpUpdate();
+      "You have unsuccessfully defended! You only mitigated and reflected 5 damage.";
+    opponentStats.health -= 5;
   } else {
+    console.log("Reflect reset of damage.");
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
-    document.querySelector(
-      "#dialogue"
-    ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
-    winLossCheck();
-    hpUpdate();
+    dialogueBox.textContent = `You have defended some of the damage. You took ${
+      opponentStats.attack - randomDefense
+    } damage, and reflected back ${randomDefense} damage.`;
+    opponentStats.health -= randomDefense;
   }
-  opponentStrongAttackAfter();
-  opponentStrongAttack();
-}
 
-function evade() {
-  let evadeChance = Math.floor((speedBase / 150) * 100);
-  console.log("evade chance:", evadeChance);
+  console.log("check for win/loss and update HP");
 
-  let randomChance = Math.floor(Math.random() * 100);
-  console.log("random chance:", randomChance);
-  console.log("opponent's attack:", opponentStats.attack);
-
-  if (randomChance <= evadeChance) {
-    console.log("evade success");
-    dialogueBox.textContent =
-      "You have successfully evaded the enemy attack. You took 0 damage.";
-    hpUpdate();
-  } else {
-    console.log("evade failed");
-    currentStats.health -= opponentStats.attack;
-    dialogueBox.textContent =
-      "You have failed to evade the enemy attack. You took 100% damage.";
-    winLossCheck();
-    hpUpdate();
-  }
   winLossCheck();
   hpUpdate();
+
+  console.log("opp's health after defense:", opponentStats.health);
+
   opponentStrongAttackAfter();
+
   opponentStrongAttack();
 }
 
@@ -403,10 +387,10 @@ function winLossCheck() {
     opponentStats.health = 0;
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
     document.querySelector("#battle").setAttribute("class", "");
-    console.log("you win!");
+    console.log("you win! here are your stats:");
     console.log(charStats.health);
     console.log(charStats.health / 2);
     console.log(currentStats.health);
@@ -439,6 +423,38 @@ function hpUpdate() {
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
 
+function evade() {
+  console.log("hp before evade:", currentStats.health);
+
+  let evadeChance = Math.floor((speedBase / 150) * 100);
+  console.log("evade chance:", evadeChance);
+
+  let randomChance = Math.floor(Math.random() * 100);
+  console.log("random chance:", randomChance);
+
+  if (randomChance <= evadeChance) {
+    console.log("evade success");
+    currentStats.health += currentStats.speed;
+    dialogueBox.textContent =
+      "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed.";
+  } else {
+    console.log("evade failed");
+    currentStats.health -= opponentStats.attack;
+    dialogueBox.textContent =
+      "You have failed to evade the enemy attack. You took 100% damage.";
+  }
+
+  console.log("check for win/loss and update HP");
+  winLossCheck();
+  hpUpdate();
+
+  console.log("hp after evade:", currentStats.health);
+
+  opponentStrongAttackAfter();
+
+  opponentStrongAttack();
+}
+
 battleButton.addEventListener("click", battle);
 battleAgainButton.addEventListener("click", battleAgain);
 strongButton.addEventListener("click", strongAttack);
@@ -447,23 +463,40 @@ attackButton.addEventListener("click", normalAttack);
 defendButton.addEventListener("click", defend);
 
 function opponentStrongAttack() {
-  percentage = 100;
-  var opponentSA = Math.floor(Math.random() * percentage);
-  if (opponentSA >= 70 && opponentStats.health > 0 && currentStats.health > 0) {
-    opponentSAH = true;
+  console.log("running OPPONENTS strong attack function");
+  opponentStrongAttackChance = Math.floor(Math.random() * 100);
+  if (
+    opponentStrongAttackChance >= 70 &&
+    opponentStats.health > 0 &&
+    currentStats.health > 0
+  ) {
+    console.log("opponent strong attack coming up");
+    opponentStrongAttackHit = true;
+    console.log("opponentStrongAttackHit", opponentStrongAttackHit);
+
+    console.log("display warning message");
     dialogueBox.textContent +=
-      " Be careful!, the enemy is preparing a strong attack.";
+      " Be careful! The enemy is preparing a strong attack.";
+
     opponentStats.attack = opponentStats.attack * 2;
+    console.log("opponent attack after X2:", opponentStats.attack);
+    console.log("opponent strong attack calculation done");
   } else {
-    opponentSAH = false;
-    return;
+    opponentStrongAttackHit = false;
+    console.log("opponentStrongAttackHit", opponentStrongAttackHit);
+    console.log("aborting OPPONENTS strong attack");
   }
+
+  return;
 }
 
 function opponentStrongAttackAfter() {
-  if (opponentSAH === true) {
+  console.log("running reset function for opponent attack");
+  console.log("opponentStrongAttackHit", opponentStrongAttackHit);
+  if (opponentStrongAttackHit === true && opponentStats.health > 0) {
     opponentStats.attack = opponentStats.attack / 2;
-    opponentSAH = false;
+    console.log("opp's attack after RESET:", opponentStats.attack);
+    opponentStrongAttackHit = false;
   } else {
     return;
   }

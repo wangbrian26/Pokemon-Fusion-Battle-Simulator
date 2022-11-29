@@ -139,9 +139,9 @@ background-size: cover;
   font-family: 'Bubblegum Sans';
 }
 
-.attack {
+/* .attack {
   
-}
+} */
 
 .forest {
   background-image: url("../images/backgrounds/Battle.jpg");
@@ -178,7 +178,8 @@ background-size: cover;
 
 .button {
   margin-top: 14px;
-  font-family: ;
+  /* font-family: ; */
+  color: white;
 }
 
 .clicked {
@@ -186,7 +187,7 @@ background-size: cover;
   box-shadow: 0 0 20px #6DE072;
 }
 
-#dialogueBox {
+.dialogueBox {
   background-color: beige;
   border: 3px solid black;
   width: fit-content;
