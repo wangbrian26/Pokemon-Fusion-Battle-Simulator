@@ -1,9 +1,9 @@
 // Stat allocator for user character
 
-var healthBase = 100;
+var healthBase = 1000;
 var defenseBase = 30;
 var speedBase = 50;
-var attackBase = 30;
+var attackBase = 1;
 
 // Stat change buttons
 var healthUp = document.querySelector(".health-up");
@@ -30,6 +30,7 @@ var evadeButton = document.querySelector("#evade-button");
 var defendButton = document.querySelector("#defendButton");
 var strongButton = document.querySelector("#strong-button");
 var attackButton = document.querySelector("#attack-button");
+var dialogueBox = document.querySelector("#dialogue");
 var winCount = 0;
 
 stats.textContent = statPoints;
@@ -49,7 +50,7 @@ var charStats = {
 };
 
 var opponentStats = {};
-var currentStats = JSON.parse(JSON.stringify(charStats));
+var currentStats = {};
 
 // Stat change functions
 
@@ -232,6 +233,7 @@ document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
 // Changing from stat screen to battle screen
 function battle() {
+  currentStats = JSON.parse(JSON.stringify(charStats));
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").setAttribute("class", "");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
@@ -240,8 +242,7 @@ function battle() {
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
-  document.querySelector("#dialogue").textContent =
-    "A wild fusion Pokemon has appeared!";
+  dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
   document.querySelector("#attackButtons").setAttribute("class", "");
   fusionPokemon();
 }
@@ -265,7 +266,7 @@ function battleAgain() {
 function normalAttack() {
   console.log("attack");
   if (currentStats.speed >= opponentStats.speed) {
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
     winLossCheck();
@@ -285,10 +286,13 @@ function normalAttack() {
     winLossCheck();
     hpUpdate();
   }
+  // opponentStrongAttack();
 }
 
 function strongAttack() {
-  winLossCheck();
+  console.log("opponent attack normal");
+  console.log(opponentStats.attack);
+  loseCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance");
@@ -332,7 +336,7 @@ function defend() {
   console.log(opponentStats);
   if (opponentStats.attack - randomDefense <= 5) {
     currentStats.health = currentStats.health - 5;
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have successfully defended! You only take 5 damage.";
     winLossCheck();
     hpUpdate();
@@ -340,7 +344,7 @@ function defend() {
     randomDefense = 5;
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have unsuccessfully defended! You only mitigated 5 damage.";
     winLossCheck();
     hpUpdate();
@@ -368,13 +372,13 @@ function evade() {
 
   if (randomChance <= evadeChance) {
     console.log("evade success");
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have successfully evaded the enemy attack. You took 0 damage.";
     hpUpdate();
   } else {
     console.log("evade failed");
     currentStats.health -= opponentStats.attack;
-    document.querySelector("#dialogue").textContent =
+    dialogueBox.textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
     winLossCheck();
     hpUpdate();
@@ -418,3 +422,18 @@ strongButton.addEventListener("click", strongAttack);
 evadeButton.addEventListener("click", evade);
 attackButton.addEventListener("click", normalAttack);
 defendButton.addEventListener("click", defend);
+
+function opponentStrongAttack() {
+  percentage = 100;
+  var opponentSA = Math.floor(Math.random() * percentage);
+  if (opponentSA >= 0) {
+    console.log("opponent strong attack success");
+    console.log(opponentStats.attack);
+    opponentStats.attack = opponentStats.attack * 1.5;
+    strongButton.addEventListener("click", strongAttack);
+    evadeButton.addEventListener("click", evade);
+    attackButton.addEventListener("click", normalAttack);
+    defendButton.addEventListener("click", defend);
+    return;
+  }
+}

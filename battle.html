@@ -11,7 +11,7 @@
   <title>Battle Scene</title>
 </head>
 
-<body>
+<body class="statCreator">
   <!-- opponent pokemon will appear after user inputs stats -->
   <section class="hide" id="oppPokemon">
     <div id="dialogueBox">
@@ -35,7 +35,7 @@
     </div>
   </section>
   <!-- user inputs stats then once battle is clicked, all buttons disappear -->
-  <section id="userPokemon">
+  <section class="setStats" id="userPokemon">
     <div id="userStats">
       <p id="userPokemonName"></p>
       <div>
@@ -44,22 +44,22 @@
       </p>
       <div>
         <p>Health: <span id="health-points"></span>
-          <button type="button" class="pageButtons health-up button large">+</button><button type="button" class="pageButtons health-down button large minus">-</button>
+          <button type="button" class="pageButtons health-up button success large">+</button><button type="button" class="pageButtons health-down button alert large minus">-</button>
         </p>
       </div>
       <div>
         <p>Attack: <span id="attack-points"></span>
-          <button type="button" class="pageButtons attack-up button large">+</button><button type="button" class="pageButtons attack-down button large minus">-</button>
+          <button type="button" class="pageButtons attack-up button success large">+</button><button type="button" class="pageButtons attack-down button alert large minus">-</button>
         </p>
       </div>
       <div>
         <p>Speed: <span id="speed-points"></span>
-          <button type="button" class="pageButtons speed-up button large">+</button><button type="button" class="pageButtons speed-down button large minus">-</button>
+          <button type="button" class="pageButtons speed-up button success large">+</button><button type="button" class="pageButtons speed-down button alert large minus">-</button>
         </p>
       </div>
       <div>
         <p>Defense: <span id="defense-points"></span>
-          <button type="button" class="pageButtons defense-up button hollow success large">+</button><button type="button" class="pageButtons defense-down button hollow alert large minus">-</button>
+          <button type="button" class="pageButtons defense-up button success large">+</button><button type="button" class="pageButtons defense-down button alert large minus">-</button>
         </p>
       </div>
     </div>
@@ -67,11 +67,11 @@
       <img id="userPokemonImg" src="">
     </div>
     <div>
-      <button class="pageButtons" id="battle">Start Battle</button>
-      <button class="hide" id="battleAgain">Start Next Battle</button>
+      <button type="button" class="pageButtons button" id="battle">Start Battle</button>
+      <button type="button" class="hide button" id="battleAgain">Start Next Battle</button>
     </div>
     <div id="attackButtons" class="hide">
-      <button type="button" class="button hollow" id="attack-button">Normal</button>
+      <button type="button" class="button" id="attack-button">Normal</button>
       <button type="button" class="button" id="strong-button">Strong</button>
       <button type="button" class="button" id="evade-button">Evade</button>
       <button type="button" class="button" id="defendButton">Defend</button>
@@ -82,9 +82,8 @@
   <script src="./assets/js/youtube-api.js"></script>
 
   <div>
-    <!-- <button class="start-bgm">Play BGM</button> -->
-    <button type="button" class="mute-button button secondary clear">Mute BGM</button>
-  </div>
+    <button class="start-bgm">Play BGM</button>
+    <button class="mute-button">Mute BGM</button></div>
   <div id="player"></div>
 
 </body>
