@@ -15,6 +15,7 @@ var attackDown = document.querySelector(".attack-down");
 var speedDown = document.querySelector(".speed-down");
 var defenseDown = document.querySelector(".defense-down");
 var battleButton = document.querySelector("#battle");
+var battleAgainButton = document.querySelector("#battleAgain");
 
 // User stats
 var healthEl = document.querySelector("#health-points");
@@ -236,7 +237,6 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.setAttribute("class", "hide");
   });
-  document.querySelector("#battle").setAttribute("class", "hide");
   document.querySelector("#userStats").setAttribute("class", "pokemonStats");
   document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
   document.querySelector("body").setAttribute("class", "forest");
@@ -246,6 +246,20 @@ function battle() {
   fusionPokemon();
 }
 
+function battleAgain() {
+  window.localStorage.setItem("win-count", JSON.stringify(winCount));
+  document.querySelector("#battleAgain").setAttribute("class", "hide");
+  document.querySelector("#dialogue").textContent =
+    "A wild fusion Pokemon has appeared!";
+  document.querySelector("#attackButtons").setAttribute("class", "");
+  fusionPokemon();
+  if (currentStats.health <= charStats.health / 2) {
+    console.log("Your health is:");
+    currentStats.health = charStats.health / 2;
+    console.log(currentStats.health);
+  }
+}
+
 // Functions for actions during battle phase
 
 function normalAttack() {
@@ -253,7 +267,7 @@ function normalAttack() {
   if (currentStats.speed >= opponentStats.speed) {
     document.querySelector("#dialogue").textContent =
       "Your Pokemon attacked first due to its higher speed!";
-    opponentStats.health -= currentStats.attack * 0.75;
+    opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
     winLossCheck();
     hpUpdate();
     currentStats.health -= opponentStats.attack;
@@ -267,7 +281,7 @@ function normalAttack() {
     currentStats.health -= opponentStats.attack;
     winLossCheck();
     hpUpdate();
-    opponentStats.health -= currentStats.attack * 0.75;
+    opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
     winLossCheck();
     hpUpdate();
   }
@@ -341,43 +355,6 @@ function defend() {
   }
 }
 
-function winLossCheck() {
-  if (opponentStats.health <= 0) {
-    winCount++;
-    console.log("win count:", winCount);
-    opponentStats.attack = 0;
-    opponentStats.health = 0;
-    document.querySelector("#health-points").textContent = currentStats.health;
-    document.querySelector("#oppHealth").textContent = opponentStats.health;
-    document.querySelector("#dialogue").textContent =
-      "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battle").setAttribute("class", "");
-    console.log("you win!");
-    console.log(charStats.health);
-    console.log(charStats.health / 2);
-    console.log(currentStats.health);
-    if (currentStats.health <= charStats.health / 2) {
-      console.log("Your health is:");
-      currentStats.health = charStats.health / 2;
-      console.log(currentStats.health);
-    }
-    return;
-  } else if (currentStats.health <= 0) {
-    currentStats.attack = 0;
-    currentStats.health = 0;
-    document.querySelector("#health-points").textContent = currentStats.health;
-    document.querySelector("#oppHealth").textContent = opponentStats.health;
-    console.log("game over");
-    window.location.href = "game-over.html";
-  }
-}
-
-function hpUpdate() {
-  document.querySelector("#health-points").textContent = currentStats.health;
-  document.querySelector("#oppHealth").textContent = opponentStats.health;
-}
-// strongAttackChoice();
-
 function evade() {
   let evadeChance = Math.floor((speedBase / 150) * 100);
   console.log("evade chance:");
@@ -407,7 +384,36 @@ function evade() {
   console.log(currentStats.health);
 }
 
+function winLossCheck() {
+  if (opponentStats.health <= 0) {
+    winCount++;
+    console.log("win count:", winCount);
+    opponentStats.attack = 0;
+    opponentStats.health = 0;
+    document.querySelector("#health-points").textContent = currentStats.health;
+    document.querySelector("#oppHealth").textContent = opponentStats.health;
+    document.querySelector("#dialogue").textContent =
+      "You win! Your HP is restored to 50% if you fell under 50%.";
+    document.querySelector("#battleAgain").setAttribute("class", "");
+    console.log("you win!");
+    return;
+  } else if (currentStats.health <= 0) {
+    currentStats.attack = 0;
+    currentStats.health = 0;
+    document.querySelector("#health-points").textContent = currentStats.health;
+    document.querySelector("#oppHealth").textContent = opponentStats.health;
+    console.log("game over");
+    window.location.href = "game-over.html";
+  }
+}
+
+function hpUpdate() {
+  document.querySelector("#health-points").textContent = currentStats.health;
+  document.querySelector("#oppHealth").textContent = opponentStats.health;
+}
+
 battleButton.addEventListener("click", battle);
+battleAgainButton.addEventListener("click", battleAgain);
 strongButton.addEventListener("click", strongAttack);
 evadeButton.addEventListener("click", evade);
 attackButton.addEventListener("click", normalAttack);
