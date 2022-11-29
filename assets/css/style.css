@@ -3,12 +3,17 @@
 }
 
 .header {
-  background-color: blue;
+  background-color: black;
   color: aliceblue;
 }
 
 .intro {
   margin: 20px auto 30px auto;
+  /* text-shadow: 4px 4px 4px #aaa; */
+}
+
+.intro h3 {
+  font-family: 'Audiowide', cursive;
 }
 
 .card {
