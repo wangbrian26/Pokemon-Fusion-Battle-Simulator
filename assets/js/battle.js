@@ -261,10 +261,6 @@ function normalAttack() {
     currentStats.health -= opponentStats.attack;
     winLossCheck();
     hpUpdate();
-    // console.log("opponent hp", opponentStats.health);
-    // console.log("your hp", currentStats.health);
-    // console.log(opponentSAH);
-    opponentStrongAttackAfter();
   } else {
     document.querySelector("#dialogue").textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
@@ -274,8 +270,8 @@ function normalAttack() {
     opponentStats.health -= currentStats.attack * 0.75;
     winLossCheck();
     hpUpdate();
-    opponentStrongAttackAfter();
   }
+  opponentStrongAttackAfter();
   opponentStrongAttack();
 }
 
@@ -294,7 +290,6 @@ function strongAttack() {
     hpUpdate();
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
-    opponentStrongAttackAfter();
   } else {
     if (currentStats.speed >= opponentStats.speed) {
       document.querySelector("#dialogue").textContent =
@@ -307,7 +302,6 @@ function strongAttack() {
       hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
-      opponentStrongAttackAfter();
     } else {
       document.querySelector("#dialogue").textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
@@ -317,9 +311,9 @@ function strongAttack() {
       opponentStats.health -= currentStats.attack;
       winLossCheck();
       hpUpdate();
-      opponentStrongAttackAfter();
     }
   }
+  opponentStrongAttackAfter();
   opponentStrongAttack();
 }
 
@@ -334,7 +328,6 @@ function defend() {
       "You have successfully defended! You only take 5 damage.";
     winLossCheck();
     hpUpdate();
-    opponentStrongAttackAfter();
   } else if (randomDefense <= 5) {
     randomDefense = 5;
     currentStats.health =
@@ -343,7 +336,6 @@ function defend() {
       "You have unsuccessfully defended! You only mitigated 5 damage.";
     winLossCheck();
     hpUpdate();
-    opponentStrongAttackAfter();
   } else {
     currentStats.health =
       currentStats.health - (opponentStats.attack - randomDefense);
@@ -352,8 +344,8 @@ function defend() {
     ).textContent = `You have defended some of the damage. You took ${randomDefense} reduced damage.`;
     winLossCheck();
     hpUpdate();
-    opponentStrongAttackAfter();
   }
+  opponentStrongAttackAfter();
   opponentStrongAttack();
 }
 
@@ -381,11 +373,18 @@ function winLossCheck() {
   } else if (currentStats.health <= 0) {
     currentStats.attack = 0;
     currentStats.health = 0;
+    dialogueBox.textContent = "Your HP is at 0. You died...";
+    sfxDeath.play();
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
-    window.location.href = "game-over.html";
-    sfxDeath.play();
+    strongButton.removeEventListener("click", strongAttack);
+    evadeButton.removeEventListener("click", evade);
+    attackButton.removeEventListener("click", normalAttack);
+    defendButton.removeEventListener("click", defend);
+    setTimeout(() => {
+      window.location.href = "game-over.html";
+    }, "5000");
   }
 }
 
@@ -407,7 +406,6 @@ function evade() {
     dialogueBox.textContent =
       "You have successfully evaded the enemy attack. You took 0 damage.";
     hpUpdate();
-    opponentStrongAttackAfter();
   } else {
     console.log("evade failed");
     currentStats.health -= opponentStats.attack;
@@ -415,11 +413,10 @@ function evade() {
       "You have failed to evade the enemy attack. You took 100% damage.";
     winLossCheck();
     hpUpdate();
-    opponentStrongAttackAfter();
   }
-
   winLossCheck();
   hpUpdate();
+  opponentStrongAttackAfter();
   opponentStrongAttack();
 }
 
@@ -432,10 +429,10 @@ defendButton.addEventListener("click", defend);
 function opponentStrongAttack() {
   percentage = 100;
   var opponentSA = Math.floor(Math.random() * percentage);
-  if (opponentSA >= 70) {
+  if (opponentSA >= 70 && opponentStats.health > 0 && currentStats.health > 0) {
     opponentSAH = true;
-    dialogueBox.textContent =
-      "Be careful!, the enemy is preparing a strong attack.";
+    dialogueBox.textContent +=
+      " Be careful!, the enemy is preparing a strong attack.";
     opponentStats.attack = opponentStats.attack * 2;
   } else {
     opponentSAH = false;

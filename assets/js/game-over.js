@@ -28,9 +28,3 @@ function saveScores() {
 
 submitButton.addEventListener("click", saveScores); // runs saveScores() every time users click submit
 
-var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
-sfxDeath.volume = 0.2;
-
-setTimeout(() => {
-  sfxDeath.play();
-}, "1000");
