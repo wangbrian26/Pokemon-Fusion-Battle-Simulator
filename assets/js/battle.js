@@ -280,9 +280,7 @@ function normalAttack() {
   
   opponentStrongAttackAfter();
   
-  setTimeout(function() {
-    opponentStrongAttack();
-  }, 5000);
+  opponentStrongAttack();
 }
 
 function strongAttack() {
@@ -370,9 +368,7 @@ function defend() {
   console.log('reset opponent attack');
   opponentStrongAttackAfter();
   
-  setTimeout(function() {
-    opponentStrongAttack();
-  }, 5000);
+  opponentStrongAttack();
 }
 
 function winLossCheck() {
