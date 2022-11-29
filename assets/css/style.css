@@ -155,6 +155,7 @@ background-size: cover;
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 .card:hover {
   outline: none;

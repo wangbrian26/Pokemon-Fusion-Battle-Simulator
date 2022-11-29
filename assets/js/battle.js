@@ -3,7 +3,7 @@
 var healthBase = 200;
 var defenseBase = 30;
 var speedBase = 50;
-var attackBase = 1;
+var attackBase = 30;
 
 // Stat change buttons
 var healthUp = document.querySelector(".health-up");
@@ -68,7 +68,7 @@ healthUp.addEventListener("click", function () {
 });
 
 healthDown.addEventListener("click", function () {
-  if (healthBase > 50) {
+  if (healthBase > 200) {
     statPoints += 5;
     healthBase -= 5;
     healthEl.textContent = healthBase;
@@ -93,7 +93,7 @@ attackUp.addEventListener("click", function () {
 });
 
 attackDown.addEventListener("click", function () {
-  if (attackBase > 50) {
+  if (attackBase > 30) {
     statPoints += 5;
     attackBase -= 5;
     attack.textContent = attackBase;
@@ -143,7 +143,7 @@ defenseUp.addEventListener("click", function () {
 });
 
 defenseDown.addEventListener("click", function () {
-  if (defenseBase > 50) {
+  if (defenseBase > 30) {
     statPoints += 5;
     defenseBase -= 5;
     defense.textContent = defenseBase;
