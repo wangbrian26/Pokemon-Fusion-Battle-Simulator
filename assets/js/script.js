@@ -7,37 +7,37 @@ let choiceButton3 = document.getElementById("button3");
 let fakemon1 = document.getElementById("choice1");
 let fakemon2 = document.getElementById("choice2");
 let fakemon3 = document.getElementById("choice3");
-let saveButton = document.querySelector(".button");
+let saveButton = document.querySelector("#save-button");
 let charInfo = {};
 let choice = 0;
 
 // Sets of fan created Pokemon for users to select
 
 let fakemonSet1 = [
-  "./assets/images/fakemon/1.jpeg",
-  "./assets/images/fakemon/2.jpeg",
-  "./assets/images/fakemon/3.jpeg",
-  "./assets/images/fakemon/4.jpeg",
-  "./assets/images/fakemon/5.jpeg",
-  "./assets/images/fakemon/6.jpeg",
-  "./assets/images/fakemon/7.jpeg",
-  "./assets/images/fakemon/8.jpeg",
+  "./assets/images/fakemon/1.png",
+  "./assets/images/fakemon/2.png",
+  "./assets/images/fakemon/3.png",
+  "./assets/images/fakemon/4.png",
+  "./assets/images/fakemon/5.png",
+  "./assets/images/fakemon/6.png",
+  "./assets/images/fakemon/7.png",
+  "./assets/images/fakemon/8.png",
 ];
 
 let fakemonSet2 = [
-  "./assets/images/fakemon/9.jpeg",
-  "./assets/images/fakemon/10.jpeg",
-  "./assets/images/fakemon/11.jpeg",
-  "./assets/images/fakemon/12.jpeg",
-  "./assets/images/fakemon/13.jpeg",
+  "./assets/images/fakemon/9.png",
+  "./assets/images/fakemon/10.png",
+  "./assets/images/fakemon/11.png",
+  "./assets/images/fakemon/12.png",
+  "./assets/images/fakemon/13.png",
   "./assets/images/fakemon/14.png",
   "./assets/images/fakemon/15.png",
-  "./assets/images/fakemon/16.jpeg",
+  "./assets/images/fakemon/16.png",
 ];
 
 let fakemonSet3 = [
-  "./assets/images/fakemon/17.jpeg",
-  "./assets/images/fakemon/18.jpeg",
+  "./assets/images/fakemon/17.png",
+  "./assets/images/fakemon/18.png",
   "./assets/images/fakemon/19.png",
   "./assets/images/fakemon/20.png",
   "./assets/images/fakemon/21.png",
@@ -112,9 +112,7 @@ function saveName() {
   console.log("running saveName()");
   let nameInput = document.getElementById("name-input").value.trim();
   if (nameInput === "") {
-    console.log("display alert to type name");
     let alert = document.createElement("p");
-    console.log(alert);
     alert.textContent = "Must type a name to continue.";
     alert.style.fontStyle = "italic";
     alert.style.color = "red";
@@ -126,7 +124,6 @@ function saveName() {
 
     return null;
   } else {
-    console.log("save name to localStorage");
     window.localStorage.setItem("name", JSON.stringify(nameInput));
     window.location.href = "battle.html";
   }
