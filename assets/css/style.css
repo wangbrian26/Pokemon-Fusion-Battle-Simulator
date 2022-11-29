@@ -170,7 +170,7 @@ display: flex;
   margin: 150px auto;
 }
 
-.press-start h1 {
+.press-start h1, h2 {
   font-family: 'Press Start 2P', cursive;
 }
 
