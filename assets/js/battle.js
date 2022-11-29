@@ -372,6 +372,7 @@ function winLossCheck() {
     console.log(charStats.health);
     console.log(charStats.health / 2);
     console.log(currentStats.health);
+    sfxWin.play();
     if (currentStats.health <= charStats.health / 2) {
       console.log("Your health is:");
       currentStats.health = charStats.health / 2; // what is this for?
@@ -384,6 +385,7 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
     window.location.href = "game-over.html";
+    sfxDeath.play();
   }
 }
 
@@ -449,3 +451,9 @@ function opponentStrongAttackAfter() {
     return;
   }
 }
+
+var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
+var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
+
+sfxWin.volume = 0.2;
+sfxDeath.volume = 0.2;

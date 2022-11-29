@@ -308,3 +308,7 @@ li {
 li:nth-child(even) {
   background-color: aliceblue;
 }
+
+#game-over {
+  display:none;
+}
