@@ -11,33 +11,37 @@
 
 }
 
+.hide {
+  display: none;
+}
+
 .header {
   background-color: var(--cb);
   color: var(--yellow);
   }
 /* added font to Header on landing page */
-  h1 {
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 90px;
-  }
+h1 {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 90px;
+}
 
-  h3 {
-    font-family: 'Bubblegum Sans', cursive;
-    color: var(--cb);
-    font-size: 45px;
-  }
+h3 {
+  font-family: 'Bubblegum Sans', cursive;
+  color: var(--cb);
+  font-size: 45px;
+}
 /* added css to stats page in battle html */
-  .setStats {
-    font-family: 'Bubblegum Sans', cursive;
-    font-size: 30px;
-    color: var(--yellow);
-  }
+.setStats {
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 30px;
+  color: var(--yellow);
+}
 /* added css to landing page name your fakemon */
-  .name-box {
-    font-family: 'Bubblegum Sans', cursive;
-    color: black;
-    font-size: 35px;
-  }
+.name-box {
+  font-family: 'Bubblegum Sans', cursive;
+  color: black;
+  font-size: 35px;
+}
 
 /* added css to landing page body */
 .backGround {
@@ -66,8 +70,18 @@ background-size: cover;
   background-size: cover;
 }
 
-.hide {
-  display: none;
+.name-box {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+}
+
+.name-box input {
+  width: 150px;
+  height: 40.5px;
+  display: inline;
+  margin-left: 10px;
 }
 
 #oppPokemonCard {
@@ -85,7 +99,6 @@ background-size: cover;
 
 #oppPokemonPic {
   margin-right: 50px;
-  background-color: bisque;
 }
 
 #oppPokemonName {
@@ -98,20 +111,6 @@ background-size: cover;
   border-color: #9ecaed;
   box-shadow: 0 0 10px #9ecaed;
   cursor: pointer;
-}
-
-.name-box {
-  width: 60%;
-  text-align: center;
-  margin: auto;
-  visibility: hidden;
-}
-
-.name-box input {
-  width: 150px;
-  height: 40.5px;
-  display: inline;
-  margin-left: 10px;
 }
 
 .button {
@@ -130,7 +129,6 @@ background-size: cover;
 .userPokemon {
   position: fixed;
   bottom: 10px;
-  display: flex;
   flex-direction: row;
   align-items: center;
 }
@@ -181,16 +179,8 @@ background-size: cover;
 #userPokemonImg {
   max-width: 320px;
   max-height: 320px;
-  background-color: bisque;
-  margin-left: 50px;
 }
 
-#attackButtons {
-display: flex;
-  align-items:flex-end;
-  justify-content: end;
-  
-}
 /* added css for defend button */
 #defendButton {
   background-color: var(--defend);

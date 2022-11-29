@@ -235,24 +235,29 @@ document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 function battle() {
   currentStats = JSON.parse(JSON.stringify(charStats));
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
-  document.querySelector("#oppPokemon").setAttribute("class", "");
+  document.querySelector("#oppPokemon").classList.remove("hide");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
-    button.setAttribute("class", "hide");
+    button.classList.add("hide");
   });
-  document.querySelector("#userStats").setAttribute("class", "pokemonStats");
-  document.querySelector("#userPokemon").setAttribute("class", "userPokemon");
-  document.querySelector("body").setAttribute("class", "forest");
+  document
+    .querySelector("#attackButtons")
+    .querySelectorAll(".fight")
+    .forEach(function (button) {
+      button.classList.remove("hide");
+    });
+  document.querySelector("#userStats").classList.add("pokemonStats");
+  document.querySelector("#userPokemon").classList.remove("setStats");
+  document.querySelector("body").classList.add("forest");
   dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
-  document.querySelector("#attackButtons").setAttribute("class", "");
   fusionPokemon();
 }
 
 function battleAgain() {
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
-  document.querySelector("#battleAgain").setAttribute("class", "hide");
+  document.querySelector("#battleAgain").classList.add("hide");
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
-  document.querySelector("#attackButtons").setAttribute("class", "");
+  document.querySelector("#attackButtons").classList.remove("hide");
   fusionPokemon();
   if (currentStats.health <= charStats.health / 2) {
     console.log("Your health is:");
@@ -398,7 +403,7 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     document.querySelector("#dialogue").textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battleAgain").setAttribute("class", "");
+    document.querySelector("#battleAgain").classList.remove("hide");
     console.log("you win!");
     return;
   } else if (currentStats.health <= 0) {
