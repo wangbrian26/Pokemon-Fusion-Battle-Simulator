@@ -249,6 +249,7 @@ function battle() {
       button.classList.remove("hide");
     });
   document.querySelector("#userStats").classList.add("pokemonStats");
+  document.querySelector("#userStats").classList.remove("statBorder");
   document.querySelector("#userPokemon").classList.remove("setStats");
   document.querySelector("body").classList.add("forest");
   dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
