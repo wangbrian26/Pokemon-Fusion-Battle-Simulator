@@ -115,6 +115,7 @@ background-size: cover;
   padding: 2px 50px;
   width: fit-content;
   background-color: beige;
+  margin-right: 50px;
 }
 
 #oppPokemonPic {
@@ -192,6 +193,7 @@ background-size: cover;
   position: fixed;
   top: 10px;
   padding: 10px;
+  margin-left: 50px;
 }
 
 #userPokemonName {
@@ -204,6 +206,12 @@ background-size: cover;
   max-height: 320px;
 }
 
+#attackButtons {
+/* display: flex;
+  align-items:;
+  justify-content: end; */
+  /* margin-left: 150px; */
+}
 /* added css for defend button */
 #defendButton {
   background-color: var(--defend);
