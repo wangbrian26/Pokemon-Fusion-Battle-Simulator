@@ -430,7 +430,7 @@ defendButton.addEventListener("click", defend);
 function opponentStrongAttack() {
   percentage = 100;
   var opponentSA = Math.floor(Math.random() * percentage);
-  if (opponentSA >= 75) {
+  if (opponentSA >= 70) {
     opponentSAH = true;
     dialogueBox.textContent =
       "Be careful!, the enemy is preparing a strong attack.";
