@@ -19,12 +19,6 @@
   background-color: var(--cb);
   color: var(--yellow);
   }
-/* added font to Header on landing page */
-h1 {
-  font-family: 'Bubblegum Sans', cursive;
-  font-size: 90px;
-}
-
 h3 {
   font-family: 'Bubblegum Sans', cursive;
   color: var(--cb);
@@ -267,10 +261,11 @@ background-size: cover;
   margin: 50px auto;
 }
 
-.center-box {
+.right-box {
   width: 60%;
-  text-align: center;
-  margin: 100px auto 0 auto;
+  text-align: right;
+  margin: 100px 10px 0 auto;
+
 }
 
 .center-box input {
@@ -309,4 +304,9 @@ li:nth-child(even) {
 
 #game-over {
   display:none;
+}
+
+.gameOver {
+  background-image: url(../images/backgrounds/gameover.png);
+  background-size: cover;
 }
