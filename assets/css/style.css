@@ -154,7 +154,7 @@ h3 {
 
 .forest {
   background-image: url("../images/backgrounds/Battle.png");
-  background-size: cover;
+  background-size: 100vw 100vh;
 }
 
 .userPokemon {
@@ -341,6 +341,11 @@ li:nth-child(even) {
     background-size: cover;
     background-position:center;
     background-repeat: repeat;
+  }
+
+  .forest {
+    background-size: auto auto;
+    background-position:top center;
   }
 }
 
