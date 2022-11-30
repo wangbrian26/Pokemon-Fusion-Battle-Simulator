@@ -59,8 +59,8 @@
       </div>
       <!-- user inputs stats then once battle is clicked, all buttons disappear -->
       <div class="cell grid-container full" id="userBattleScene">
-        <section class="grid-x setStats" id="userPokemon">
-          <div class="cell grid-x align-center small-12 medium-12 large-6 statBorder" id="userStats">
+        <section class="grid-x setStats align-justify" id="userPokemon">
+          <div class="cell grid-x align-center small-12 medium-12 large-3 statBorder" id="userStats">
             <p class="cell" id="userPokemonName"></p>
             <div class="cell grid-x medium-12">
               <p class="cell">Stats Remaining: <span class="stats"></span>
@@ -96,12 +96,12 @@
           <div class="cell small-12 medium-6 large-3 grid-x align-center align-middle" id="userPokeImg">
             <img class="cell" id="userPokemonImg" src="">
           </div>
-          <div class="cell small-12 medium-6 large-3 grid-x grid-margin-x grid-margin-y align-center align-middle" id="attackButtons">
+          <div class="cell small-12 medium-6 large-3 grid-y grid-margin-x grid-margin-y align-center align-middle" id="attackButtons">
             <div class="grid-x grid-margin-x grid-margin-y">
-            <button type="button" class="hide fight button large cell large-6" id="attack-button">Normal</button>
-            <button type="button" class="hide fight button large cell large-6" id="strong-button">Strong</button>
-            <button type="button" class="hide fight button large cell large-6" id="evade-button">Evade</button>
-            <button type="button" class="hide fight button large cell large-6" id="defendButton">Defend</button>
+              <button type="button" class="hide fight button large cell large-6" id="attack-button">Normal</button>
+              <button type="button" class="hide fight button large cell large-6" id="strong-button">Strong</button>
+              <button type="button" class="hide fight button large cell large-6" id="evade-button">Evade</button>
+              <button type="button" class="hide fight button large cell large-6" id="defendButton">Defend</button>
             </div>
             <div>
             <button type="button" class="pageButtons button large cell" id="battle">Start Battle</button>
@@ -114,13 +114,11 @@
       <section class="grid-x align-center align-middle" id="battleInfo">
         <div class="battle-rules">
           <h5>Battle Rules</h5>
-          <ul>
-            <li>Your normal attacks will always hit, but will deal 75% of your attack.</li>
-            <li>Your strong attacks will deal 100% of your attack, but have a 30% chance to miss.</li>
-            <li>Your evade chance is based on your speed; successful evades will heal you by 100% of your speed.</li>
-            <li>Defending will mitigate some damage and reflect back the rest. The mitigated damage is rng based on your defense stat.</li>
-            <li>The opponent has a chance to deal a strong attack, dealing twice their attack damage than normal. Pay attention to the dialogue box for this!</li>
-          </ul>
+          <p>1. Your normal attacks will always hit, but will deal 75% of your attack.</p>
+          <p>2. Your strong attacks will deal 100% of your attack, but have a 30% chance to miss.</p>
+          <p>3. Your evade chance is based on your speed; successful evades will heal you by 100% of your speed.</p>
+          <p>4. Defending will mitigate some damage and reflect back the rest. The mitigated damage is rng based on your defense stat.</p>
+          <p>5. The opponent has a chance to deal a strong attack, dealing twice their attack damage than normal. Pay attention to the dialogue box for this!</p>
         </div>
       </section>
     </div>

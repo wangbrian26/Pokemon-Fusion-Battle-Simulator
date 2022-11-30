@@ -92,6 +92,7 @@ h3 {
 
 .intro h3 {
   font-family: "Audiowide", cursive;
+  color: var(--cb);
 }
 /* added css to the three cards in landing page */
 
@@ -363,7 +364,7 @@ li:nth-child(even) {
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) { 
   .backGround {
     background-image: url(../images/backgrounds/start.webp);
     background-size: cover;
@@ -377,10 +378,6 @@ li:nth-child(even) {
   }
 }
 
-.battle-rules li {
-  text-transform: none;
-  background-color: aliceblue;
-}
 .battle-rules h5 {
   text-align: center;
 }
@@ -391,6 +388,7 @@ li:nth-child(even) {
    -moz-border-radius: 5px;
    -ms-border-radius: 5px;
    -o-border-radius: 5px;
+   padding: 20px;
 }
 
 #fusionPokemonImg {
@@ -403,3 +401,6 @@ li:nth-child(even) {
   margin-top: 40px;
 }
 
+.highScoreButtons {
+  margin: 10px;
+}

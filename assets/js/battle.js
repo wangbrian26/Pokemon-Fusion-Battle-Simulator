@@ -233,7 +233,7 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
-  document.querySelector("#buttonBlock").classList.add("large-5");
+  document.querySelector("#buttonBlock").classList.add("large-4");
   document.querySelector("#score-box").classList.remove("hide");
   document
     .querySelector("#attackButtons")
@@ -275,6 +275,7 @@ function battleAgain() {
   }
 }
 
+// function after each attack to check if user or opponent hp is 0, then ends battle; plays sound on loss and redirects to game over screen after 5 seconds
 function winLossCheck() {
   if (opponentStats.health <= 0) {
     winCount++;
@@ -287,12 +288,13 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     dialogueBox.textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battle").setAttribute("class", "");
+    document.querySelector("#battleAgain").classList.remove("hide");
     console.log("you win! here are your stats:");
     console.log(charStats.health);
     console.log(charStats.health / 2);
     console.log(currentStats.health);
     sfxWin.play();
+    disableBattleButtons();
     if (currentStats.health <= charStats.health / 2) {
       console.log("Your health is:");
       currentStats.health = charStats.health / 2; // what is this for?
@@ -306,10 +308,7 @@ function winLossCheck() {
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
-    strongButton.removeEventListener("click", strongAttack);
-    evadeButton.removeEventListener("click", evade);
-    attackButton.removeEventListener("click", normalAttack);
-    defendButton.removeEventListener("click", defend);
+    disableBattleButtons();
     setTimeout(() => {
       window.location.href = "game-over.html";
     }, "5000");
@@ -349,22 +348,17 @@ function normalAttack() {
 
 // strong attack function for dealing 100% of user attack damage with a 30% chance to miss
 function strongAttack() {
-  winLossCheck();
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   if (hitChance > 70) {
     dialogueBox.textContent = "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
-    winLossCheck();
-    hpUpdate();
   } else {
     if (currentStats.speed >= opponentStats.speed) {
       dialogueBox.textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       currentStats.health -= opponentStats.attack;
-      winLossCheck();
-      hpUpdate();
     } else {
       dialogueBox.textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
@@ -428,38 +422,6 @@ function evade() {
   hpUpdate();
   opponentStrongAttackAfter();
   opponentStrongAttack();
-}
-
-// function after each attack to check if user or opponent hp is 0, then ends battle; plays sound on loss and redirects to game over screen after 5 seconds
-function winLossCheck() {
-  if (opponentStats.health <= 0) {
-    winCount++;
-    opponentStats.attack = 0;
-    opponentStats.health = 0;
-    document.querySelector("#health-points").textContent = currentStats.health;
-    document.querySelector("#oppHealth").textContent = opponentStats.health;
-    dialogueBox.textContent =
-      "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battleAgain").classList.remove("hide");
-    sfxWin.play();
-    disableBattleButtons();
-    // function to heal user after game win to 50% of hp stat
-    if (currentStats.health <= charStats.health / 2) {
-      currentStats.health = charStats.health / 2;
-    }
-  } else if (currentStats.health <= 0) {
-    currentStats.attack = 0;
-    currentStats.health = 0;
-    dialogueBox.textContent = "Your HP is at 0. You died...";
-    sfxDeath.play();
-    document.querySelector("#health-points").textContent = currentStats.health;
-    document.querySelector("#oppHealth").textContent = opponentStats.health;
-    disableBattleButtons();
-    // redirect to game-over.html after 5 seconds
-    setTimeout(() => {
-      window.location.href = "game-over.html";
-    }, "5000");
-  }
 }
 
 // updates text content of user hp and opponent hp after changes
