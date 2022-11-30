@@ -23,12 +23,6 @@
   background-color: var(--cb);
   color: var(--yellow);
   }
-/* added font to Header on landing page */
-h1 {
-  font-family: 'Bubblegum Sans', cursive;
-  font-size: 90px;
-}
-
 h3 {
   font-family: 'Bubblegum Sans', cursive;
   color: var(--cb);
@@ -264,24 +258,35 @@ background-size: cover;
 /* Styling for Game Over and High Scores screens */
 
 .game-over {
-  margin: 150px auto;
+  /* margin: 150px auto; */
+  background-color: #202020;
+  background-size: cover;
+  color:white;
 }
 
-.win-box {
-  margin: 50px auto;
+.game-over img {
+  margin: 40px auto;
+  display: block;
 }
 
-.center-box {
-  width: 60%;
+.game-over-score {
+  display: inline;
+  margin: 0 auto 0 auto;
+}
+
+.nickname-box {
   text-align: center;
-  margin: 100px auto 0 auto;
 }
 
-.center-box input {
+.nickname-box input {
   width: 100px;
   height: 40.5px;
-  display: inline;
-  margin-left: 10px;
+  margin: auto
+}
+
+.input-box {
+  display: block;
+  margin: 10px 20px 0 auto;
 }
 
 .high-score {

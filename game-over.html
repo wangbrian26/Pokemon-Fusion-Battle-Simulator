@@ -11,20 +11,21 @@
     <title>Game Over Screen</title>
 </head>
 
-<body>
-  <div class="row">
-    <div class="large-12 columns game-over">
-      <div class="move-right">
-        <h5 class="text-center" id="win-number"></h5>
-      </div>
-    </div>
+<body class="game-over">
+  <img src="assets/images/backgrounds/gameover.png">
+  <div class="game-over-score">
+    <h5 class="text-center" id="win-number"></h5>
+        <div class="nickname-box" id="nickname-box">
+          <p class="text-center">
+            Enter your nickname to save your score: 
+          </p>
+          <div class="input-box">
+            <input type="text" id="nickname-input">
+          </div>
+          <a class="button" id="submit-button">Submit</a>
+        </div>
   </div>
-  <div class="move-right" id="nickname-box">
-    <p>
-      Enter your nickname to save your score: <input type="text" id="nickname-input">
-      <a class="button" id="submit-button">Submit</a>
-    </p>
-  </div>
+  
 
     <script src="assets/js/game-over.js"></script>
 </body>
