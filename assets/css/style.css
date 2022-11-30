@@ -194,10 +194,6 @@ background-size: cover;
   background-color: beige;
   border: 3px solid black;
   width: fit-content;
-  position: fixed;
-  top: 10px;
-  padding: 10px;
-  margin-left: 50px;
 }
 
 #userPokemonName {
