@@ -1,14 +1,13 @@
 :root {
---lr: #ff0000;
---dr: #cc0000;
---yellow: #ffde00;
---cb: #3b4cca;
---gold: #b3a125;
---normal: #ffe629;
---strong: #7b2031;
---evade: #5a4a9c;
---defend: #f6a400;
-
+  --lr: #ff0000;
+  --dr: #cc0000;
+  --yellow: #ffde00;
+  --cb: #3b4cca;
+  --gold: #b3a125;
+  --normal: #ffe629;
+  --strong: #7b2031;
+  --evade: #5a4a9c;
+  --defend: #f6a400;
 }
 
 .hide {
@@ -18,27 +17,27 @@
 .header {
   background-color: var(--cb);
   color: var(--yellow);
-  }
+}
 /* added font to Header on landing page */
 h1 {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   font-size: 90px;
 }
 
 h3 {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   color: var(--normal);
   font-size: 45px;
 }
 /* added css to stats page in battle html */
 .setStats {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   font-size: 30px;
   color: var(--yellow);
 }
 /* added css to landing page name your fakemon */
 .name-box {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   color: rgb(0, 0, 0);
   font-size: 35px;
   border: black solid 2px;
@@ -46,10 +45,9 @@ h3 {
 
 /* added css to landing page body */
 .backGround {
-background-image: url(../images/backgrounds/start.webp);
-background-size: 100vw 100vh;
-background-repeat: no-repeat;
-
+  background-image: url(../images/backgrounds/start.webp);
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
 }
 /* added css to battle html body */
 .statCreator {
@@ -79,12 +77,12 @@ background-repeat: no-repeat;
 }
 
 .intro h3 {
-  font-family: 'Audiowide', cursive;
+  font-family: "Audiowide", cursive;
 }
 /* added css to the three cards in landing page */
 
 .card-container {
-  margin-top: 110px;
+  margin-top: 8%;
 }
 
 .card {
@@ -101,7 +99,6 @@ background-repeat: no-repeat;
 .name-box {
   width: 60%;
   text-align: center;
-  /* margin: auto; */
   visibility: hidden;
 }
 
@@ -144,7 +141,7 @@ background-repeat: no-repeat;
 
 .button {
   margin-top: 14px;
-  font-family: 'Bubblegum Sans';
+  font-family: "Bubblegum Sans";
 }
 #save-button {
   background-color: var(--cb);
@@ -176,7 +173,7 @@ background-repeat: no-repeat;
   background-color: rgb(255, 252, 49, 0.5);
   width: 60%;
   text-align: center;
-  margin: 50px auto;
+  margin: 5% auto;
   visibility: hidden;
 }
 
@@ -194,8 +191,8 @@ background-repeat: no-repeat;
 }
 
 .clicked {
-  border: 5px solid #6DE072;
-  box-shadow: 0 0 20px #6DE072;
+  border: 5px solid #6de072;
+  box-shadow: 0 0 20px #6de072;
 }
 
 .dialogueBox {
@@ -219,7 +216,7 @@ background-repeat: no-repeat;
 }
 
 #attackButtons {
-/* display: flex;
+  /* display: flex;
   align-items:;
   justify-content: end; */
   /* margin-left: 150px; */
@@ -270,8 +267,9 @@ background-repeat: no-repeat;
   margin: 150px auto;
 }
 
-.press-start h1, h2 {
-  font-family: 'Press Start 2P', cursive;
+.press-start h1,
+h2 {
+  font-family: "Press Start 2P", cursive;
 }
 
 .win-box {
@@ -311,7 +309,7 @@ li {
   padding: 5px;
   text-transform: uppercase;
   list-style: decimal inside none;
-  background-color: #FFA9E4;
+  background-color: #ffa9e4;
 }
 
 li:nth-child(even) {
@@ -319,5 +317,18 @@ li:nth-child(even) {
 }
 
 #game-over {
-  display:none;
+  display: none;
+}
+
+.card-container {
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1200px) {
+  .backGround {
+    background-image: url(../images/backgrounds/start.webp);
+    background-size: cover;
+    background-position:center;
+    background-repeat: repeat;
+  }
 }
