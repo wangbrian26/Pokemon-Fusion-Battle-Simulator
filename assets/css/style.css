@@ -58,14 +58,14 @@ h3 {
 /* added css to landing page body */
 .backGround {
   background-image: url(../images/backgrounds/start.webp);
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
+   background-size: auto 100vh;
+  background-position: top center;
 }
 /* added css to battle html body */
 .statCreator {
   background-image: url(../images/backgrounds/lab1.jpg);
-  background-size: 100vw 100vh;
-  background-repeat: no-repeat;
+  background-size: auto 100vh;
+  background-position: top center;
 }
 
 /* added border box to stats */
@@ -163,7 +163,8 @@ h3 {
 
 .forest {
   background-image: url("../images/backgrounds/Battle.png");
-  background-size: 100vw 100vh;
+  background-size: auto 100vh;
+  background-position: top center;
 }
 
 .card:hover {
@@ -338,11 +339,6 @@ li:nth-child(even) {
     background-size: cover;
     background-position:center;
     background-repeat: repeat;
-  }
-
-  .forest {
-    background-size: auto auto;
-    background-position:top center;
   }
 }
 
