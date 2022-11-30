@@ -257,6 +257,7 @@ function battle() {
 }
 
 function battleAgain() {
+  enableBattleButtons();
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#battleAgain").classList.add("hide");
   console.log(document.querySelector("#battleAgain").classList);
@@ -396,6 +397,7 @@ function winLossCheck() {
     console.log(charStats.health / 2);
     console.log(currentStats.health);
     sfxWin.play();
+    disableBattleButtons();
     if (currentStats.health <= charStats.health / 2) {
       console.log("Your health is:");
       currentStats.health = charStats.health / 2; // what is this for?
@@ -409,10 +411,7 @@ function winLossCheck() {
     document.querySelector("#health-points").textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
-    strongButton.removeEventListener("click", strongAttack);
-    evadeButton.removeEventListener("click", evade);
-    attackButton.removeEventListener("click", normalAttack);
-    defendButton.removeEventListener("click", defend);
+    disableBattleButtons();
     setTimeout(() => {
       window.location.href = "game-over.html";
     }, "5000");
@@ -508,3 +507,17 @@ var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
 
 sfxWin.volume = 0.1;
 sfxDeath.volume = 0.2;
+
+function enableBattleButtons() {
+  strongButton.addEventListener("click", strongAttack);
+  evadeButton.addEventListener("click", evade);
+  attackButton.addEventListener("click", normalAttack);
+  defendButton.addEventListener("click", defend);
+}
+
+function disableBattleButtons() {
+  strongButton.removeEventListener("click", strongAttack);
+  evadeButton.removeEventListener("click", evade);
+  attackButton.removeEventListener("click", normalAttack);
+  defendButton.removeEventListener("click", defend);
+}
