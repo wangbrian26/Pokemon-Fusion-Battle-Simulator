@@ -1,5 +1,4 @@
 // Stat allocator for user character
-
 var healthBase = 200;
 var defenseBase = 30;
 var speedBase = 50;
@@ -242,6 +241,7 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
+  document.querySelector("#score-box").classList.remove("hide");
   document
     .querySelector("#attackButtons")
     .querySelectorAll(".fight")
@@ -249,7 +249,7 @@ function battle() {
       button.classList.remove("hide");
     });
   document.querySelector("#battleInfo").classList.add("hide");
-  document.querySelector("#userPokemon").classList.add("pokemonBattleScene");
+  document.querySelector("#userBattleScene").classList.add("align-self-bottom");
   document.querySelector("#userStats").classList.add("pokemonStats");
   document.querySelector("#userStats").classList.remove("statBorder");
   document.querySelector("#userPokemon").classList.remove("setStats");
@@ -273,6 +273,53 @@ function battleAgain() {
   }
 }
 
+function winLossCheck() {
+  if (opponentStats.health <= 0) {
+    winCount++;
+    console.log("win count:", winCount);
+    document.querySelector("#win-display").textContent = winCount;
+
+    opponentStats.attack = 0;
+    opponentStats.health = 0;
+    document.querySelector("#health-points").textContent = currentStats.health;
+    document.querySelector("#oppHealth").textContent = opponentStats.health;
+    dialogueBox.textContent =
+      "You win! Your HP is restored to 50% if you fell under 50%.";
+    document.querySelector("#battle").setAttribute("class", "");
+    console.log("you win! here are your stats:");
+    console.log(charStats.health);
+    console.log(charStats.health / 2);
+    console.log(currentStats.health);
+    sfxWin.play();
+    if (currentStats.health <= charStats.health / 2) {
+      console.log("Your health is:");
+      currentStats.health = charStats.health / 2; // what is this for?
+      console.log(currentStats.health);
+    }
+  } else if (currentStats.health <= 0) {
+    currentStats.attack = 0;
+    currentStats.health = 0;
+    dialogueBox.textContent = "Your HP is at 0. You died...";
+    sfxDeath.play();
+    document.querySelector("#health-points").textContent = currentStats.health;
+    document.querySelector("#oppHealth").textContent = opponentStats.health;
+    console.log("game over");
+    strongButton.removeEventListener("click", strongAttack);
+    evadeButton.removeEventListener("click", evade);
+    attackButton.removeEventListener("click", normalAttack);
+    defendButton.removeEventListener("click", defend);
+    setTimeout(() => {
+      window.location.href = "game-over.html";
+    }, "5000");
+    console.log("win count:", winCount);
+  }
+}
+
+function hpUpdate() {
+  document.querySelector("#health-points").textContent = currentStats.health;
+  document.querySelector("#oppHealth").textContent = opponentStats.health;
+}
+
 // Functions for actions during battle phase
 
 function normalAttack() {
@@ -281,21 +328,19 @@ function normalAttack() {
     dialogueBox.textContent =
       "Your Pokemon attacked first due to its higher speed!";
     opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
-    winLossCheck();
-    hpUpdate();
     currentStats.health -= opponentStats.attack;
-    winLossCheck();
-    hpUpdate();
   } else {
     dialogueBox.textContent =
       "The fusion Pokemon attacked first due to its higher speed!";
     currentStats.health -= opponentStats.attack;
-    winLossCheck();
-    hpUpdate();
     opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
-    winLossCheck();
-    hpUpdate();
   }
+
+  console.log("check for win/loss and update HP");
+
+  winLossCheck();
+  hpUpdate();
+
   opponentStrongAttackAfter();
   opponentStrongAttack();
 }
@@ -304,15 +349,14 @@ function strongAttack() {
   console.log("starting YOUR strong attack");
   console.log("opponent attack normal:", opponentStats.attack);
   console.log("hp before opp's strong attack:", currentStats.health);
-  winLossCheck();
+
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   console.log("strong attack chance", hitChance);
   if (hitChance > 70) {
     dialogueBox.textContent = "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
-    winLossCheck();
-    hpUpdate();
+
     console.log("opponent hp", opponentStats.health);
     console.log("your hp", currentStats.health);
   } else {
@@ -320,24 +364,22 @@ function strongAttack() {
       dialogueBox.textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
-      winLossCheck();
-      hpUpdate();
       currentStats.health -= opponentStats.attack;
-      winLossCheck();
-      hpUpdate();
       console.log("opponent hp", opponentStats.health);
       console.log("your hp", currentStats.health);
     } else {
       dialogueBox.textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
-      winLossCheck();
-      hpUpdate();
       opponentStats.health -= currentStats.attack;
-      winLossCheck();
-      hpUpdate();
     }
   }
+
+  console.log("check for win/loss and update HP");
+
+  winLossCheck();
+  hpUpdate();
+
   opponentStrongAttackAfter();
   opponentStrongAttack();
 }
@@ -504,8 +546,8 @@ function opponentStrongAttackAfter() {
   }
 }
 
-var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
-var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
+// var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
+// var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
 
 sfxWin.volume = 0.1;
 sfxDeath.volume = 0.2;

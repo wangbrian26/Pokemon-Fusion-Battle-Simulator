@@ -12,9 +12,13 @@
 
 body {
   width: 90%;
-  height: 90%;
   margin: auto;
   margin-top: 2%;
+  height: 100%;
+}
+
+.press-start h1, h2, h4 {
+  font-family: 'Press Start 2P', cursive;
 }
 
 .hide {
@@ -25,10 +29,7 @@ body {
   background-color: var(--cb);
   color: var(--yellow);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> ded5e19132c66bd0af85680a3584556c3c8edb7e
 /* added font to Header on landing page */
 h1 {
   font-family: "Bubblegum Sans", cursive;
@@ -118,6 +119,10 @@ h3 {
   margin-left: 10px;
 }
 
+#score-box {
+  margin-top: 30px;
+}
+
 #oppPokemonCard {
   display: flex;
   align-items: center;
@@ -161,13 +166,6 @@ h3 {
   background-size: cover;
 }
 
-.userPokemon {
-  position: fixed;
-  bottom: 10px;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
 .card:hover {
   outline: none;
   border-color: #9ecaed;
@@ -219,8 +217,7 @@ h3 {
 }
 
 .pokemonBattleScene {
-  position: fixed;
-  bottom: 2%;
+  bottom: 2px;
 }
 
 /* added css for defend button */
