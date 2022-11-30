@@ -259,9 +259,9 @@ function battle() {
 function battleAgain() {
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#battleAgain").classList.add("hide");
+  console.log(document.querySelector("#battleAgain").classList);
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
-  document.querySelector("#attackButtons").classList.remove("hide");
   fusionPokemon();
   if (currentStats.health <= charStats.health / 2) {
     console.log("Your health is:");
@@ -390,7 +390,7 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     dialogueBox.textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battle").setAttribute("class", "");
+    document.querySelector("#battleAgain").classList.remove("hide");
     console.log("you win! here are your stats:");
     console.log(charStats.health);
     console.log(charStats.health / 2);
