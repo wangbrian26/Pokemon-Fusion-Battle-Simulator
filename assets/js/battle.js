@@ -63,8 +63,9 @@ healthUp.addEventListener("click", function () {
     healthEl.textContent = healthBase;
     stats.textContent = statPoints;
     charStats.health = healthBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("out of stat points");
+    document.querySelector("#errors").textContent = "Out of stat points";
   }
 });
 
@@ -75,8 +76,10 @@ healthDown.addEventListener("click", function () {
     healthEl.textContent = healthBase;
     stats.textContent = statPoints;
     charStats.health = healthBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("cannot go below 50 health stat");
+    document.querySelector("#errors").textContent =
+      "Cannot go below 200 health stat";
   }
 });
 
@@ -87,8 +90,9 @@ attackUp.addEventListener("click", function () {
     attack.textContent = attackBase;
     stats.textContent = statPoints;
     charStats.attack = attackBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("out of stat points");
+    document.querySelector("#errors").textContent = "Out of stat points";
   }
 });
 
@@ -99,8 +103,10 @@ attackDown.addEventListener("click", function () {
     attack.textContent = attackBase;
     stats.textContent = statPoints;
     charStats.attack = attackBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("cannot go below 50 attack stat");
+    document.querySelector("#errors").textContent =
+      "Cannot go below 30 attack stat";
   }
 });
 
@@ -111,8 +117,9 @@ speedUp.addEventListener("click", function () {
     speed.textContent = speedBase;
     stats.textContent = statPoints;
     charStats.speed = speedBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("out of stat points");
+    document.querySelector("#errors").textContent = "Out of stat points";
   }
 });
 
@@ -123,8 +130,10 @@ speedDown.addEventListener("click", function () {
     speed.textContent = speedBase;
     stats.textContent = statPoints;
     charStats.speed = speedBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("cannot go below 50 speed stat");
+    document.querySelector("#errors").textContent =
+      "Cannot go below 50 speed stat";
   }
 });
 
@@ -135,8 +144,9 @@ defenseUp.addEventListener("click", function () {
     defense.textContent = defenseBase;
     stats.textContent = statPoints;
     charStats.defense = defenseBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("out of stat points");
+    document.querySelector("#errors").textContent = "Out of stat points";
   }
 });
 
@@ -147,8 +157,10 @@ defenseDown.addEventListener("click", function () {
     defense.textContent = defenseBase;
     stats.textContent = statPoints;
     charStats.defense = defenseBase;
+    document.querySelector("#errors").textContent = "";
   } else {
-    console.log("cannot go below 50 defense stat");
+    document.querySelector("#errors").textContent =
+      "Cannot go below 30 defense stat";
   }
 });
 
@@ -337,8 +349,6 @@ function normalAttack() {
     opponentStats.health = opponentStats.health - currentStats.attack * 0.75;
   }
 
-  console.log("check for win/loss and update HP");
-
   winLossCheck();
   hpUpdate();
 
@@ -366,8 +376,6 @@ function strongAttack() {
       opponentStats.health -= currentStats.attack;
     }
   }
-
-  console.log("check for win/loss and update HP");
 
   winLossCheck();
   hpUpdate();
