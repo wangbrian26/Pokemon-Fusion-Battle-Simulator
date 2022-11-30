@@ -10,14 +10,6 @@ function renderScores() {
     })
 
     for (let i = 0; i < scoreArray.length; i++) { 
-        // let nameList = document.createElement("div")
-        // nameList.setAttribute("class", "column small-4");
-        // nameList.textContent = scoreArray[i].name;
-
-        // let scoreList = document.createElement("div");
-        // scoreList.setAttribute("class", "column small-4");
-        // scoreList.textContent = scoreArray[i].score;
-        
         let scoreListElement = document.createElement('li'); // create a list element for every item in the array
         scoreListElement.textContent = scoreArray[i].name + ' ➡️ ' + scoreArray[i].score; // add text to list element
 
@@ -31,6 +23,15 @@ function clearScores() {
     window.location.reload();
 }
 
-document.querySelector("#clear-button").addEventListener('click', clearScores);
+// import {winCount} from './battle'
+
+function resetWinCount() {
+    console.log("win count from last game:", winCount);
+    winCount = 0;
+    console.log("win count reset back to 0", winCount === 0);
+}
+
+document.querySelector("#clear-button").addEventListener("click", clearScores);
+document.querySelector("#back-button").addEventListener("click", resetWinCount);
 
 renderScores();

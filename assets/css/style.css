@@ -11,6 +11,10 @@
 
 }
 
+.press-start h1, h2, h4 {
+  font-family: 'Press Start 2P', cursive;
+}
+
 .hide {
   display: none;
 }
@@ -102,6 +106,10 @@ background-size: cover;
   height: 40.5px;
   display: inline;
   margin-left: 10px;
+}
+
+#score-box {
+  margin-top: 30px;
 }
 
 #oppPokemonCard {
@@ -257,10 +265,6 @@ background-size: cover;
 
 .game-over {
   margin: 150px auto;
-}
-
-.press-start h1, h2 {
-  font-family: 'Press Start 2P', cursive;
 }
 
 .win-box {
