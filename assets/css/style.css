@@ -275,7 +275,10 @@ h3 {
 /* Styling for Game Over and High Scores screens */
 
 .game-over {
-  margin: 150px auto;
+  /* margin: 150px auto; */
+  background-color: #202020;
+  background-size: cover;
+  color:white;
 }
 
 .press-start h1,
@@ -287,17 +290,35 @@ h2 {
   margin: 50px auto;
 }
 
-.center-box {
-  width: 60%;
-  text-align: center;
-  margin: 100px auto 0 auto;
+.game-over img {
+  margin: 40px auto;
+  display: block;
 }
 
-.center-box input {
+.game-over-score {
+  display: inline;
+  margin: 0 auto 0 auto;
+}
+
+.nickname-box {
+  text-align: center;
+}
+
+.nickname-box input {
   width: 100px;
   height: 40.5px;
-  display: inline;
-  margin-left: 10px;
+  margin: auto
+}
+
+.input-box {
+  display: block;
+  margin: 10px 20px 0 auto;
+}
+
+.high-score {
+  background-image: url("../images/backgrounds/high-score-background.jpeg");
+  background-size: cover;
+  height: 100vh;
 }
 
 a {
@@ -312,19 +333,26 @@ a:hover {
 ol {
   padding-left: 0px;
   max-height: 500px;
+  max-width: 500px;
   overflow: auto;
   margin: 30px auto;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 150%;
+  text-align: left;
+  letter-spacing: 1px;
 }
 
 li {
-  padding: 5px;
+  padding-left: 180px;
   text-transform: uppercase;
   list-style: decimal inside none;
-  background-color: #ffa9e4;
+  background-color: #FFA9E4;
+  opacity: 0.8;
 }
 
 li:nth-child(even) {
   background-color: aliceblue;
+  opacity: 0.8;
 }
 
 #game-over {
