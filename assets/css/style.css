@@ -1,14 +1,27 @@
 :root {
---lr: #ff0000;
---dr: #cc0000;
---yellow: #ffde00;
---cb: #3b4cca;
---gold: #b3a125;
---normal: #ffe629;
---strong: #7b2031;
---evade: #5a4a9c;
---defend: #f6a400;
+  --lr: #ff0000;
+  --dr: #cc0000;
+  --yellow: #ffde00;
+  --cb: #3b4cca;
+  --gold: #b3a125;
+  --normal: #ffe629;
+  --strong: #7b2031;
+  --evade: #5a4a9c;
+  --defend: #f6a400;
+}
 
+body {
+  width: 90%;
+  margin: 2% auto;
+  height: 90vh;
+}
+
+#fullPage {
+  height: 100vh;
+}
+
+.press-start h1, h2, h4 {
+  font-family: 'Press Start 2P', cursive;
 }
 
 .hide {
@@ -18,49 +31,51 @@
 .header {
   background-color: var(--cb);
   color: var(--yellow);
-  }
+}
+
 /* added font to Header on landing page */
 h1 {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   font-size: 90px;
 }
 
 h3 {
-  font-family: 'Bubblegum Sans', cursive;
-  color: var(--cb);
+  font-family: "Bubblegum Sans", cursive;
+  color: var(--normal);
   font-size: 45px;
 }
 /* added css to stats page in battle html */
 .setStats {
-  font-family: 'Bubblegum Sans', cursive;
+  font-family: "Bubblegum Sans", cursive;
   font-size: 30px;
   color: var(--yellow);
 }
 /* added css to landing page name your fakemon */
 .name-box {
-  font-family: 'Bubblegum Sans', cursive;
-  color: black;
+  font-family: "Bubblegum Sans", cursive;
+  color: rgb(0, 0, 0);
   font-size: 35px;
+  border: black solid 2px;
 }
 
 /* added css to landing page body */
 .backGround {
-background-image: url(../images/backgrounds/grass.jpg);
-background-size: cover;
-
+  background-image: url(../images/backgrounds/start.webp);
+  background-size: 100vw 100vh;
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 /* added css to battle html body */
 .statCreator {
   background-image: url(../images/backgrounds/lab1.jpg);
-  background-size: cover;
+  background-size: auto 100vh;
+  background-position: top center;
 }
 
 /* added border box to stats */
 .statBorder {
   /* border: 2px solid; */
   padding: 2px 50px;
-  margin-left: 100px;
-  margin-top: 50px;
   width: fit-content;
   background-color: var(--evade);
 }
@@ -76,9 +91,15 @@ background-size: cover;
 }
 
 .intro h3 {
-  font-family: 'Audiowide', cursive;
+  font-family: "Audiowide", cursive;
+  color: var(--cb);
 }
 /* added css to the three cards in landing page */
+
+.card-container {
+  margin-top: 8%;
+}
+
 .card {
   height: 400px;
   width: 400px;
@@ -93,7 +114,6 @@ background-size: cover;
 .name-box {
   width: 60%;
   text-align: center;
-  margin: auto;
   visibility: hidden;
 }
 
@@ -104,18 +124,18 @@ background-size: cover;
   margin-left: 10px;
 }
 
-#oppPokemonCard {
-  display: flex;
-  align-items: center;
-  justify-content: end;
+#score-box {
+  margin-top: 30px;
+  text-align: center;
 }
 
 .pokemonStats {
   border: 2px solid black;
-  padding: 2px 50px;
-  width: fit-content;
+  font-size: large;
+  padding: 15px;
+  padding-right: 20px;
+  /* max-width: fit-content; */
   background-color: beige;
-  margin-right: 50px;
 }
 
 #oppPokemonPic {
@@ -135,26 +155,19 @@ background-size: cover;
 }
 
 .button {
-  margin-top: 14px;
-  font-family: 'Bubblegum Sans';
+  font-family: "Bubblegum Sans";
+  border-radius: 10px;
 }
-
-/* .attack {
-  
-} */
+#save-button {
+  background-color: var(--cb);
+}
 
 .forest {
   background-image: url("../images/backgrounds/Battle.png");
-  background-size: cover;
+  background-size: 100vw 100vh;
+  background-position: top center;
 }
 
-.userPokemon {
-  position: fixed;
-  bottom: 10px;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-}
 .card:hover {
   outline: none;
   border-color: #9ecaed;
@@ -163,9 +176,10 @@ background-size: cover;
 }
 
 .name-box {
+  background-color: rgb(255, 252, 49, 0.5);
   width: 60%;
   text-align: center;
-  margin: auto;
+  margin: 5% auto;
   visibility: hidden;
 }
 
@@ -183,23 +197,22 @@ background-size: cover;
 }
 
 .clicked {
-  border: 5px solid #6DE072;
-  box-shadow: 0 0 20px #6DE072;
+  border: 5px solid #6de072;
+  box-shadow: 0 0 20px #6de072;
 }
 
 .dialogueBox {
   background-color: beige;
   border: 3px solid black;
   width: fit-content;
-  position: fixed;
-  top: 10px;
+  height: fit-content;
   padding: 10px;
-  margin-left: 50px;
 }
 
 #userPokemonName {
   font-size: larger;
   font-weight: bolder;
+  text-align: center;
 }
 
 #userPokemonImg {
@@ -207,12 +220,10 @@ background-size: cover;
   max-height: 320px;
 }
 
-#attackButtons {
-/* display: flex;
-  align-items:;
-  justify-content: end; */
-  /* margin-left: 150px; */
+.pokemonBattleScene {
+  bottom: 2px;
 }
+
 /* added css for defend button */
 #defendButton {
   background-color: var(--defend);
@@ -237,6 +248,15 @@ background-size: cover;
 #battle {
   background-color: #6ad531;
   color: black;
+  font-size: 50px;
+  padding: 20px;
+}
+
+#battleAgain {
+  background-color: #6ad531;
+  color: black;
+  font-size: 50px;
+  padding: 20px;
 }
 
 .pageButtons {
@@ -256,28 +276,50 @@ background-size: cover;
 /* Styling for Game Over and High Scores screens */
 
 .game-over {
-  margin: 150px auto;
+  /* margin: 150px auto; */
+  background-color: #202020;
+  background-size: cover;
+  color:white;
 }
 
-.press-start h1, h2 {
-  font-family: 'Press Start 2P', cursive;
+.press-start h1,
+h2 {
+  font-family: "Press Start 2P", cursive;
 }
 
 .win-box {
   margin: 50px auto;
 }
 
-.center-box {
-  width: 60%;
-  text-align: center;
-  margin: 100px auto 0 auto;
+.game-over img {
+  margin: 40px auto;
+  display: block;
 }
 
-.center-box input {
+.game-over-score {
+  display: inline;
+  margin: 0 auto 0 auto;
+}
+
+.nickname-box {
+  text-align: center;
+}
+
+.nickname-box input {
   width: 100px;
   height: 40.5px;
-  display: inline;
-  margin-left: 10px;
+  margin: auto
+}
+
+.input-box {
+  display: block;
+  margin: 10px 20px 0 auto;
+}
+
+.high-score {
+  background-image: url("../images/backgrounds/high-score-background.jpeg");
+  background-size: cover;
+  height: 100vh;
 }
 
 a {
@@ -292,21 +334,73 @@ a:hover {
 ol {
   padding-left: 0px;
   max-height: 500px;
+  max-width: 500px;
   overflow: auto;
   margin: 30px auto;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 150%;
+  text-align: left;
+  letter-spacing: 1px;
 }
 
 li {
-  padding: 5px;
+  padding-left: 180px;
   text-transform: uppercase;
   list-style: decimal inside none;
   background-color: #FFA9E4;
+  opacity: 0.8;
 }
 
 li:nth-child(even) {
   background-color: aliceblue;
+  opacity: 0.8;
 }
 
 #game-over {
-  display:none;
+  display: none;
+}
+
+.card-container {
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1200px) { 
+  .backGround {
+    background-image: url(../images/backgrounds/start.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+  }
+  .forest {
+    background-size: auto 100vh;
+    background-position:top center;
+    background-repeat: repeat;
+  }
+}
+
+.battle-rules h5 {
+  text-align: center;
+}
+.battle-rules {
+   background-color:aliceblue;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
+   padding: 20px;
+}
+
+#fusionPokemonImg {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.5);
+}
+
+#battleInfo {
+  margin-top: 40px;
+}
+
+.highScoreButtons {
+  margin: 10px;
 }
