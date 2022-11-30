@@ -248,6 +248,8 @@ function battle() {
     .forEach(function (button) {
       button.classList.remove("hide");
     });
+  document.querySelector("#battleInfo").classList.add("hide");
+  document.querySelector("#userPokemon").classList.add("pokemonBattleScene");
   document.querySelector("#userStats").classList.add("pokemonStats");
   document.querySelector("#userStats").classList.remove("statBorder");
   document.querySelector("#userPokemon").classList.remove("setStats");
@@ -390,7 +392,7 @@ function winLossCheck() {
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     dialogueBox.textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
-    document.querySelector("#battle").setAttribute("class", "");
+    document.querySelector("#battleAgain").classList.remove("hide");
     console.log("you win! here are your stats:");
     console.log(charStats.health);
     console.log(charStats.health / 2);

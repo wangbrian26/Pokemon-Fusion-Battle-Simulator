@@ -8,6 +8,11 @@
   <link rel="stylesheet" href="./assets/css/reset.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/css/foundation.min.css"
     crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&effect=fire-animation&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Battle Scene</title>
 </head>
@@ -38,12 +43,13 @@
   <!-- user inputs stats then once battle is clicked, all buttons disappear -->
   <div class="grid-container full">  
     <section class="grid-x setStats" id="userPokemon">
-      <div class="cell large-3 statBorder" id="userStats">
-        <p id="userPokemonName"></p>
-        <div>
-          <p>Stats Remaining: <span class="stats"></span>
+      <div class="cell grid-x align-center large-3 statBorder" id="userStats">
+        <p class="cell" id="userPokemonName"></p>
+        <div class="cell grid-x medium-12">
+          <p class="cell">Stats Remaining: <span class="stats"></span>
         </div>
         </p>
+        <div class="cell grid-y">
         <div>
           <p>Health: <span id="health-points"></span>
             <button type="button" class="pageButtons health-up button success large">+</button><button type="button"
@@ -68,19 +74,29 @@
               class="pageButtons defense-down button alert large minus">-</button>
           </p>
         </div>
+        </div>
       </div>
-      <div class="cell large-3">
-        <img id="userPokemonImg" src="">
+      <div class="cell large-3 grid-x align-center align-middle">
+        <img class="cell" id="userPokemonImg" src="">
       </div>
-      <div class="cell auto grid-x grid-margin-x grid-margin-y" id="attackButtons">
-        <button type="button" class="hide fight button cell large-6" id="attack-button">Normal</button>
-        <button type="button" class="hide fight button cell large-6" id="strong-button">Strong</button>
-        <button type="button" class="hide fight button cell large-6" id="evade-button">Evade</button>
-        <button type="button" class="hide fight button cell large-6" id="defendButton">Defend</button>
-        <button type="button" class="pageButtons button cell" id="battle">Start Battle</button>
-        <button type="button" class="hide button cell" id="battleAgain">Start Next Battle</button>
+      <div class="cell auto grid-x grid-margin-x grid-margin-y align-center align-middle" id="attackButtons">
+        <div class="grid-x grid-margin-x grid-margin-y">
+        <button type="button" class="hide fight button large cell large-6" id="attack-button">Normal</button>
+        <button type="button" class="hide fight button large cell large-6" id="strong-button">Strong</button>
+        <button type="button" class="hide fight button large cell large-6" id="evade-button">Evade</button>
+        <button type="button" class="hide fight button large cell large-6" id="defendButton">Defend</button>
+        </div>
+        <div>
+        <button type="button" class="pageButtons button large cell" id="battle">Start Battle</button>
+        <button type="button" class="hide button large cell" id="battleAgain">Start Next Battle</button>
+        </div>
       </div>
 
+    </section>
+    <section class="grid-x" id="battleInfo">
+      <p>
+        Please put your battle info here.
+      </p>
     </section>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.5/dist/js/foundation.min.js"

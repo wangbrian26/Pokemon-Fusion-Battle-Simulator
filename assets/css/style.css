@@ -11,6 +11,13 @@
 
 }
 
+body {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  margin-top: 2%;
+}
+
 .hide {
   display: none;
 }
@@ -18,7 +25,8 @@
 .header {
   background-color: var(--cb);
   color: var(--yellow);
-  }
+}
+
 /* added font to Header on landing page */
 h1 {
   font-family: 'Bubblegum Sans', cursive;
@@ -59,8 +67,6 @@ background-size: cover;
 .statBorder {
   /* border: 2px solid; */
   padding: 2px 50px;
-  margin-left: 100px;
-  margin-top: 50px;
   width: fit-content;
   background-color: var(--evade);
 }
@@ -137,14 +143,11 @@ background-size: cover;
 .button {
   margin-top: 14px;
   font-family: 'Bubblegum Sans';
+  border-radius: 10px;
 }
 
-/* .attack {
-  
-} */
-
 .forest {
-  background-image: url("../images/backgrounds/Battle.jpg");
+  background-image: url("../images/backgrounds/Battle.png");
   background-size: cover;
 }
 
@@ -200,6 +203,7 @@ background-size: cover;
 #userPokemonName {
   font-size: larger;
   font-weight: bolder;
+  text-align: center;
 }
 
 #userPokemonImg {
@@ -207,12 +211,11 @@ background-size: cover;
   max-height: 320px;
 }
 
-#attackButtons {
-/* display: flex;
-  align-items:;
-  justify-content: end; */
-  /* margin-left: 150px; */
+.pokemonBattleScene {
+  position: fixed;
+  bottom: 2%;
 }
+
 /* added css for defend button */
 #defendButton {
   background-color: var(--defend);
@@ -237,6 +240,15 @@ background-size: cover;
 #battle {
   background-color: #6ad531;
   color: black;
+  font-size: 50px;
+  padding: 20px;
+}
+
+#battleAgain {
+  background-color: #6ad531;
+  color: black;
+  font-size: 50px;
+  padding: 20px;
 }
 
 .pageButtons {
