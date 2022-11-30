@@ -248,6 +248,8 @@ function battle() {
     .forEach(function (button) {
       button.classList.remove("hide");
     });
+  document.querySelector("#battleInfo").classList.add("hide");
+  document.querySelector("#userPokemon").classList.add("pokemonBattleScene");
   document.querySelector("#userStats").classList.add("pokemonStats");
   document.querySelector("#userStats").classList.remove("statBorder");
   document.querySelector("#userPokemon").classList.remove("setStats");
