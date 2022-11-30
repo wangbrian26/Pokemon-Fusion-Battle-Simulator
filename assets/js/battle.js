@@ -238,9 +238,11 @@ function battle() {
   currentStats = JSON.parse(JSON.stringify(charStats));
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").classList.remove("hide");
+  document.querySelector("#oppPokemon").classList.add("large-3");
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
+  document.querySelector("#buttonBlock").classList.add("large-5");
   document.querySelector("#score-box").classList.remove("hide");
   document
     .querySelector("#attackButtons")
@@ -249,11 +251,22 @@ function battle() {
       button.classList.remove("hide");
     });
   document.querySelector("#battleInfo").classList.add("hide");
-  document.querySelector("#userBattleScene").classList.add("align-self-bottom");
-  document.querySelector("#userStats").classList.add("pokemonStats");
-  document.querySelector("#userStats").classList.remove("statBorder");
+  document.querySelector("#userBattleScene").classList.add("large-3");
+  document
+    .querySelector("#userStats")
+    .classList.remove("statBorder", "medium-12", "large-6");
+  document
+    .querySelector("#userStats")
+    .classList.add("pokemonStats", "medium-6", "large-3");
   document.querySelector("#userPokemon").classList.remove("setStats");
   document.querySelector("body").classList.add("forest");
+  document
+    .querySelector("#attackButtons")
+    .classList.remove("medium-6", "large-3");
+  document
+    .querySelector("#attackButtons")
+    .classList.add("medium-12", "large-6");
+
   dialogueBox.textContent = "A wild fusion Pokemon has appeared!";
   fusionPokemon();
 }

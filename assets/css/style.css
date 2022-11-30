@@ -12,9 +12,12 @@
 
 body {
   width: 90%;
-  margin: auto;
-  margin-top: 2%;
-  height: 100%;
+  margin: 2% auto;
+  height: 90vh;
+}
+
+#fullPage {
+  height: 100vh;
 }
 
 .press-start h1, h2, h4 {
@@ -121,20 +124,16 @@ h3 {
 
 #score-box {
   margin-top: 30px;
-}
-
-#oppPokemonCard {
-  display: flex;
-  align-items: center;
-  justify-content: end;
+  text-align: center;
 }
 
 .pokemonStats {
   border: 2px solid black;
-  padding: 2px 50px;
-  width: fit-content;
+  font-size: large;
+  padding: 15px;
+  padding-right: 20px;
+  /* max-width: fit-content; */
   background-color: beige;
-  margin-right: 50px;
 }
 
 #oppPokemonPic {
@@ -204,6 +203,8 @@ h3 {
   background-color: beige;
   border: 3px solid black;
   width: fit-content;
+  height: fit-content;
+  padding: 10px;
 }
 
 #userPokemonName {
@@ -359,3 +360,14 @@ li:nth-child(even) {
    -ms-border-radius: 5px;
    -o-border-radius: 5px;
 }
+
+#fusionPokemonImg {
+  width: 100%;
+  height: 100%;
+  transform: scale(1.5);
+}
+
+#battleInfo {
+  margin-top: 40px;
+}
+
