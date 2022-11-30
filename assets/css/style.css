@@ -61,8 +61,9 @@ h3 {
 /* added css to landing page body */
 .backGround {
   background-image: url(../images/backgrounds/start.webp);
-   background-size: auto 100vh;
+  background-size: 100vw 100vh;
   background-position: top center;
+  background-repeat: no-repeat;
 }
 /* added css to battle html body */
 .statCreator {
@@ -162,7 +163,7 @@ h3 {
 
 .forest {
   background-image: url("../images/backgrounds/Battle.png");
-  background-size: auto 100vh;
+  background-size: 100vw 100vh;
   background-position: top center;
 }
 
@@ -338,16 +339,19 @@ li:nth-child(even) {
   .backGround {
     background-image: url(../images/backgrounds/start.webp);
     background-size: cover;
-    background-position:center;
+    background-position: center;
+    background-repeat: repeat;
+  }
+  .forest {
+    background-size: auto 100vh;
+    background-position:top center;
     background-repeat: repeat;
   }
 }
 
 .battle-rules li {
-  text-transform:none;
-   background-color:aliceblue;
-
- 
+  text-transform: none;
+  background-color: aliceblue;
 }
 .battle-rules h5 {
   text-align: center;
