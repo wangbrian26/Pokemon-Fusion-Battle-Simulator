@@ -27,7 +27,7 @@ h1 {
 
 h3 {
   font-family: 'Bubblegum Sans', cursive;
-  color: var(--cb);
+  color: var(--normal);
   font-size: 45px;
 }
 /* added css to stats page in battle html */
@@ -39,20 +39,23 @@ h3 {
 /* added css to landing page name your fakemon */
 .name-box {
   font-family: 'Bubblegum Sans', cursive;
-  color: black;
+  color: rgb(0, 0, 0);
   font-size: 35px;
+  border: black solid 2px;
 }
 
 /* added css to landing page body */
 .backGround {
-background-image: url(../images/backgrounds/grass.jpg);
-background-size: cover;
+background-image: url(../images/backgrounds/start.webp);
+background-size: 100vw 100vh;
+background-repeat: no-repeat;
 
 }
 /* added css to battle html body */
 .statCreator {
   background-image: url(../images/backgrounds/lab1.jpg);
-  background-size: cover;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
 }
 
 /* added border box to stats */
@@ -79,6 +82,11 @@ background-size: cover;
   font-family: 'Audiowide', cursive;
 }
 /* added css to the three cards in landing page */
+
+.card-container {
+  margin-top: 110px;
+}
+
 .card {
   height: 400px;
   width: 400px;
@@ -93,7 +101,7 @@ background-size: cover;
 .name-box {
   width: 60%;
   text-align: center;
-  margin: auto;
+  /* margin: auto; */
   visibility: hidden;
 }
 
@@ -138,7 +146,9 @@ background-size: cover;
   margin-top: 14px;
   font-family: 'Bubblegum Sans';
 }
-
+#save-button {
+  background-color: var(--cb);
+}
 /* .attack {
   
 } */
@@ -163,9 +173,10 @@ background-size: cover;
 }
 
 .name-box {
+  background-color: rgb(255, 252, 49, 0.5);
   width: 60%;
   text-align: center;
-  margin: auto;
+  margin: 50px auto;
   visibility: hidden;
 }
 
