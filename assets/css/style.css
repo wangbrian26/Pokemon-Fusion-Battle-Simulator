@@ -25,10 +25,6 @@ body {
   background-color: var(--cb);
   color: var(--yellow);
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> ded5e19132c66bd0af85680a3584556c3c8edb7e
 /* added font to Header on landing page */
 h1 {
   font-family: "Bubblegum Sans", cursive;
@@ -346,4 +342,22 @@ li:nth-child(even) {
     background-position:center;
     background-repeat: repeat;
   }
+}
+
+.battle-rules li {
+  text-transform:none;
+   background-color:aliceblue;
+
+ 
+}
+.battle-rules h5 {
+  text-align: center;
+}
+.battle-rules {
+   background-color:aliceblue;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
 }
