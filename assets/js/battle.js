@@ -174,6 +174,7 @@ function fusionPokemon() {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       var poke1 = data.fused.body.toLowerCase();
       var poke2 = data.fused.head.toLowerCase();
       var fusionPokemonImg = data.image_url;
@@ -183,9 +184,15 @@ function fusionPokemon() {
         fusionPokemonName;
       fetch("https://pokeapi.co/api/v2/pokemon/" + poke1)
         .then(function (response) {
+          console.log(response.status);
+          if (response.status !== 200) {
+            console.log("fusion failed trying again");
+            fusionPokemon();
+          }
           return response.json();
         })
         .then(function (data) {
+          console.log(data);
           var poke1Hp = data.stats[0].base_stat;
           var poke1Attack = data.stats[1].base_stat;
           var poke1Defense = data.stats[2].base_stat;
@@ -194,9 +201,15 @@ function fusionPokemon() {
           poke1Hp = poke1Hp + poke1Defense / 2;
           fetch("https://pokeapi.co/api/v2/pokemon/" + poke2)
             .then(function (response) {
+              console.log(response.status);
+              if (response.status !== 200) {
+                console.log("fusion failed trying again");
+                fusionPokemon();
+              }
               return response.json();
             })
             .then(function (data) {
+              console.log(data);
               var poke2Hp = data.stats[0].base_stat;
               var poke2Attack = data.stats[1].base_stat;
               var poke2Defense = data.stats[2].base_stat;
@@ -208,6 +221,14 @@ function fusionPokemon() {
               var fusionPokemonSpeed = (poke1Speed + poke2Speed) / 2;
               var fusionPokemonDefense = (poke1Defense + poke2Defense) / 2;
 
+              if (
+                (fusionPokemonAttack ||
+                  fusionPokemonHp ||
+                  fusionPokemonSpeed ||
+                  fusionPokemonDefense) == "NaN"
+              ) {
+                fusionPokemon();
+              }
               opponentStats.health = fusionPokemonHp;
               opponentStats.attack = fusionPokemonAttack;
               opponentStats.speed = fusionPokemonSpeed;
@@ -327,6 +348,9 @@ function winLossCheck() {
       window.location.href = "game-over.html";
     }, "5000");
     console.log("win count:", winCount);
+  } else if (currentStats.health == "NaN") {
+    battleAgain();
+    currentStats = JSON.parse(JSON.stringify(charStats));
   }
 }
 
