@@ -477,7 +477,7 @@ function opponentStrongAttackAfter() {
 
 // sound effects upon winning and losing
 var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
-var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
+var sfxDeath = new Audio("assets/sfx/soft-death-sfx.mp3");
 
 sfxWin.volume = 0.1;
 sfxDeath.volume = 0.2;
