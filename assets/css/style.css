@@ -4,10 +4,11 @@
   --yellow: #ffde00;
   --cb: #3b4cca;
   --gold: #b3a125;
+  --stat: #834FC1;
   --normal: #ffe629;
-  --strong: #7b2031;
-  --evade: #5a4a9c;
-  --defend: #f6a400;
+  --strong: #FF6060;
+  --evade: #8969BE;
+  --defend: #FFB7EF;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
 }
 
 .press-start h1, h2, h4 {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
 }
 
 .hide {
@@ -47,7 +48,7 @@ h3 {
 /* added css to stats page in battle html */
 .setStats {
   font-family: "Bubblegum Sans", cursive;
-  font-size: 30px;
+  font-size: 27px;
   color: var(--yellow);
 }
 /* added css to landing page name your fakemon */
@@ -77,7 +78,9 @@ h3 {
   /* border: 2px solid; */
   padding: 2px 50px;
   width: fit-content;
-  background-color: var(--evade);
+  background-color: var(--stat);
+  opacity: 0.8;
+  border-radius: 8px;
 }
 
 .pokeImage {
@@ -159,6 +162,7 @@ h3 {
   font-family: "Bubblegum Sans";
   border-radius: 10px;
 }
+
 #save-button {
   background-color: var(--cb);
 }
@@ -307,7 +311,7 @@ h2 {
 }
 
 .nickname-box input {
-  width: 100px;
+  width: 150px;
   height: 40.5px;
   margin: auto
 }
@@ -345,7 +349,7 @@ ol {
 }
 
 li {
-  padding-left: 180px;
+  padding-left: 150px;
   text-transform: uppercase;
   list-style: decimal inside none;
   background-color: #FFA9E4;
@@ -365,25 +369,14 @@ li:nth-child(even) {
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1200px) { 
-  .backGround {
-    background-image: url(../images/backgrounds/start.webp);
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
-  }
-  .forest {
-    background-size: auto 100vh;
-    background-position:top center;
-    background-repeat: repeat;
-  }
+.battle-rules h4 {
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
 }
 
-.battle-rules h5 {
-  text-align: center;
-}
 .battle-rules {
-   background-color:aliceblue;
+   background-color: #FFCFF8;
+   opacity: 0.7;
    border-radius: 5px;
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
@@ -404,4 +397,43 @@ li:nth-child(even) {
 
 .highScoreButtons {
   margin: 10px;
+}
+
+.battle-page {
+  height: 100vh;
+}
+
+@media screen and (max-width: 1024px) {
+  .battle-page {
+    height:auto !important;
+  }
+  .forest {
+    background-image: url("../images/backgrounds/battle-bkg.jpeg");
+    background-size: auto 200vh!important;
+    background-position: top center;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #fusionPokemonImg {
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+  }
+}
+
+@media screen and (max-width: 1200px) { 
+  .backGround {
+    background-image: url(../images/backgrounds/start.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+  }
+  .forest {
+    background-size: auto 100vh;
+    background-position:top center;
+    background-repeat: repeat;
+  }
 }

@@ -242,6 +242,7 @@ function battle() {
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").classList.remove("hide");
   document.querySelector("#oppPokemon").classList.add("large-3");
+  document.querySelector("#buttonBlock").style.marginTop = "25vh";
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
@@ -336,6 +337,7 @@ function hpUpdate() {
 
 // normal attack function to deal 75% attack damage
 function normalAttack() {
+  sfxAttack.play();
   if (currentStats.speed >= opponentStats.speed) {
     dialogueBox.textContent =
       "Your Pokemon attacked first due to its higher speed!";
@@ -350,7 +352,6 @@ function normalAttack() {
 
   winLossCheck();
   hpUpdate();
-
   opponentStrongAttackAfter();
   opponentStrongAttack();
 }
@@ -360,15 +361,18 @@ function strongAttack() {
   var percentage = 100;
   var hitChance = Math.floor(Math.random() * percentage);
   if (hitChance > 70) {
+    sfxDamage.play();
     dialogueBox.textContent = "Your strong attack missed.";
     currentStats.health -= opponentStats.attack;
   } else {
     if (currentStats.speed >= opponentStats.speed) {
+      sfxStrongAttack.play();
       dialogueBox.textContent =
         "Your strong attack was successful! Your Pokemon attacked first due to its higher speed!";
       opponentStats.health -= currentStats.attack;
       currentStats.health -= opponentStats.attack;
     } else {
+      sfxStrongAttack.play();
       dialogueBox.textContent =
         "Your strong attack was successful! The fusion Pokemon attacked first due to its higher speed!";
       currentStats.health -= opponentStats.attack;
@@ -378,7 +382,6 @@ function strongAttack() {
 
   winLossCheck();
   hpUpdate();
-
   opponentStrongAttackAfter();
   opponentStrongAttack();
 }
@@ -390,6 +393,7 @@ function defend() {
     currentStats.health = currentStats.health - 5;
     dialogueBox.textContent =
       "You have successfully defended! You only take 5 damage and reflected back the rest of the damage.";
+    sfxSuccess.play();
     opponentStats.health -= opponentStats.attack - 5;
   } else if (randomDefense <= 5) {
     randomDefense = 5;
@@ -397,6 +401,7 @@ function defend() {
       currentStats.health - (opponentStats.attack - randomDefense);
     dialogueBox.textContent =
       "You have unsuccessfully defended! You only mitigated and reflected 5 damage.";
+    sfxDamage.play();
     opponentStats.health -= 5;
   } else {
     currentStats.health =
@@ -404,6 +409,7 @@ function defend() {
     dialogueBox.textContent = `You have defended some of the damage. You took ${
       opponentStats.attack - randomDefense
     } damage, and reflected back ${randomDefense} damage.`;
+    sfxPartialDefense.play();
     opponentStats.health -= randomDefense;
   }
   winLossCheck();
@@ -420,11 +426,14 @@ function evade() {
     currentStats.health += currentStats.speed;
     dialogueBox.textContent =
       "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed.";
+    sfxEvade.play();
   } else {
     currentStats.health -= opponentStats.attack;
     dialogueBox.textContent =
       "You have failed to evade the enemy attack. You took 100% damage.";
+    sfxDamage.play();
   }
+
   winLossCheck();
   hpUpdate();
   opponentStrongAttackAfter();
@@ -475,12 +484,21 @@ function opponentStrongAttackAfter() {
   }
 }
 
-// sound effects upon winning and losing
-var sfxWin = new Audio("assets/sfx/win-sfx.mp3");
-var sfxDeath = new Audio("assets/sfx/death-sfx.mp3");
+// sound effects upon winning and losing and using different battle actions
+var sfxWin = new Audio("assets/sfx/soft-win-sfx.wav");
+var sfxDeath = new Audio("assets/sfx/soft-death-sfx.mp3");
+var sfxAttack = new Audio("assets/sfx/attack-sfx.mp3");
+var sfxStrongAttack = new Audio("assets/sfx/strong-attack-sfx.mp3");
+var sfxEvade = new Audio("assets/sfx/evade-sfx.mp3");
+var sfxDamage = new Audio("assets/sfx/damage-sfx.mp3");
+var sfxSuccess = new Audio("assets/sfx/success-sfx.mp3");
+var sfxPartialDefense = new Audio("assets/sfx/partial-defense-sfx.mp3");
 
-sfxWin.volume = 0.1;
-sfxDeath.volume = 0.2;
+sfxWin.volume = 0.5;
+sfxDeath.volume = 0.5;
+sfxSuccess.volume = 0.3;
+sfxDamage.volume = 0.1;
+sfxPartialDefense.volume = 0.5;
 
 // enable buttons after battle start
 function enableBattleButtons() {
