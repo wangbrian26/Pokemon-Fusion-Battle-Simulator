@@ -92,7 +92,8 @@ h3 {
 
 .intro h3 {
   font-family: "Audiowide", cursive;
-  color: var(--cb);
+  color: black;
+  background-color: rgb(255, 252, 49, 0.5);
 }
 /* added css to the three cards in landing page */
 
