@@ -365,19 +365,7 @@ li:nth-child(even) {
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 1200px) { 
-  .backGround {
-    background-image: url(../images/backgrounds/start.webp);
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
-  }
-  .forest {
-    background-size: auto 100vh;
-    background-position:top center;
-    background-repeat: repeat;
-  }
-}
+
 
 .battle-rules h5 {
   text-align: center;
@@ -404,4 +392,29 @@ li:nth-child(even) {
 
 .highScoreButtons {
   margin: 10px;
+}
+
+.battle-page {
+  height: 100vh;
+}
+
+
+@media screen and (max-width: 768px) {
+  .battle-page {
+    height:auto !important;
+  }
+}
+
+@media screen and (max-width: 1200px) { 
+  .backGround {
+    background-image: url(../images/backgrounds/start.webp);
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+  }
+  .forest {
+    background-size: auto 100vh;
+    background-position:top center;
+    background-repeat: repeat;
+  }
 }

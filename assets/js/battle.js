@@ -242,6 +242,7 @@ function battle() {
   window.localStorage.setItem("win-count", JSON.stringify(winCount));
   document.querySelector("#oppPokemon").classList.remove("hide");
   document.querySelector("#oppPokemon").classList.add("large-3");
+  document.querySelector("#buttonBlock").style.marginTop = "20%";
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
