@@ -269,6 +269,9 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
+  document
+    .querySelector("#buttonBlock")
+    .classList.remove("medium-2", "large-1");
   document.querySelector("#score-box").classList.remove("hide");
   document
     .querySelector("#attackButtons")
@@ -277,10 +280,11 @@ function battle() {
       button.classList.remove("hide");
     });
   document.querySelector("#battleInfo").classList.add("hide");
+  document.querySelector("#userBattleScene").classList.remove("medium-6");
   document.querySelector("#userBattleScene").classList.add("large-3");
   document
     .querySelector("#userStats")
-    .classList.remove("statBorder", "medium-12", "large-6");
+    .classList.remove("statBorder", "medium-12", "large-5");
   document
     .querySelector("#userStats")
     .classList.add("pokemonStats", "medium-6", "large-3");
