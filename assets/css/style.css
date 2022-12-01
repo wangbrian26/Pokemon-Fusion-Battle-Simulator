@@ -369,6 +369,27 @@ li:nth-child(even) {
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 768px) {
+  .battle-page {
+    height:auto !important;
+  }
+  .forest {
+    background-image: url("../images/backgrounds/battle-bkg.jpg");
+    background-size: auto 200vh!important;
+    background-position: top center;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #fusionPokemonImg {
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+  }
+}
+
 @media screen and (max-width: 1200px) { 
   .backGround {
     background-image: url(../images/backgrounds/start.webp);
