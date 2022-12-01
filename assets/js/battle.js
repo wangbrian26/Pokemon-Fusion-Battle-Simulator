@@ -34,6 +34,8 @@ var dialogueBox = document.querySelector("#dialogue");
 var winCount = 0;
 var opponentStrongAttackHit = false;
 let opponentStrongAttackChance;
+var evadeSuccess = false;
+var evadeTimes = 0;
 
 stats.textContent = statPoints;
 healthEl.textContent = healthBase;
@@ -420,20 +422,57 @@ function defend() {
 
 // function to evade based on speedstat/150, min 33%, max 66%
 function evade() {
-  let evadeChance = Math.floor((speedBase / 150) * 100);
-  let randomChance = Math.floor(Math.random() * 100);
-  if (randomChance <= evadeChance) {
-    currentStats.health += currentStats.speed;
-    dialogueBox.textContent =
-      "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed.";
-    sfxEvade.play();
+  if (evadeSuccess === false) {
+    let evadeChance = Math.floor((speedBase / 150) * 100);
+    let randomChance = Math.floor(Math.random() * 100);
+    if (randomChance <= evadeChance) {
+      currentStats.health += currentStats.speed;
+      evadeSuccess = true;
+      evadeTimes++;
+      if (currentStats.health <= 250) {
+        dialogueBox.textContent =
+          "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed. Your chance to evade will be lowered if you try to evade again.";
+        sfxEvade.play();
+      } else {
+        currentStats.health = 250;
+        dialogueBox.textContent =
+          "You have successfully evaded the enemy attack. You took 0 damage, but you cannot heal to more than 250 health. Your chance to evade will be lowered if you try to evade again.";
+        sfxEvade.play();
+      }
+    } else {
+      evadeSuccess = false;
+      evadeTimes = 0;
+      currentStats.health -= opponentStats.attack;
+      dialogueBox.textContent =
+        "You have failed to evade the enemy attack. You took 100% damage.";
+      sfxDamage.play();
+    }
   } else {
-    currentStats.health -= opponentStats.attack;
-    dialogueBox.textContent =
-      "You have failed to evade the enemy attack. You took 100% damage.";
-    sfxDamage.play();
+    let evadeChance = Math.floor((speedBase / 150) * 100);
+    let randomChance = Math.floor(Math.random() * (100 + 25 * evadeTimes));
+    if (randomChance <= evadeChance) {
+      currentStats.health += currentStats.speed;
+      evadeSuccess = true;
+      evadeTimes++;
+      if (currentStats.health <= 250) {
+        dialogueBox.textContent =
+          "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed. Your chance to evade will be lowered if you try to evade again.";
+        sfxEvade.play();
+      } else {
+        currentStats.health = 250;
+        dialogueBox.textContent =
+          "You have successfully evaded the enemy attack. You took 0 damage, but you cannot heal to more than 250 health. Your chance to evade will be lowered if you try to evade again.";
+        sfxEvade.play();
+      }
+    } else {
+      evadeSuccess = false;
+      evadeTimes = 0;
+      currentStats.health -= opponentStats.attack;
+      dialogueBox.textContent =
+        "You have failed to evade the enemy attack. You took 100% damage.";
+      sfxDamage.play();
+    }
   }
-
   winLossCheck();
   hpUpdate();
   opponentStrongAttackAfter();
