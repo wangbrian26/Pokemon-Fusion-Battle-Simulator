@@ -245,7 +245,6 @@ function battle() {
   document.querySelectorAll(".pageButtons").forEach(function (button) {
     button.classList.add("hide");
   });
-  document.querySelector("#buttonBlock").classList.add("large-4");
   document.querySelector("#score-box").classList.remove("hide");
   document
     .querySelector("#attackButtons")
