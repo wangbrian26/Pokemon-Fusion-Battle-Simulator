@@ -261,8 +261,8 @@ document.querySelector("#userPokemonImg").src = "./assets" + userPokeImgSRC[1];
 
 // Changing from stat screen to battle screen
 function battle() {
-  currentStats = JSON.parse(JSON.stringify(charStats));
-  window.localStorage.setItem("win-count", JSON.stringify(winCount));
+  currentStats = JSON.parse(JSON.stringify(charStats)); // NOTE: we make charStats (an object) into a string and then turn it into an object to basically clone the object
+  window.localStorage.setItem("win-count", JSON.stringify(winCount)); // NOTE: every time battle starts, winCount will save into local storage
   document.querySelector("#oppPokemon").classList.remove("hide");
   document.querySelector("#oppPokemon").classList.add("large-3");
   document.querySelector("#buttonBlock").style.marginTop = "25vh";
@@ -309,7 +309,7 @@ function battleAgain() {
   document.querySelector("#dialogue").textContent =
     "A wild fusion Pokemon has appeared!";
   fusionPokemon();
-  if (currentStats.health <= charStats.health / 2) {
+  if (currentStats.health <= charStats.health / 2) { // NOTE: revive HP to 50% of original HP after every win
     currentStats.health = charStats.health / 2;
   }
 }
@@ -323,7 +323,7 @@ function winLossCheck() {
 
     opponentStats.attack = 0;
     opponentStats.health = 0;
-    document.querySelector("#health-points").textContent = currentStats.health;
+    healthEl.textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     dialogueBox.textContent =
       "You win! Your HP is restored to 50% if you fell under 50%.";
@@ -334,9 +334,9 @@ function winLossCheck() {
     console.log(currentStats.health);
     sfxWin.play();
     disableBattleButtons();
-    if (currentStats.health <= charStats.health / 2) {
+    if (currentStats.health <= charStats.health / 2) { // // NOTE: also to revive HP to 50% of original HP after every win (necessary?)
       console.log("Your health is:");
-      currentStats.health = charStats.health / 2; // what is this for?
+      currentStats.health = charStats.health / 2; 
       console.log(currentStats.health);
     }
   } else if (currentStats.health <= 0) {
@@ -344,7 +344,7 @@ function winLossCheck() {
     currentStats.health = 0;
     dialogueBox.textContent = "Your HP is at 0. You died...";
     sfxDeath.play();
-    document.querySelector("#health-points").textContent = currentStats.health;
+    healthEl.textContent = currentStats.health;
     document.querySelector("#oppHealth").textContent = opponentStats.health;
     console.log("game over");
     disableBattleButtons();
@@ -354,13 +354,8 @@ function winLossCheck() {
     console.log("win count:", winCount);
   } else if (currentStats.health == "NaN") {
     battleAgain();
-    currentStats = JSON.parse(JSON.stringify(charStats));
+    currentStats = JSON.parse(JSON.stringify(charStats)); // NOTE/QUESTION: Can this be moved to be inside battleAgain()?
   }
-}
-
-function hpUpdate() {
-  document.querySelector("#health-points").textContent = currentStats.health;
-  document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
 
 // Functions for actions during battle phase
@@ -450,7 +445,7 @@ function defend() {
 
 // function to evade based on speedstat/150, min 33%, max 66%
 function evade() {
-  if (evadeSuccess === false) {
+  if (evadeSuccess === false) { // NOTE: this is for the first time evade is used
     let evadeChance = Math.floor((speedBase / 150) * 100);
     let randomChance = Math.floor(Math.random() * 100);
     if (randomChance <= evadeChance) {
@@ -462,7 +457,7 @@ function evade() {
           "You have successfully evaded the enemy attack. You took 0 damage and boosted your HP based on your speed. Your chance to evade will be lowered if you try to evade again.";
         sfxEvade.play();
       } else {
-        currentStats.health = 250;
+        currentStats.health = 250; // NOTE: capping HP at 250 here
         dialogueBox.textContent =
           "You have successfully evaded the enemy attack. You took 0 damage, but you cannot heal to more than 250 health. Your chance to evade will be lowered if you try to evade again.";
         sfxEvade.play();
@@ -475,7 +470,7 @@ function evade() {
         "You have failed to evade the enemy attack. You took 100% damage.";
       sfxDamage.play();
     }
-  } else {
+  } else { // NOTE: this is for all the subsequent times evade is used
     let evadeChance = Math.floor((speedBase / 150) * 100);
     let randomChance = Math.floor(Math.random() * (100 + 25 * evadeTimes));
     if (randomChance <= evadeChance) {
@@ -509,7 +504,7 @@ function evade() {
 
 // updates text content of user hp and opponent hp after changes
 function hpUpdate() {
-  document.querySelector("#health-points").textContent = currentStats.health;
+  healthEl.textContent = currentStats.health;
   document.querySelector("#oppHealth").textContent = opponentStats.health;
 }
 
