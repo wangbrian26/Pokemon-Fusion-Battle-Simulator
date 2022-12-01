@@ -37,10 +37,10 @@ Thanks to Instructor Quinton Fults, TA Takara Truong, and TA Black Marcus for he
 
 Credits to our group members who worked on this project:
 
-Jason Doss - https://github.com/dossj88
-Johnathan Nguyen - https://github.com/jthnguyen9909
-Nicole Trieu - https://github.com/nbtrieu
-Brian Wang - https://github.com/wangbrian26
+- [Jason Doss](https://github.com/dossj88)
+- [Johnathan Nguyen](https://github.com/jthnguyen9909)
+- [Nicole Trieu](https://github.com/nbtrieu)
+- [Brian Wang](https://github.com/wangbrian26)
 
 ## License
 
