@@ -1,4 +1,4 @@
-# Choose Your Own Adventure Pokemon Game
+# Pokemon Battle Simulator Game
 
 ## Description
 
@@ -12,7 +12,12 @@ The player can choose between 4 battle actions: normal attack, strong attack, ev
 
 Each time a battle action is selected, the opposing fusion pokemon will deliver (most of the time) normal attacks and (sometimes) strong attacks back. Before every strong attack, there will be a warning so the player can calculate their moves and choose accordingly. After every battle win, another fusion pokemon with different stats will appear to challenge the player. The more fusion pokemon they beat until they run out of health points, the higher score they will get. When the game is over, the player will be able to save their score by submitting their nickname to the high score board. Once they have viewed the high scores, they can choose to play again or clear scores.
 
-![Screenshot](./assets/images/screenshots/screenshot-landing-page.png)
+![Screenshot](./assets/images/screenshots/landing-page.png)
+![Screenshot](./assets/images/screenshots/name-input.png)
+![Screenshot](./assets/images/screenshots/stat-page.png)
+![Screenshot](./assets/images/screenshots/battle-page.png)
+![Screenshot](./assets/images/screenshots/game-over.png)
+![Screenshot](./assets/images/screenshots/high-score.png)
 <!-- add more screenshots later -->
 
 ## Link to Deployed Application
